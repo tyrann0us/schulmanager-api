@@ -1,0 +1,71 @@
+{
+ "_comment": "Shape captured live from poqa findAll on modules/exemptions/exemption-request. Content is synthetic.",
+ "requests": [
+  {
+   "startDate": "2026-02-27",
+   "endDate": "2026-02-27",
+   "comment": "Termin beim Zahnarzt",
+   "feedback": null,
+   "id": 10537689,
+   "startTime": null,
+   "endTime": "08:50:00",
+   "granted": true,
+   "isInternal": false,
+   "isQuarantine": false,
+   "source": "Internal",
+   "createdAt": "2026-02-27T05:33:47.525Z",
+   "updatedAt": "2026-02-27T07:50:50.030Z",
+   "studentId": 4711,
+   "bulkExemptionId": null,
+   "student": {
+    "lastname": "Mustermann",
+    "firstname": "Erika",
+    "firstnames": "Erika",
+    "salutation": null,
+    "id": 4711,
+    "sex": "f",
+    "isFullAged": true,
+    "gradeLevel": 2,
+    "createdAt": "2025-08-01T06:00:00.000Z",
+    "updatedAt": "2026-02-01T06:00:00.000Z",
+    "classId": 426669,
+    "tutorId": null,
+    "branchId": null
+   }
+  },
+  {
+   "startDate": "2026-05-04",
+   "endDate": "2026-05-06",
+   "comment": "Familienfeier",
+   "feedback": "Bitte Hausaufgaben nachholen.",
+   "id": 10600001,
+   "startTime": null,
+   "endTime": null,
+   "granted": null,
+   "isInternal": false,
+   "isQuarantine": false,
+   "source": "Parent",
+   "createdAt": "2026-04-20T09:00:00.000Z",
+   "updatedAt": "2026-04-20T09:00:00.000Z",
+   "studentId": 4711,
+   "bulkExemptionId": null
+  },
+  {
+   "startDate": "2026-06-15",
+   "endDate": "2026-06-15",
+   "comment": "Verspäteter Beginn",
+   "feedback": null,
+   "id": 10600002,
+   "startTime": "10:00:00",
+   "endTime": "11:30:00",
+   "granted": false,
+   "isInternal": false,
+   "isQuarantine": false,
+   "source": "Student",
+   "createdAt": "2026-06-01T09:00:00.000Z",
+   "updatedAt": "2026-06-02T09:00:00.000Z",
+   "studentId": 4711,
+   "bulkExemptionId": null
+  }
+ ]
+}

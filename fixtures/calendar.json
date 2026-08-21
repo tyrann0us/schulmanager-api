@@ -1,0 +1,73 @@
+{
+ "_comment": "Shapes verified live against calendar/get-events-for-user and get-event-categories over a full school year (74 events). Content is synthetic.",
+ "events": {
+  "nonRecurringEvents": [
+   {
+    "summary": "Elternabend",
+    "description": "<p>Bitte pünktlich erscheinen. Gr&uuml;&szlig;e!</p>",
+    "location": "Musikzimmer",
+    "organizer": "Schulleitung",
+    "id": 3001,
+    "start": "2026-09-30T14:30:00.000Z",
+    "end": "2026-09-30T15:30:00.000Z",
+    "allDay": false,
+    "categoryId": 21208,
+    "recurrencePattern": null,
+    "visibleForGroups": [
+     {
+      "id": 900,
+      "JoinEventVisibleForGroups": {
+       "createdAt": "2026-08-01T08:00:00.000Z",
+       "updatedAt": "2026-08-01T08:00:00.000Z",
+       "visibleEventsId": 3001,
+       "visibleForGroupsId": 900
+      }
+     }
+    ]
+   },
+   {
+    "summary": "Teamtag",
+    "description": null,
+    "location": null,
+    "organizer": "Betreuung",
+    "id": 3002,
+    "start": "2026-08-28T00:00:00.000Z",
+    "end": "2026-08-29T00:00:00.000Z",
+    "allDay": true,
+    "categoryId": 22068,
+    "recurrencePattern": null,
+    "visibleForGroups": []
+   },
+   {
+    "summary": "Sommerferien",
+    "description": null,
+    "location": null,
+    "organizer": null,
+    "id": 3003,
+    "start": "2026-07-20T00:00:00.000Z",
+    "end": "2026-08-29T00:00:00.000Z",
+    "allDay": true,
+    "categoryId": -1,
+    "recurrencePattern": null,
+    "visibleForGroups": []
+   }
+  ],
+  "recurringEvents": []
+ },
+ "categories": [
+  {
+   "id": 21208,
+   "name": "Elternarbeit",
+   "color": null,
+   "administrators": [],
+   "isVisibleForAlldaySupervisors": false
+  },
+  {
+   "id": 22068,
+   "name": "Exkursion",
+   "color": "#3366ff",
+   "administrators": [],
+   "isVisibleForAlldaySupervisors": true
+  }
+ ]
+}

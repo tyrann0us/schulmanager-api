@@ -1,0 +1,547 @@
+[
+ {
+  "abbreviation": "Outdoor-Sport",
+  "name": "Outdoor-Sport",
+  "id": 396858
+ },
+ {
+  "abbreviation": "KU",
+  "name": "Kernunterricht",
+  "id": 383417
+ },
+ {
+  "abbreviation": "Sport frei!",
+  "name": "Sport frei!",
+  "id": 396834
+ },
+ {
+  "abbreviation": "DaZ",
+  "name": "Sprachlabor DaZ",
+  "id": 396852
+ },
+ {
+  "abbreviation": "Tanz",
+  "name": "Tanz",
+  "id": 396855
+ },
+ {
+  "abbreviation": "SU",
+  "name": "Sachunterricht",
+  "id": 384525
+ },
+ {
+  "abbreviation": "NuT",
+  "name": "Natur und Technik",
+  "id": 379998
+ },
+ {
+  "abbreviation": "Inf",
+  "name": "Informatik",
+  "id": 379999
+ },
+ {
+  "abbreviation": "D",
+  "name": "Deutsch",
+  "id": 380000
+ },
+ {
+  "abbreviation": "KuB",
+  "name": "Bildnerische Praxis",
+  "id": 380001
+ },
+ {
+  "abbreviation": "Smd",
+  "name": "Diff. Sportunterricht (m)",
+  "id": 380002
+ },
+ {
+  "abbreviation": "Kon",
+  "name": "sonst. fremdspr. Konversation",
+  "id": 380004
+ },
+ {
+  "abbreviation": "Ins",
+  "name": "Instrumentalunterricht",
+  "id": 380005
+ },
+ {
+  "abbreviation": "WR",
+  "name": "Wirtschaft und Recht",
+  "id": 380007
+ },
+ {
+  "abbreviation": "SSp",
+  "name": "Schulspiel",
+  "id": 380008
+ },
+ {
+  "abbreviation": "Cho",
+  "name": "Chor",
+  "id": 380011
+ },
+ {
+  "abbreviation": "PhA",
+  "name": "Astrophysik (Quali. Oberstufe)",
+  "id": 380012
+ },
+ {
+  "abbreviation": "Geo",
+  "name": "Geografie",
+  "id": 380013
+ },
+ {
+  "abbreviation": "bcp",
+  "name": "Biol.-chem. Praktikum",
+  "id": 380015
+ },
+ {
+  "abbreviation": "Orw",
+  "name": "Orchester (WiU)",
+  "id": 380016
+ },
+ {
+  "abbreviation": "LeL",
+  "name": "Lernen Lernen",
+  "id": 380018
+ },
+ {
+  "abbreviation": "Orc",
+  "name": "Orchester",
+  "id": 380019
+ },
+ {
+  "abbreviation": "F",
+  "name": "Französisch",
+  "id": 380020
+ },
+ {
+  "abbreviation": "Smw",
+  "name": "Sport (mw)",
+  "id": 380021
+ },
+ {
+  "abbreviation": "K",
+  "name": "Katholische Religionslehre",
+  "id": 380022
+ },
+ {
+  "abbreviation": "B",
+  "name": "Biologie",
+  "id": 380023
+ },
+ {
+  "abbreviation": "C",
+  "name": "Chemie",
+  "id": 380024
+ },
+ {
+  "abbreviation": "Chi",
+  "name": "Chinesisch",
+  "id": 380025
+ },
+ {
+  "abbreviation": "E",
+  "name": "Englisch",
+  "id": 380026
+ },
+ {
+  "abbreviation": "son",
+  "name": "sonstiges Fach (wiss)",
+  "id": 380027
+ },
+ {
+  "abbreviation": "G",
+  "name": "Geschichte",
+  "id": 380028
+ },
+ {
+  "abbreviation": "Ev",
+  "name": "Evangelische Religionslehre",
+  "id": 380029
+ },
+ {
+  "abbreviation": "Sw",
+  "name": "Sport (w)",
+  "id": 380030
+ },
+ {
+  "abbreviation": "Ph",
+  "name": "Physik",
+  "id": 380031
+ },
+ {
+  "abbreviation": "Eth",
+  "name": "Ethik",
+  "id": 380032
+ },
+ {
+  "abbreviation": "Sk",
+  "name": "Sozialkunde",
+  "id": 380033
+ },
+ {
+  "abbreviation": "Swd",
+  "name": "Diff. Sportunterricht (w)",
+  "id": 380036
+ },
+ {
+  "abbreviation": "TuF",
+  "name": "Theater und Film",
+  "id": 380037
+ },
+ {
+  "abbreviation": "Ku",
+  "name": "Kunst",
+  "id": 380039
+ },
+ {
+  "abbreviation": "M",
+  "name": "Mathematik",
+  "id": 380040
+ },
+ {
+  "abbreviation": "Sm",
+  "name": "Sport (m)",
+  "id": 380041
+ },
+ {
+  "abbreviation": "Fot",
+  "name": "Fotografie",
+  "id": 380042
+ },
+ {
+  "abbreviation": "EKo",
+  "name": "Englisch Konversation",
+  "id": 380043
+ },
+ {
+  "abbreviation": "L",
+  "name": "Latein",
+  "id": 380044
+ },
+ {
+  "abbreviation": "Mu",
+  "name": "Musik",
+  "id": 380006
+ },
+ {
+  "abbreviation": "IF",
+  "name": "Individuelle Förderung",
+  "id": 380034
+ },
+ {
+  "abbreviation": "SmdV",
+  "name": "Sport männlich (Diffsport) Volleyball",
+  "id": 380017
+ },
+ {
+  "abbreviation": "Tv",
+  "name": "Textverarbeitung",
+  "id": 380003
+ },
+ {
+  "abbreviation": "Chw",
+  "name": "Chor (WiU)",
+  "id": 380014
+ },
+ {
+  "abbreviation": "MuI",
+  "name": "Instrument",
+  "id": 380009
+ },
+ {
+  "abbreviation": "INS",
+  "name": "InsE (WiU, Quali. Oberstufe)",
+  "id": 380035
+ },
+ {
+  "abbreviation": "S-T",
+  "name": "Sporttheorie (Quali. Oberst.)",
+  "id": 380010
+ },
+ {
+  "abbreviation": "Ort",
+  "name": "Orthodoxe Religionslehre",
+  "id": 380038
+ },
+ {
+  "abbreviation": "Kreative Kunstwerkstatt",
+  "name": "Kreative Kunstwerkstatt",
+  "id": 396814
+ },
+ {
+  "abbreviation": "Philo",
+  "name": "Philosophieren mit Kindern",
+  "id": 396849
+ },
+ {
+  "abbreviation": "LWS Ma",
+  "name": "Lernwerkstatt Mathematik",
+  "id": 396850
+ },
+ {
+  "abbreviation": "Melodie/Rhythmus",
+  "name": "Melodie und Rhythmus",
+  "id": 396854
+ },
+ {
+  "abbreviation": "Aquarell",
+  "name": "Aquarell und Zeichnen",
+  "id": 396856
+ },
+ {
+  "abbreviation": "Holzwerkstatt",
+  "name": "Holzwerkstatt",
+  "id": 396859
+ },
+ {
+  "abbreviation": "Holz und Technik",
+  "name": "Holz und Technik",
+  "id": 396860
+ },
+ {
+  "abbreviation": "Jeki 1",
+  "name": "Jedem Kind ein Instrument 1",
+  "id": 397641
+ },
+ {
+  "abbreviation": "Flechten",
+  "name": "Flechten",
+  "id": 399778
+ },
+ {
+  "abbreviation": "LT",
+  "name": "Lesetraining",
+  "id": 399781
+ },
+ {
+  "abbreviation": "Fußball",
+  "name": "Fußball",
+  "id": 399785
+ },
+ {
+  "abbreviation": "Malen und Papier",
+  "name": "Malen und Papier",
+  "id": 399779
+ },
+ {
+  "abbreviation": "Bibo",
+  "name": "Bibliothek",
+  "id": 399780
+ },
+ {
+  "abbreviation": "PR",
+  "name": "Piratenreise",
+  "id": 399782
+ },
+ {
+  "abbreviation": "Percussion",
+  "name": "Percussion",
+  "id": 399783
+ },
+ {
+  "abbreviation": "SC",
+  "name": "Schülercafé",
+  "id": 399784
+ },
+ {
+  "abbreviation": "Floorball",
+  "name": "Floorball",
+  "id": 399786
+ },
+ {
+  "abbreviation": "Kreatives Gestalten",
+  "name": "Kreatives Gestalten",
+  "id": 399787
+ },
+ {
+  "abbreviation": "Kreativwerkstatt",
+  "name": "Kreativwerkstatt",
+  "id": 399788
+ },
+ {
+  "abbreviation": "KF",
+  "name": "Kleine Forscher",
+  "id": 399789
+ },
+ {
+  "abbreviation": "RUT",
+  "name": "Rund ums Tier",
+  "id": 399790
+ },
+ {
+  "abbreviation": "SL",
+  "name": "Sprachlabor",
+  "id": 399791
+ },
+ {
+  "abbreviation": "E AU",
+  "name": "Englisch Anfangsunterricht",
+  "id": 399792
+ },
+ {
+  "abbreviation": "Handarbeit",
+  "name": "Handarbeit",
+  "id": 399817
+ },
+ {
+  "abbreviation": "Ent",
+  "name": "Entspannung",
+  "id": 399818
+ },
+ {
+  "abbreviation": "Spiele",
+  "name": "Spiele",
+  "id": 399827
+ },
+ {
+  "abbreviation": "TT",
+  "name": "Tischtennis",
+  "id": 399828
+ },
+ {
+  "abbreviation": "Harry Potter",
+  "name": "Harry Potter",
+  "id": 399829
+ },
+ {
+  "abbreviation": "Töpfern",
+  "name": "Töpfern",
+  "id": 399830
+ },
+ {
+  "abbreviation": "Theater",
+  "name": "Theater",
+  "id": 399831
+ },
+ {
+  "abbreviation": "DaZ",
+  "name": "Deutsch als Zweitsprache",
+  "id": 425935
+ },
+ {
+  "abbreviation": "UDW",
+  "name": "Unsere digitale Welt",
+  "id": 477794
+ },
+ {
+  "abbreviation": "SW",
+  "name": "Schreibwerkstatt",
+  "id": 477795
+ },
+ {
+  "abbreviation": "RuR",
+  "name": "Ringen und Raufen",
+  "id": 477796
+ },
+ {
+  "abbreviation": "Yoga",
+  "name": "Yoga",
+  "id": 477797
+ },
+ {
+  "abbreviation": "LRS",
+  "name": "LRS-Förderung",
+  "id": 477798
+ },
+ {
+  "abbreviation": "Streit",
+  "name": "Streitschlichter",
+  "id": 477799
+ },
+ {
+  "abbreviation": "Ga",
+  "name": "Garten",
+  "id": 481907
+ },
+ {
+  "abbreviation": "Schulchor",
+  "name": "Schulchor",
+  "id": 481904
+ },
+ {
+  "abbreviation": "QR",
+  "name": "Schulradio",
+  "id": 481905
+ },
+ {
+  "abbreviation": "Co",
+  "name": "Comics",
+  "id": 481908
+ },
+ {
+  "abbreviation": "Sicherheit",
+  "name": "Sicherheit in jeder Lage",
+  "id": 481909
+ },
+ {
+  "abbreviation": "Zei",
+  "name": "Zeichnen",
+  "id": 489491
+ },
+ {
+  "abbreviation": "Wk",
+  "name": "Werkeln mit Herz",
+  "id": 488743
+ },
+ {
+  "abbreviation": "DA",
+  "name": "Drums Alive",
+  "id": 489500
+ },
+ {
+  "abbreviation": "Bie",
+  "name": "Die Bienenwelt",
+  "id": 489845
+ },
+ {
+  "abbreviation": "Farbatelier",
+  "name": "Farbatelier",
+  "id": 562736
+ },
+ {
+  "abbreviation": "GH",
+  "name": "Geschickte Hände",
+  "id": 571303
+ },
+ {
+  "abbreviation": "DF",
+  "name": "Dancefit",
+  "id": 572204
+ },
+ {
+  "abbreviation": "BB",
+  "name": "Beat Bande",
+  "id": 572205
+ },
+ {
+  "abbreviation": "SM",
+  "name": "Starke Mädchen",
+  "id": 572207
+ },
+ {
+  "abbreviation": "FA",
+  "name": "Farbatelier",
+  "id": 572208
+ },
+ {
+  "abbreviation": "QB",
+  "name": "Schulband",
+  "id": 572209
+ },
+ {
+  "abbreviation": "VR",
+  "name": "Virtual Reality",
+  "id": 572210
+ },
+ {
+  "abbreviation": "KKF",
+  "name": "Kritzel, Klecks und Farbe",
+  "id": 572211
+ },
+ {
+  "abbreviation": "UWD",
+  "name": "Umweltdetektive",
+  "id": 572212
+ }
+]

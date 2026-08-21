@@ -1,0 +1,64 @@
+{
+ "_comment": "Shape from modules/parenttalks Round/Proposal/Appointment in models-schema.json plus the web client's own findAll. This school had no open round to capture, so the content is synthetic.",
+ "rounds": [
+  {
+   "id": 4411,
+   "label": "Elternsprechtag Frühjahr",
+   "start": "2026-03-10",
+   "end": "2026-03-11",
+   "inscriptionStart": "2026-02-20T08:00:00.000Z",
+   "inscriptionEnd": "2026-03-08T20:00:00.000Z",
+   "appointmentLength": 600000,
+   "appointments": []
+  },
+  {
+   "id": 4412,
+   "label": "Elternsprechtag Herbst",
+   "start": "2026-11-05",
+   "end": "2026-11-05",
+   "inscriptionStart": "2026-10-20T08:00:00.000Z",
+   "inscriptionEnd": "2026-11-03T20:00:00.000Z",
+   "appointmentLength": 900000,
+   "appointments": [
+    {
+     "id": 99001,
+     "start": "2026-11-05T15:20:00.000Z",
+     "end": "2026-11-05T15:35:00.000Z",
+     "cancelled": false,
+     "teacherId": 630551,
+     "studentId": 4711,
+     "roundId": 4412,
+     "teacher": {"id": 630551, "firstname": "Anna", "lastname": "Beispiel"}
+    }
+   ]
+  },
+  {
+   "id": 4413,
+   "label": "Abgesagter Termin",
+   "start": "2026-12-01",
+   "end": "2026-12-01",
+   "inscriptionStart": "2026-11-20T08:00:00.000Z",
+   "inscriptionEnd": "2026-11-29T20:00:00.000Z",
+   "appointmentLength": 600000,
+   "appointments": [
+    {
+     "id": 99002,
+     "start": "2026-12-01T14:00:00.000Z",
+     "end": "2026-12-01T14:10:00.000Z",
+     "cancelled": true,
+     "teacherId": 630551,
+     "studentId": 4711,
+     "roundId": 4413
+    }
+   ]
+  }
+ ],
+ "proposals": [
+  {"id": 77001, "start": "2026-03-10T15:00:00.000Z", "end": "2026-03-10T15:10:00.000Z",
+   "teacherId": 630551, "roundId": 4411}
+ ],
+ "teachers": [
+  {"id": 630551, "firstname": "Anna", "lastname": "Beispiel", "abbreviation": "Be"},
+  {"id": 630552, "abbreviation": "Do"}
+ ]
+}

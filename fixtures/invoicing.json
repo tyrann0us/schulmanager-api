@@ -1,0 +1,107 @@
+{
+  "_comment": "Synthetic. Shapes captured from poqa invoicing/student-invoice + include generalInvoice and student-item + include generalItem — note sums are strings while the invoice number is an integer. Amounts and names invented.",
+  "invoices": [
+    {
+      "id": 1,
+      "sum": "30.00",
+      "paidSum": "0.00",
+      "paid": false,
+      "sentTimestamp": "2026-08-14T08:52:04.740Z",
+      "sentType": "email",
+      "generalInvoiceId": 90,
+      "studentId": 4711,
+      "generalInvoice": {
+        "id": 90,
+        "number": 8,
+        "date": "2026-08-14",
+        "dueDate": "2026-08-24",
+        "isArchived": false
+      }
+    },
+    {
+      "id": 2,
+      "sum": "12.50",
+      "paidSum": "12.50",
+      "paid": true,
+      "generalInvoiceId": 91,
+      "studentId": 4711,
+      "generalInvoice": {
+        "id": 91,
+        "number": 7,
+        "date": "2026-05-02",
+        "dueDate": "2026-05-16",
+        "isArchived": false
+      }
+    },
+    {
+      "id": 3,
+      "sum": "8.00",
+      "paidSum": "3.00",
+      "paid": false,
+      "generalInvoiceId": 92,
+      "studentId": 4711,
+      "generalInvoice": {
+        "id": 92,
+        "number": 6,
+        "date": "2026-01-10",
+        "dueDate": "2026-01-24",
+        "sentReminders": 1,
+        "isArchived": false
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": 501,
+      "amount": "30.00",
+      "paid": false,
+      "generalItemId": 171575,
+      "invoiceId": 1,
+      "studentId": 4711,
+      "generalItem": {
+        "id": 171575,
+        "name": "Klassenkasse 3a",
+        "invoiceId": 90
+      }
+    },
+    {
+      "id": 502,
+      "amount": "12.50",
+      "paid": true,
+      "generalItemId": 171576,
+      "invoiceId": 2,
+      "studentId": 4711,
+      "generalItem": {
+        "id": 171576,
+        "name": "Kopiergeld",
+        "invoiceId": 91
+      }
+    },
+    {
+      "id": 503,
+      "amount": "5.00",
+      "paid": false,
+      "generalItemId": 171577,
+      "invoiceId": 3,
+      "studentId": 4711,
+      "generalItem": {
+        "id": 171577,
+        "name": "Theaterfahrt",
+        "invoiceId": 92
+      }
+    },
+    {
+      "id": 504,
+      "amount": "3.00",
+      "paid": true,
+      "generalItemId": 171578,
+      "invoiceId": 3,
+      "studentId": 4711,
+      "generalItem": {
+        "id": 171578,
+        "name": "Materialgeld",
+        "invoiceId": 92
+      }
+    }
+  ]
+}

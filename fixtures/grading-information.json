@@ -1,0 +1,1013 @@
+{
+ "students": [
+  {
+   "id": 4711,
+   "firstname": "Erika",
+   "lastname": "Mustermann",
+   "classId": 426669,
+   "entryDate": null,
+   "leavingDate": null,
+   "gradeLevel": 2,
+   "branchId": null,
+   "groupAttendances": [
+    {
+     "id": "50164826",
+     "start": null,
+     "end": null,
+     "group": {
+      "id": 3935270,
+      "courses": [
+       {
+        "id": 8327540
+       }
+      ]
+     }
+    },
+    {
+     "id": "50164799",
+     "start": null,
+     "end": null,
+     "group": {
+      "id": 3935267,
+      "courses": [
+       {
+        "id": 8327538
+       }
+      ]
+     }
+    },
+    {
+     "id": "39044132",
+     "start": null,
+     "end": null,
+     "group": {
+      "id": 3081185,
+      "courses": [
+       {
+        "id": 6614477
+       }
+      ]
+     }
+    },
+    {
+     "id": "39044216",
+     "start": null,
+     "end": null,
+     "group": {
+      "id": 3081192,
+      "courses": [
+       {
+        "id": 6614481
+       }
+      ]
+     }
+    },
+    {
+     "id": "33099013",
+     "start": "2024-08-05",
+     "end": null,
+     "group": {
+      "id": 2615227,
+      "courses": [
+       {
+        "id": 5700819
+       }
+      ]
+     }
+    },
+    {
+     "id": "43313523",
+     "start": "2025-08-11",
+     "end": null,
+     "group": {
+      "id": 3390176,
+      "courses": [
+       {
+        "id": 7245320
+       },
+       {
+        "id": 7255582
+       },
+       {
+        "id": 7255583
+       },
+       {
+        "id": 7255584
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "courses": [
+  {
+   "id": 7245320,
+   "name": null,
+   "start": "2025-08-11",
+   "end": "2026-07-03",
+   "subjectId": 383417,
+   "specialSubjectId": null,
+   "characteristics": null,
+   "specialSubject": null,
+   "teacherAttendances": [
+    {
+     "id": "8214600",
+     "teacherId": 630551
+    }
+   ],
+   "gradingPreset": null,
+   "classes": [
+    {
+     "id": 426669,
+     "name": "2a"
+    }
+   ]
+  },
+  {
+   "id": 7255582,
+   "name": null,
+   "start": "2025-08-11",
+   "end": "2026-07-03",
+   "subjectId": 380000,
+   "specialSubjectId": null,
+   "characteristics": null,
+   "specialSubject": null,
+   "teacherAttendances": [
+    {
+     "id": "8224094",
+     "teacherId": 630551
+    }
+   ],
+   "gradingPreset": {
+    "id": 433407,
+    "gradingSystem": 0
+   },
+   "classes": [
+    {
+     "id": 426669,
+     "name": "2a"
+    }
+   ]
+  },
+  {
+   "id": 7255583,
+   "name": null,
+   "start": "2025-08-11",
+   "end": "2026-07-03",
+   "subjectId": 380040,
+   "specialSubjectId": null,
+   "characteristics": null,
+   "specialSubject": null,
+   "teacherAttendances": [
+    {
+     "id": "8224095",
+     "teacherId": 630551
+    }
+   ],
+   "gradingPreset": {
+    "id": 339232,
+    "gradingSystem": 0
+   },
+   "classes": [
+    {
+     "id": 426669,
+     "name": "2a"
+    }
+   ]
+  },
+  {
+   "id": 7255584,
+   "name": null,
+   "start": "2025-08-11",
+   "end": "2026-07-03",
+   "subjectId": 384525,
+   "specialSubjectId": null,
+   "characteristics": null,
+   "specialSubject": null,
+   "teacherAttendances": [
+    {
+     "id": "8224096",
+     "teacherId": 630551
+    }
+   ],
+   "gradingPreset": {
+    "id": 457747,
+    "gradingSystem": 0
+   },
+   "classes": [
+    {
+     "id": 426669,
+     "name": "2a"
+    }
+   ]
+  },
+  {
+   "id": 8327538,
+   "name": null,
+   "start": "2025-09-22",
+   "end": "2026-07-03",
+   "subjectId": 571303,
+   "specialSubjectId": null,
+   "characteristics": null,
+   "specialSubject": null,
+   "teacherAttendances": [
+    {
+     "id": "9421411",
+     "teacherId": 541845
+    }
+   ],
+   "gradingPreset": null,
+   "classes": [
+    {
+     "id": 426667,
+     "name": "1b"
+    },
+    {
+     "id": 426664,
+     "name": "1a"
+    },
+    {
+     "id": 426669,
+     "name": "2a"
+    },
+    {
+     "id": 426662,
+     "name": "2b"
+    },
+    {
+     "id": 426668,
+     "name": "2c"
+    }
+   ]
+  },
+  {
+   "id": 8327540,
+   "name": null,
+   "start": "2025-09-22",
+   "end": "2026-07-03",
+   "subjectId": 396834,
+   "specialSubjectId": null,
+   "characteristics": null,
+   "specialSubject": null,
+   "teacherAttendances": [
+    {
+     "id": "9421413",
+     "teacherId": 541849
+    }
+   ],
+   "gradingPreset": null,
+   "classes": [
+    {
+     "id": 426664,
+     "name": "1a"
+    },
+    {
+     "id": 426667,
+     "name": "1b"
+    },
+    {
+     "id": 426669,
+     "name": "2a"
+    },
+    {
+     "id": 426662,
+     "name": "2b"
+    },
+    {
+     "id": 426668,
+     "name": "2c"
+    }
+   ]
+  }
+ ],
+ "gradingEvents": [
+  {
+   "id": 1755797,
+   "name": null,
+   "topic": "1. Kurzkontrolle, Blitzrechnen",
+   "date": "2025-09-05",
+   "durationInMinutes": null,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32938,
+   "courseId": 7255583,
+   "grades": [
+    {
+     "id": "32227461",
+     "value": "0~1",
+     "weighting": null,
+     "studentId": 4711,
+     "isRepeatExam": false
+    }
+   ]
+  }
+ ],
+ "blockPresets": [
+  {
+   "id": 861820,
+   "weighting": 1,
+   "courseId": 7255583,
+   "gradingBlock": {
+    "id": 12259,
+    "abbreviation": null,
+    "name": "Noten",
+    "orderIndex": null,
+    "key": "All"
+   }
+  },
+  {
+   "id": 861821,
+   "weighting": 1,
+   "courseId": 7255583,
+   "gradingBlock": {
+    "id": 12260,
+    "abbreviation": "KA",
+    "name": "Klassenarbeit",
+    "orderIndex": 1,
+    "key": "Big"
+   }
+  },
+  {
+   "id": 1098710,
+   "weighting": 1,
+   "courseId": 7255582,
+   "gradingBlock": {
+    "id": 12259,
+    "abbreviation": null,
+    "name": "Noten",
+    "orderIndex": null,
+    "key": "All"
+   }
+  },
+  {
+   "id": 1098711,
+   "weighting": 1,
+   "courseId": 7255582,
+   "gradingBlock": {
+    "id": 12260,
+    "abbreviation": "KA",
+    "name": "Klassenarbeit",
+    "orderIndex": 1,
+    "key": "Big"
+   }
+  },
+  {
+   "id": 1158697,
+   "weighting": 1,
+   "courseId": 7255584,
+   "gradingBlock": {
+    "id": 12259,
+    "abbreviation": null,
+    "name": "Noten",
+    "orderIndex": null,
+    "key": "All"
+   }
+  },
+  {
+   "id": 1158698,
+   "weighting": 1,
+   "courseId": 7255584,
+   "gradingBlock": {
+    "id": 12260,
+    "abbreviation": "KA",
+    "name": "Klassenarbeit",
+    "orderIndex": 1,
+    "key": "Big"
+   }
+  }
+ ],
+ "typePresets": [
+  {
+   "id": 4485128,
+   "weighting": 1,
+   "gradingBlockId": 12260,
+   "gradeTypeId": 32944,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32944,
+    "abbreviation": "KL",
+    "name": "Komplexe Leistung",
+    "isOral": false,
+    "gradingBlockId": 12260,
+    "orderIndex": 1
+   }
+  },
+  {
+   "id": 4485127,
+   "weighting": 1,
+   "gradingBlockId": 12260,
+   "gradeTypeId": 32943,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32943,
+    "abbreviation": "KA",
+    "name": "Klassenarbeit",
+    "isOral": false,
+    "gradingBlockId": 12260,
+    "orderIndex": 0
+   }
+  },
+  {
+   "id": 4485126,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32942,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32942,
+    "abbreviation": "Sonst",
+    "name": "Sonstige Leistung",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 4
+   }
+  },
+  {
+   "id": 4485125,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32941,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32941,
+    "abbreviation": "MK",
+    "name": "Mündliche Kontrolle",
+    "isOral": true,
+    "gradingBlockId": 12259,
+    "orderIndex": 3
+   }
+  },
+  {
+   "id": 4485124,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32940,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32940,
+    "abbreviation": "U",
+    "name": "Unterrichtsaufgabe",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 2
+   }
+  },
+  {
+   "id": 4485123,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32939,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32939,
+    "abbreviation": "V",
+    "name": "Vortrag",
+    "isOral": true,
+    "gradingBlockId": 12259,
+    "orderIndex": 2
+   }
+  },
+  {
+   "id": 4485122,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32938,
+   "courseId": 7255584,
+   "gradeType": {
+    "id": 32938,
+    "abbreviation": "KK",
+    "name": "Kurzkontrolle",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 0
+   }
+  },
+  {
+   "id": 4240193,
+   "weighting": 1,
+   "gradingBlockId": 12260,
+   "gradeTypeId": 32944,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32944,
+    "abbreviation": "KL",
+    "name": "Komplexe Leistung",
+    "isOral": false,
+    "gradingBlockId": 12260,
+    "orderIndex": 1
+   }
+  },
+  {
+   "id": 4240192,
+   "weighting": 1,
+   "gradingBlockId": 12260,
+   "gradeTypeId": 32943,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32943,
+    "abbreviation": "KA",
+    "name": "Klassenarbeit",
+    "isOral": false,
+    "gradingBlockId": 12260,
+    "orderIndex": 0
+   }
+  },
+  {
+   "id": 4240191,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32942,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32942,
+    "abbreviation": "Sonst",
+    "name": "Sonstige Leistung",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 4
+   }
+  },
+  {
+   "id": 4240190,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32941,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32941,
+    "abbreviation": "MK",
+    "name": "Mündliche Kontrolle",
+    "isOral": true,
+    "gradingBlockId": 12259,
+    "orderIndex": 3
+   }
+  },
+  {
+   "id": 4240189,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32940,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32940,
+    "abbreviation": "U",
+    "name": "Unterrichtsaufgabe",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 2
+   }
+  },
+  {
+   "id": 4240188,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32939,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32939,
+    "abbreviation": "V",
+    "name": "Vortrag",
+    "isOral": true,
+    "gradingBlockId": 12259,
+    "orderIndex": 2
+   }
+  },
+  {
+   "id": 4240187,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32938,
+   "courseId": 7255582,
+   "gradeType": {
+    "id": 32938,
+    "abbreviation": "KK",
+    "name": "Kurzkontrolle",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 0
+   }
+  },
+  {
+   "id": 3320624,
+   "weighting": 1,
+   "gradingBlockId": 12260,
+   "gradeTypeId": 32944,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32944,
+    "abbreviation": "KL",
+    "name": "Komplexe Leistung",
+    "isOral": false,
+    "gradingBlockId": 12260,
+    "orderIndex": 1
+   }
+  },
+  {
+   "id": 3320623,
+   "weighting": 1,
+   "gradingBlockId": 12260,
+   "gradeTypeId": 32943,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32943,
+    "abbreviation": "KA",
+    "name": "Klassenarbeit",
+    "isOral": false,
+    "gradingBlockId": 12260,
+    "orderIndex": 0
+   }
+  },
+  {
+   "id": 3320622,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32942,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32942,
+    "abbreviation": "Sonst",
+    "name": "Sonstige Leistung",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 4
+   }
+  },
+  {
+   "id": 3320621,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32941,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32941,
+    "abbreviation": "MK",
+    "name": "Mündliche Kontrolle",
+    "isOral": true,
+    "gradingBlockId": 12259,
+    "orderIndex": 3
+   }
+  },
+  {
+   "id": 3320620,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32940,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32940,
+    "abbreviation": "U",
+    "name": "Unterrichtsaufgabe",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 2
+   }
+  },
+  {
+   "id": 3320619,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32939,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32939,
+    "abbreviation": "V",
+    "name": "Vortrag",
+    "isOral": true,
+    "gradingBlockId": 12259,
+    "orderIndex": 2
+   }
+  },
+  {
+   "id": 3320618,
+   "weighting": 1,
+   "gradingBlockId": 12259,
+   "gradeTypeId": 32938,
+   "courseId": 7255583,
+   "gradeType": {
+    "id": 32938,
+    "abbreviation": "KK",
+    "name": "Kurzkontrolle",
+    "isOral": false,
+    "gradingBlockId": 12259,
+    "orderIndex": 0
+   }
+  }
+ ],
+ "indiviualGrades": [
+  {
+   "id": "38227755",
+   "value": "0~2",
+   "weighting": 1,
+   "topic": "Lapbook: Meine Buchvorstellung",
+   "date": "2025-11-28",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "35320762",
+   "value": "0~1-",
+   "weighting": 1,
+   "topic": "Wiederholung Klasse 1, Zahlenraum bis 20",
+   "date": "2025-09-20",
+   "gradeTypeId": 32943,
+   "gradingBlockId": 12260,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "35604818",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Nomen",
+   "date": "2025-09-12",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "38123615",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Apfelbuch",
+   "date": "2025-11-04",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "38124366",
+   "value": "0~1-",
+   "weighting": 1,
+   "topic": "Test: In der Bücherei",
+   "date": "2025-12-03",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "38124813",
+   "value": "0~1-",
+   "weighting": 1,
+   "topic": "2. Test: Nomen, bestimmter und unbestimmter Artikel",
+   "date": "2025-12-17",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "38125590",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Lernwerkstatt: Geld",
+   "date": "2025-12-01",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "38125874",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Hunderterfeld",
+   "date": "2025-12-11",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "41010050",
+   "value": "0~2",
+   "weighting": 1,
+   "topic": "Flipbook: Kalender",
+   "date": "2026-01-23",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "41765587",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Im Winter: Schreibschrift, Wortarten, Verstehendes Lesen, Lange und Kurze Selbstlaute",
+   "date": "2026-02-02",
+   "gradeTypeId": 32943,
+   "gradingBlockId": 12260,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "42137034",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "1. Kopfrechnen: Rechnen ohne Zehnerübergang",
+   "date": "2026-02-04",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "42144308",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Uhr und Tagesablauf",
+   "date": "2026-01-29",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "42987771",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Wortarten im Winter",
+   "date": "2026-02-05",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "44911848",
+   "value": "0~1-",
+   "weighting": 1,
+   "topic": "2. Klassenarbeit: Verwandte Aufgaben, Zahlenfolgen, Geld, Zentimeter, Uhr",
+   "date": "2026-03-26",
+   "gradeTypeId": 32943,
+   "gradingBlockId": 12260,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "43560162",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "3.  Kopfrechnen: Rechnen ohne Zehnerübergang",
+   "date": "2026-03-09",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "43590196",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Quadrama: Tiere im Winter",
+   "date": "2026-02-04",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "44978994",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Frühblüher Lernwerkstatt",
+   "date": "2026-03-13",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "44004931",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "4. Kopfrechnen ohne ZÜ",
+   "date": "2026-03-16",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "44095734",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Wetter & Temperatur",
+   "date": "2026-03-17",
+   "gradeTypeId": 32940,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "47228265",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Sätze richtig Schreiben: Wort für Wort und Satzschlusszeichen, mit Satzhelfer und Schreibschriftkarte",
+   "date": "2026-05-07",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "45593385",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Verbenbaum: mit Material (Verbenbaum und Schreibschriftkarte) Verben richtig schreiben, 1/2 Pkt. Verb, 1/2 Punkt Schreibschrift",
+   "date": "2026-04-15",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "47615264",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Einführung Multiplikation und Multiplikationsfeld",
+   "date": "2026-05-13",
+   "gradeTypeId": 32938,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "48257233",
+   "value": "0~2",
+   "weighting": 1,
+   "topic": "2. Klassenarbeit Deutsch: Verben, Sätze schreiben Spezialbuchstabenverbindung, Adjektive, Schreibschrift",
+   "date": "2026-05-21",
+   "gradeTypeId": 32943,
+   "gradingBlockId": 12260,
+   "studentId": 4711,
+   "courseId": 7255582,
+   "isRepeatExam": false
+  },
+  {
+   "id": "50050460",
+   "value": "0~2",
+   "weighting": 1,
+   "topic": "3. KA Multiplikation, Division, Zirkel",
+   "date": "2026-06-17",
+   "gradeTypeId": 32943,
+   "gradingBlockId": 12260,
+   "studentId": 4711,
+   "courseId": 7255583,
+   "isRepeatExam": false
+  },
+  {
+   "id": "49239386",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Müdliche Präsentation der Lebenszeitleiste",
+   "date": "2026-06-03",
+   "gradeTypeId": 32941,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  },
+  {
+   "id": "49239360",
+   "value": "0~1",
+   "weighting": 1,
+   "topic": "Gestaltung im Lerntagebuch: Lebenszeitleiste",
+   "date": "2026-06-03",
+   "gradeTypeId": 32942,
+   "gradingBlockId": 12259,
+   "studentId": 4711,
+   "courseId": 7255584,
+   "isRepeatExam": false
+  }
+ ],
+ "clazz": null,
+ "finalGrades": []
+}
