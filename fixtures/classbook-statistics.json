@@ -1,0 +1,23 @@
+{
+  "_comment": "Shapes captured from classbook/get-statistics (by=subject and by=time) and get-entry-statistics. Subject names and figures are the real school's public subject names; ids invented. Note the null subject id for the 'Ohne Fach' bucket, and that by=time keys are strings on both levels.",
+  "bySubject": [
+    {"subject": {"name": "Kernunterricht", "abbreviation": "KU", "id": 1}, "absentLessons": 1.1111111111111112, "totalLessons": 742},
+    {"subject": {"name": "Sport frei!", "abbreviation": "Sport frei!", "id": 2}, "absentLessons": 0.3333333333333333, "totalLessons": 27},
+    {"subject": {"name": "Geschickte Hände", "abbreviation": "GH", "id": 3}, "absentLessons": 0, "totalLessons": 32},
+    {"subject": {"name": "Ohne Fach", "abbreviation": "-", "id": null}, "absentLessons": 0, "totalLessons": 36},
+    {"subject": {"name": "Nie unterrichtet", "abbreviation": "NU", "id": 4}, "absentLessons": 0, "totalLessons": 0}
+  ],
+  "byTime": {
+    "1": {"100": {"absentLessons": 0, "totalLessons": 39}},
+    "5": {"100": {"absentLessons": 1, "totalLessons": 35},
+          "101": {"absentLessons": 0.1111111111111111, "totalLessons": 34}}
+  },
+  "entryTypes": [
+    {"name": "Hausaufgabe fehlt", "id": 7134, "orderIndex": 2, "entries": [
+      {"id": 1, "date": "2026-03-10", "comment": "Mathe", "subject": {"id": 1, "name": "Mathematik", "abbreviation": "M"}},
+      {"id": 2, "date": "2026-03-12", "subject": {"id": 1, "name": "Mathematik", "abbreviation": "M"}},
+      {"id": 3, "date": "2026-03-14", "subject": {"id": 2, "name": "Deutsch", "abbreviation": "D"}}
+    ]},
+    {"name": "Arbeitsmaterial fehlt", "id": 7135, "orderIndex": 1, "entries": []}
+  ]
+}

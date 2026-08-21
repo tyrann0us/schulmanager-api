@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schulmanager Online API (reconstructed)</title>
+  <meta name="description" content="Unofficial OpenAPI 3.1 description of the Schulmanager Online API.">
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .banner {
+      background: #1f2933; color: #f5f7fa; padding: 0.65rem 1rem;
+      font-size: 0.85rem; line-height: 1.45; display: flex; flex-wrap: wrap; gap: 0.75rem;
+      align-items: baseline; justify-content: space-between;
+    }
+    .banner strong { color: #ffd166; }
+    .banner a { color: #9ad8ff; }
+    .banner nav { display: flex; gap: 1rem; white-space: nowrap; }
+    #redoc { min-height: 60vh; }
+    .fallback { padding: 1.5rem; max-width: 46rem; line-height: 1.5; }
+    .fallback code { background: #eef1f5; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <span><strong>Unofficial and reconstructed.</strong>
+      Not published, endorsed or supported by Schulmanager Online. Read the provenance note before
+      relying on anything here.</span>
+    <nav>
+      <a href="./catalogue.html">Endpoint catalogue</a>
+      <a href="./openapi.yaml">openapi.yaml</a>
+      <a href="https://github.com/tyrann0us/schulmanager-api">Repository</a>
+    </nav>
+  </div>
+
+  <div id="redoc">
+    <div class="fallback" id="fallback">
+      <h1>Schulmanager Online API</h1>
+      <p>Rendering the specification…</p>
+      <p>If this text stays put, either the page was opened straight from the file system (browsers
+        refuse the <code>fetch</code> of <code>openapi.yaml</code> over <code>file://</code> — serve
+        the directory instead, <code>python3 -m http.server</code>) or the Redoc bundle could not be
+        loaded from the CDN. Either way, <a href="./openapi.yaml">openapi.yaml</a> is readable as is.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.redoc.ly/redoc/v2.5.0/bundles/redoc.standalone.js"></script>
+  <script>
+    Redoc.init(
+      './openapi.yaml',
+      {
+        expandResponses: '200',
+        hideDownloadButton: false,
+        jsonSampleExpandLevel: 3,
+        sortTagsAlphabetically: false,
+        theme: { typography: { fontSize: '15px' } }
+      },
+      document.getElementById('redoc')
+    ).catch(function (error) {
+      var target = document.getElementById('fallback') || document.getElementById('redoc');
+      target.insertAdjacentHTML(
+        'beforeend',
+        '<p><strong>Rendering failed:</strong> ' + String(error) + '</p>'
+      );
+    });
+  </script>
+</body>
+</html>

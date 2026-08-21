@@ -1,0 +1,17 @@
+{
+ "_comment": "Shape captured live from classbook/get-history-absences-list. Content is synthetic.",
+ "absences": [
+  {"id": 1, "date": "2026-06-09", "from": "13:15:00", "until": "15:30:00",
+   "comment": "Sporthalle", "excused": true, "sickNote": null, "exemptionRequest": null},
+  {"id": 2, "date": "2026-02-27", "from": null, "until": "08:50:00",
+   "comment": null, "excused": null, "sickNote": null, "exemptionRequest": {"id": 10537689}},
+  {"id": 3, "date": "2025-11-20", "from": "12:25:00", "until": "12:40:00",
+   "comment": null, "excused": null, "sickNote": null, "exemptionRequest": null},
+  {"id": 4, "date": "2025-04-02", "from": "11:05:00", "until": null,
+   "comment": null, "excused": null,
+   "sickNote": {"id": 32600446, "certificateType": "NotRequired"}, "exemptionRequest": null},
+  {"id": 5, "date": "2024-11-11", "from": null, "until": null,
+   "comment": null, "excused": null,
+   "sickNote": {"id": 25931591, "certificateType": null}, "exemptionRequest": null}
+ ]
+}

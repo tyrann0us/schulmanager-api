@@ -1,0 +1,9 @@
+{
+  "_comment": "Synthetic. Shape captured from main/get-tiles; ids and text invented, including the negative order values the school's board really uses.",
+  "tiles": [
+    {"id": 105163, "title": "Sozialpädagogische Fachkraft", "content": "<p><strong>Vertraulich</strong></p> <p>Sprechzeiten nach Vereinbarung.</p>", "displayOnTop": false, "order": -1},
+    {"id": 115879, "title": "Abwesenheit Sekretariat", "content": "<p>Das Sekretariat ist ab dem 10.08. wieder erreichbar.</p>", "displayOnTop": true, "order": -6},
+    {"id": 130580, "title": "Von Eltern für Eltern", "content": "<p>Infos zum&hellip;</p> <ul> <li>Ferienkino</li> </ul>", "displayOnTop": true, "order": -7},
+    {"id": 71475, "title": "Abwesenheit Hort", "content": "<p>Frau M&uuml;ller jeden Montag</p>", "displayOnTop": false, "order": 0}
+  ]
+}

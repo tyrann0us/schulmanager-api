@@ -1,0 +1,22 @@
+{
+  "_comment": "Synthetic. Shapes captured from poqa main/lesson, main/class-hour, main/course; ids and names invented. Includes two generations of the same slot, which is what forces the validity filter.",
+  "classHours": [
+    {"id": 1, "number": "1", "from": "08:00:00", "until": "08:45:00"},
+    {"id": 2, "number": "2", "from": "08:45:00", "until": "09:30:00",
+     "fromByDay": ["08:45:00", "08:45:00", "08:45:00", "09:00:00", "08:45:00", "08:45:00", "08:45:00"],
+     "untilByDay": ["09:30:00", "09:30:00", "09:30:00", "09:45:00", "09:30:00", "09:30:00", "09:30:00"]},
+    {"id": 10, "number": "10", "from": "15:00:00", "until": "15:45:00"}
+  ],
+  "courses": [
+    {"id": 100, "termId": 7, "subjectId": 50, "subject": {"id": 50, "name": "Mathematik", "abbreviation": "Ma"}},
+    {"id": 101, "termId": 7, "subjectId": 51, "subject": {"id": 51, "name": "Deutsch", "abbreviation": "De"}}
+  ],
+  "lessons": [
+    {"id": 1, "dayOfWeek": 1, "start": "2026-08-17", "end": "2027-07-09", "classHourId": 2, "courseId": 100},
+    {"id": 2, "dayOfWeek": 1, "start": "2026-08-17", "end": "2027-07-09", "classHourId": 10, "courseId": 101},
+    {"id": 3, "dayOfWeek": 1, "start": "2026-08-17", "end": "2027-07-09", "classHourId": 1, "courseId": 101},
+    {"id": 4, "dayOfWeek": 3, "start": "2026-08-17", "end": "2027-07-09", "classHourId": 2, "courseId": 100,
+     "room": {"id": 9, "name": "Kl. 4a"}},
+    {"id": 5, "dayOfWeek": 1, "start": "2025-08-11", "end": "2026-07-03", "classHourId": 1, "courseId": 100}
+  ]
+}

@@ -1,0 +1,32 @@
+{
+ "_comment": "Shape captured live from poqa findAll on modules/sick/sick-note. Content is synthetic.",
+ "notes": [
+  {
+   "startDate": "2025-04-02",
+   "endDate": "2025-04-02",
+   "startTime": "11:05:00",
+   "comment": null,
+   "handedInCertificate": "2025-04-03T04:58:20.418Z",
+   "certificateType": "NotRequired",
+   "source": null,
+   "id": 32600446,
+   "studentId": 4711,
+   "createdAt": "2025-04-02T09:29:53.190Z",
+   "updatedAt": "2025-04-03T04:58:20.418Z",
+   "student": {"id": 4711, "firstname": "Erika", "lastname": "Mustermann", "classId": 426669}
+  },
+  {
+   "startDate": "2024-11-11",
+   "endDate": "2024-11-13",
+   "startTime": null,
+   "comment": "Magen-Darm",
+   "handedInCertificate": null,
+   "certificateType": "Medical",
+   "source": "Parent",
+   "id": 25931591,
+   "studentId": 4711,
+   "createdAt": "2024-11-10T18:55:29.194Z",
+   "updatedAt": "2024-11-10T18:55:29.194Z"
+  }
+ ]
+}

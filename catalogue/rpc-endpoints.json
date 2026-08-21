@@ -1,0 +1,7327 @@
+[
+  {
+    "endpoint": "create-bulk-exemption",
+    "module": "absences",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-exemption-request",
+    "module": "absences",
+    "params": [
+      "exemptionRequest"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-sick-note-as-teacher-or-admin",
+    "module": "absences",
+    "params": [
+      "sickNote"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "create-student-absence",
+    "module": "absences",
+    "params": [
+      "absence"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-bulk-exemption-by-id",
+    "module": "absences",
+    "params": [
+      "bulkExemptionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-exemption-request-by-id",
+    "module": "absences",
+    "params": [
+      "exemptionRequestId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-sick-note-by-id",
+    "module": "absences",
+    "params": [
+      "sickNoteId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-student-absence-by-id",
+    "module": "absences",
+    "params": [
+      "absenceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "get-absent-days-by-student",
+    "module": "absences",
+    "params": [
+      "classId",
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-exemption-request-by-id",
+    "module": "absences",
+    "params": [
+      "exemptionRequestId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-recent-sick-notes",
+    "module": "absences",
+    "params": [
+      "date"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-sick-note-by-id",
+    "module": "absences",
+    "params": [
+      "sickNoteId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-absence-by-id",
+    "module": "absences",
+    "params": [
+      "absenceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-absences-for-list",
+    "module": "absences",
+    "params": [
+      "certificateObligation",
+      "classes",
+      "end",
+      "sickNoteType",
+      "start",
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-unexcused-students",
+    "module": "absences",
+    "params": [
+      "class",
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-exemption-request",
+    "module": "absences",
+    "params": [
+      "exemptionRequest"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-sick-note-as-teacher-or-admin",
+    "module": "absences",
+    "params": [
+      "sickNote"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "update-student-absence",
+    "module": "absences",
+    "params": [
+      "absence"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "create-allday-student-entry",
+    "module": "allday",
+    "params": [
+      "date",
+      "offerId",
+      "studentId",
+      "text",
+      "typeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-allday-offer",
+    "module": "allday",
+    "params": [
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-allday-student-entry",
+    "module": "allday",
+    "params": [
+      "id",
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-additional-student-data-for-allday",
+    "module": "allday",
+    "params": [
+      "date",
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-messages",
+    "module": "allday",
+    "params": [
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-allday-messages-for-student",
+    "module": "allday",
+    "params": [
+      "studentId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-offer-by-id",
+    "module": "allday",
+    "params": [
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-offer-student-presence-statuses",
+    "module": "allday",
+    "params": [
+      "date",
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-offer-students",
+    "module": "allday",
+    "params": [
+      "date",
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-offers",
+    "module": "allday",
+    "params": [
+      "studentId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-offers-and-students-for-export",
+    "module": "allday",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-allday-student-entries",
+    "module": "allday",
+    "params": [
+      "studentId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-students",
+    "module": "allday",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-supervisors",
+    "module": "allday",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-attendances-for-offer",
+    "module": "allday",
+    "params": [
+      "offerId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-allday",
+    "module": "allday",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-with-class-for-allday-import",
+    "module": "allday",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "persist-imported-allday-offer-student-attendances",
+    "module": "allday",
+    "params": [
+      "changedOffers"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "report-allday-presence-status",
+    "module": "allday",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-allday-offer",
+    "module": "allday",
+    "params": [
+      "attendances",
+      "deletedAttendanceIds",
+      "offer",
+      "supervisorIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "submit-allday-message",
+    "module": "allday",
+    "params": [
+      "date",
+      "message",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-allday-student-entry",
+    "module": "allday",
+    "params": [
+      "id",
+      "offerId",
+      "text",
+      "typeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "confirm-behavior-entry",
+    "module": "behaviorgrades",
+    "params": [
+      "courseId",
+      "feedback",
+      "gradingPeriodType",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-behavior-grade-templates",
+    "module": "behaviorgrades",
+    "params": [
+      "gradeLevels",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-behaviorgrades-export-for-all-classes",
+    "module": "behaviorgrades",
+    "params": [
+      "gradingPeriodTypes",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-class-for-behaviorgrades",
+    "module": "behaviorgrades",
+    "params": [
+      "classId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-courses-for-behaviorgrades",
+    "module": "behaviorgrades",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-confirming-certificate-entries",
+    "module": "behaviorgrades",
+    "params": [
+      "courseId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-entering-behaviorgrades",
+    "module": "behaviorgrades",
+    "params": [
+      "courseId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "reset-behavior-entry-confirmation",
+    "module": "behaviorgrades",
+    "params": [
+      "gradingPeriodType",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "submit-class-behavior-grades",
+    "module": "behaviorgrades",
+    "params": [
+      "classId",
+      "entries",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "submit-course-behavior-grades",
+    "module": "behaviorgrades",
+    "params": [
+      "courseId",
+      "entries",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "bulk-create-events",
+    "module": "calendar",
+    "params": [
+      "categoryId",
+      "events",
+      "visibleForGroupIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-for-conflicts-with-exams",
+    "module": "calendar",
+    "params": [
+      "allDay",
+      "end",
+      "groups",
+      "start",
+      "timezoneOffset"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-event-by-id",
+    "module": "calendar",
+    "params": [
+      "eventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-event-categories",
+    "module": "calendar",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-event-for-edit",
+    "module": "calendar",
+    "params": [
+      "eventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-events-as-ics",
+    "module": "calendar",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-ical-token",
+    "module": "calendar",
+    "params": [
+      "renew"
+    ],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-public-categories",
+    "module": "calendar",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "move-event",
+    "module": "calendar",
+    "params": [
+      "end",
+      "eventId",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-or-create-event",
+    "module": "calendar",
+    "params": [
+      "categoryId",
+      "event",
+      "recurrencePattern",
+      "visibleForGroupIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "search-events",
+    "module": "calendar",
+    "params": [
+      "from",
+      "searchString",
+      "until"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-certificate-creations-for-student",
+    "module": "certificateconference",
+    "params": [
+      "gradingPeriodType",
+      "studentId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-class-absence-statistics",
+    "module": "certificateconference",
+    "params": [
+      "classId",
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-students-for-class-conference",
+    "module": "certificateconference",
+    "params": [
+      "classId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-educational-pathway-letter",
+    "module": "certificateconference",
+    "params": [
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-graduating-class-conference",
+    "module": "certificateconference",
+    "params": [
+      "classId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-risk-of-repetition-letter",
+    "module": "certificateconference",
+    "params": [
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-asv-by-final-exam-import-data",
+    "module": "certificateconference",
+    "params": [
+      "students",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-certificates-for-certificate-creation",
+    "module": "certificates",
+    "params": [
+      "certificateCreationId",
+      "includeGradesAndRemarks",
+      "onlyForActiveStudentsAtCertificateDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-certificates-for-course",
+    "module": "certificates",
+    "params": [
+      "courseId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-period-types-for-term",
+    "module": "certificates",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-absence-statistic",
+    "module": "certificates",
+    "params": [
+      "end",
+      "start",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-ids-by-grading-period-type",
+    "module": "certificates",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "initialize-student-data",
+    "module": "certificates",
+    "params": [
+      "classUpdates"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-certificate-for-student",
+    "module": "certificates",
+    "params": [
+      "certificateCreationId",
+      "dataValues",
+      "grades",
+      "remarks",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-certificates-for-course",
+    "module": "certificates",
+    "params": [
+      "certificateCreationsIds",
+      "course",
+      "dataValues",
+      "grades",
+      "remarks",
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-certificates-for-students",
+    "module": "certificates",
+    "params": [
+      "certificateCreationId",
+      "certificateRatings",
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-student-entry",
+    "module": "classbook",
+    "params": [
+      "entry",
+      "parameters",
+      "taughtLessonId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "all-missing-lessons",
+    "module": "classbook",
+    "params": [
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-student-entry",
+    "module": "classbook",
+    "params": [
+      "entry",
+      "parameters",
+      "taughtLessonId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "excuse-absence-for-lesson",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-absent-corona-group",
+    "module": "classbook",
+    "params": [
+      "date"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-absent-students",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-all-absences",
+    "module": "classbook",
+    "params": [
+      "class",
+      "end",
+      "start",
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-all-absences-for-export",
+    "module": "classbook",
+    "params": [
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-berlin-statistics",
+    "module": "classbook",
+    "params": [
+      "class",
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-certificate-for-student",
+    "module": "classbook",
+    "params": [
+      "certificateCreationId",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-class-student-entries",
+    "module": "classbook",
+    "params": [
+      "class",
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-course-absence-statistics",
+    "module": "classbook",
+    "params": [
+      "course",
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-course-history",
+    "module": "classbook",
+    "params": [
+      "date",
+      "lessonId",
+      "substitutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-course-student-entries",
+    "module": "classbook",
+    "params": [
+      "course",
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-edit-permissions-for-taught-lesson",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-entry-statistics",
+    "module": "classbook",
+    "params": [
+      "student",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-events-as-substitutions-for-current-teacher",
+    "module": "classbook",
+    "params": [
+      "endDate",
+      "startDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-history-absences-list",
+    "module": "classbook",
+    "params": [
+      "student",
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-history-by-time",
+    "module": "classbook",
+    "params": [
+      "from",
+      "student",
+      "until"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-homework",
+    "module": "classbook",
+    "params": [
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-ibis-export",
+    "module": "classbook",
+    "params": [
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-statistics",
+    "module": "classbook",
+    "params": [
+      "by",
+      "from",
+      "includeInternalExemptions",
+      "student",
+      "type",
+      "unexcusedOnly",
+      "until"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-student-absence",
+    "module": "classbook",
+    "params": [
+      "absenceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-entries",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-entry-infos",
+    "module": "classbook",
+    "params": [
+      "studentEntryTypeId",
+      "subjectId",
+      "taughtLessonSearchParameters"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-taught-lesson",
+    "module": "classbook",
+    "params": [
+      "date",
+      "studentGroupIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-substitution-material-for-substitution",
+    "module": "classbook",
+    "params": [
+      "substitutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-taught-lesson",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-taught-lessons",
+    "module": "classbook",
+    "params": [
+      "classId",
+      "endDate",
+      "startDate",
+      "teacherId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-topics",
+    "module": "classbook",
+    "params": [
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-training-events",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-unexcused-absences-of-course",
+    "module": "classbook",
+    "params": [
+      "courseId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-week-overview",
+    "module": "classbook",
+    "params": [
+      "class",
+      "startDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "missing-lessons",
+    "module": "classbook",
+    "params": [
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "only-has-testdata",
+    "module": "classbook",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-course-students",
+    "module": "classbook",
+    "params": [
+      "attendanceChangeTiming",
+      "clearStartStudentIds",
+      "courseId",
+      "selectedStudentIds",
+      "specificDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-absent-students",
+    "module": "classbook",
+    "params": [
+      "absentStudents",
+      "parameters"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-student-entry",
+    "module": "classbook",
+    "params": [
+      "entry",
+      "parameters",
+      "taughtLessonId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-taught-lesson",
+    "module": "classbook",
+    "params": [
+      "parameters",
+      "taughtLessonId",
+      "update"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-appointment",
+    "module": "conferences",
+    "params": [
+      "conference",
+      "start",
+      "student",
+      "teacher"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-conference-appointment",
+    "module": "conferences",
+    "params": [
+      "conferenceId",
+      "end",
+      "start",
+      "studentId",
+      "teacherId",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "book",
+    "module": "conferences",
+    "params": [
+      "appointments",
+      "conference",
+      "contactData",
+      "date",
+      "parentMessage",
+      "startTime",
+      "student",
+      "teacher"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-non-fulfilled-appointment-request-if-no-appointment-exists",
+    "module": "conferences",
+    "params": [
+      "conferenceId",
+      "studentId",
+      "teacherId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-conference-appointments-of-teacher",
+    "module": "conferences",
+    "params": [
+      "conferenceId",
+      "teacherId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-possible-users-of-student-for-appointment",
+    "module": "conferences",
+    "params": [
+      "conferenceId",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "student-already-has-appointment",
+    "module": "conferences",
+    "params": [
+      "start",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "teacher-availability",
+    "module": "conferences",
+    "params": [
+      "conference",
+      "teachers"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "teacher-distances",
+    "module": "conferences",
+    "params": [
+      "conference",
+      "teachers"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "set-corona-groups",
+    "module": "corona",
+    "params": [
+      "students"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "confirm-detention-event-attendance",
+    "module": "detention",
+    "params": [
+      "attendanceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-detention-event-attendance",
+    "module": "detention",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-absent-students-of-detention-event",
+    "module": "detention",
+    "params": [
+      "detentionEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-ordered-detention-event-attendances",
+    "module": "detention",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-possible-detention-events-for-student",
+    "module": "detention",
+    "params": [
+      "durationInMinutes",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-supervised-detention-events",
+    "module": "detention",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-detention-event-attendance",
+    "module": "detention",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "update-supervised-detention-event-attendance",
+    "module": "detention",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create",
+    "module": "documents",
+    "params": [
+      "document",
+      "folder",
+      "parentFolder"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "delete",
+    "module": "documents",
+    "params": [
+      "document",
+      "folder",
+      "parentFolder"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-folder-contents",
+    "module": "documents",
+    "params": [
+      "folderId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-folder-hierarchy",
+    "module": "documents",
+    "params": [
+      "folderIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-root-folder",
+    "module": "documents",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "has-write-permission",
+    "module": "documents",
+    "params": [
+      "document",
+      "folder"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "move",
+    "module": "documents",
+    "params": [
+      "document",
+      "folder",
+      "fromFolder",
+      "link",
+      "toFolder"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-election-capacity",
+    "module": "electives",
+    "params": [
+      "electionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-elective-instance",
+    "module": "electives",
+    "params": [
+      "electiveInstance",
+      "useSlots"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "is-election-editable",
+    "module": "electives",
+    "params": [
+      "electionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "is-elective-editable",
+    "module": "electives",
+    "params": [
+      "electionId",
+      "electiveId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-priorities",
+    "module": "electives",
+    "params": [
+      "election",
+      "priorities",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-elective-instance",
+    "module": "electives",
+    "params": [
+      "electiveId",
+      "electiveInstance",
+      "useSlots"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "book-exam",
+    "module": "exams",
+    "params": [
+      "classIds",
+      "comment",
+      "date",
+      "endClassHourId",
+      "examId",
+      "startClassHourId",
+      "studentGroupIds",
+      "subjectId",
+      "subjectText",
+      "teacherId",
+      "timezoneOffset",
+      "typeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "book-exam-block",
+    "module": "exams",
+    "params": [
+      "classIds",
+      "endClassHourId",
+      "endDate",
+      "reason",
+      "startClassHourId",
+      "startDate",
+      "teacherId",
+      "timezoneOffset"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-for-conflicts",
+    "module": "exams",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-for-too-many-exams",
+    "module": "exams",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-exams",
+    "module": "exams",
+    "params": [
+      "end",
+      "start",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "grant",
+    "module": "exemptions",
+    "params": [
+      "exemptionRequest",
+      "feedback",
+      "granted"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "request-exemption",
+    "module": "exemptions",
+    "params": [
+      "exemptionRequest"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-external-application-permission-change-request",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "apiPermissions",
+      "applicationId",
+      "oidcClaims"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "generate-external-application-credential",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-external-application-for-permission-change-request",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-external-application-for-setup",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-managed-external-application",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-managed-external-applications",
+    "module": "externalapplicationmanagement",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 2
+  },
+  {
+    "endpoint": "setup-external-application",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "apiPermissions",
+      "applicationId",
+      "entryUrl",
+      "oidcClaims",
+      "oidcRedirectUrls",
+      "tosVersion"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-predefined-external-application-lock",
+    "module": "externalapplicationmanagement",
+    "params": [
+      "applicationId",
+      "temporarilyLocked"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-gfs",
+    "module": "gfs",
+    "params": [
+      "courseId",
+      "plannedDate",
+      "studentId",
+      "topic",
+      "typeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-courses-of-student",
+    "module": "gfs",
+    "params": [
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-course-grading-preset",
+    "module": "grades",
+    "params": [
+      "courseId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-grading-event",
+    "module": "grades",
+    "params": [
+      "gradingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-grading-scale-and-tasks",
+    "module": "grades",
+    "params": [
+      "gradingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-individual-grade",
+    "module": "grades",
+    "params": [
+      "gradeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "duplicate-grading-settings-to-term",
+    "module": "grades",
+    "params": [
+      "sourceTermId",
+      "targetTermId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-event-details",
+    "module": "grades",
+    "params": [
+      "gradingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-information-for-class",
+    "module": "grades",
+    "params": [
+      "classId",
+      "end",
+      "gradingPeriodType",
+      "start",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-information-for-courses",
+    "module": "grades",
+    "params": [
+      "courseIds",
+      "end",
+      "gradingPeriodType",
+      "start",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-grading-information-for-student",
+    "module": "grades",
+    "params": [
+      "end",
+      "gradingPeriodType",
+      "start",
+      "studentId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-information-for-term",
+    "module": "grades",
+    "params": [
+      "end",
+      "gradingPeriodType",
+      "start",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-periods-for-term",
+    "module": "grades",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "get-grading-presets-for-course",
+    "module": "grades",
+    "params": [
+      "courseId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-final-grades",
+    "module": "grades",
+    "params": [
+      "courseId",
+      "gradingPeriodType",
+      "newOrChangedGrades",
+      "removedGrades"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-grading-event-data",
+    "module": "grades",
+    "params": [
+      "gradingEvent"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-grading-event-grades-and-student-scores",
+    "module": "grades",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-grading-scale-and-tasks",
+    "module": "grades",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-individual-grade",
+    "module": "grades",
+    "params": [
+      "grade"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-grading-blocks-and-types-order",
+    "module": "grades",
+    "params": [
+      "gradingBlocksOrder",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-grading-presets-for-course",
+    "module": "grades",
+    "params": [
+      "courseId",
+      "gradingBlockPresets",
+      "gradingSystemId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "assign-transfer-to-student",
+    "module": "invoicing",
+    "params": [
+      "incomingTransfer",
+      "studentPaymentData"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-account",
+    "module": "invoicing",
+    "params": [
+      "accountId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-finapi-bank-connection-update-status",
+    "module": "invoicing",
+    "params": [
+      "bankAccountId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "complete-finapi-setup",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "correct-general-item",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-cancellation-item",
+    "module": "invoicing",
+    "params": [
+      "generalItemIdToCancel"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-finapi-task-for-updating-bank-connection",
+    "module": "invoicing",
+    "params": [
+      "bankAccountId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-general-invoice",
+    "module": "invoicing",
+    "params": [
+      "dueDate",
+      "generalItemIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-or-update-bank-account",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-or-update-general-item",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-finapi-connections",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-finapi-webform",
+    "module": "invoicing",
+    "params": [
+      "webformId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-finapi-task",
+    "module": "invoicing",
+    "params": [
+      "taskId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-finapi-webform",
+    "module": "invoicing",
+    "params": [
+      "webformId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-finapi-webform-for-creating-bank-connection",
+    "module": "invoicing",
+    "params": [
+      "allowAllAccountTypes"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-general-items",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-invoice-statistics",
+    "module": "invoicing",
+    "params": [
+      "generalInvoice"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-new-transfers-from-csv",
+    "module": "invoicing",
+    "params": [
+      "csv"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-new-transfers-from-finapi",
+    "module": "invoicing",
+    "params": [
+      "accountId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-payment-request-students",
+    "module": "invoicing",
+    "params": [
+      "boundary",
+      "groupIds",
+      "useBoundary"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-invoice-of-student-for-printing",
+    "module": "invoicing",
+    "params": [
+      "studentInvoiceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-invoices-for-printing",
+    "module": "invoicing",
+    "params": [
+      "generalInvoiceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-unreachable-students-of-invoice",
+    "module": "invoicing",
+    "params": [
+      "invoiceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "persist-transfers-from-file",
+    "module": "invoicing",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "reset-finapi-error",
+    "module": "invoicing",
+    "params": [
+      "bankAccountId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-fints-credentials",
+    "module": "invoicing",
+    "params": [
+      "onlineBankingPassword",
+      "onlineBankingUsername"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-invoices-via-mail",
+    "module": "invoicing",
+    "params": [
+      "generalInvoiceId",
+      "reminder"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-student-unit-statuses",
+    "module": "learning",
+    "params": [
+      "studentIds",
+      "unit"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-learning-unit",
+    "module": "learning",
+    "params": [
+      "unitId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-course-students",
+    "module": "learning",
+    "params": [
+      "course"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-course-units",
+    "module": "learning",
+    "params": [
+      "course",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-learning-unit",
+    "module": "learning",
+    "params": [
+      "studentId",
+      "unitId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-new-submissions",
+    "module": "learning",
+    "params": [
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-submission-pdf-url",
+    "module": "learning",
+    "params": [
+      "submission"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-units-with-student-submissions",
+    "module": "learning",
+    "params": [
+      "course",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-vidis-configuration",
+    "module": "learning",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "mark-unit-as-done",
+    "module": "learning",
+    "params": [
+      "student",
+      "unit"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-submission-reminder",
+    "module": "learning",
+    "params": [
+      "student",
+      "unit"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "submit-submission",
+    "module": "learning",
+    "params": [
+      "files",
+      "student",
+      "task"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "assign-competence-areas-to-statements",
+    "module": "learningdevelopment",
+    "params": [
+      "assignments",
+      "gradeLevel"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-default-competence-statements",
+    "module": "learningdevelopment",
+    "params": [
+      "gradeLevel"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-classes-using-competence-statement",
+    "module": "learningdevelopment",
+    "params": [
+      "statementId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-selectable-classes-and-students-for-learning-development",
+    "module": "learningdevelopment",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-statements-selection-for-class",
+    "module": "learningdevelopment",
+    "params": [
+      "classId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-learning-development",
+    "module": "learningdevelopment",
+    "params": [
+      "gradingPeriodType",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-student-learning-developments",
+    "module": "learningdevelopment",
+    "params": [
+      "classId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "has-statement-selection-for-class",
+    "module": "learningdevelopment",
+    "params": [
+      "classId",
+      "gradingPeriodType"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "save-competence-statements",
+    "module": "learningdevelopment",
+    "params": [
+      "gradeLevel",
+      "statementIdsToDelete",
+      "statementsToCreate",
+      "statementsToUpdate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-selected-statements",
+    "module": "learningdevelopment",
+    "params": [
+      "classId",
+      "gradeLevel",
+      "gradingPeriodType",
+      "selectedStatementIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-student-learning-development",
+    "module": "learningdevelopment",
+    "params": [
+      "additionalRemark",
+      "agreement",
+      "assessmentsToCreateOrUpdate",
+      "finalGradesToCreateOrUpdate",
+      "gradingPeriodType",
+      "officialSubjectKeysOfFinalGradesToDelete",
+      "statementIdsOfAssessmentsToDelete",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "confirm",
+    "module": "letters",
+    "params": [
+      "formData",
+      "studentLetterStatus"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "confirm-external",
+    "module": "letters",
+    "params": [
+      "code",
+      "formData",
+      "letterId",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-letter-by-codes",
+    "module": "letters",
+    "params": [
+      "language",
+      "letterId",
+      "studentCodes",
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-letter-internal",
+    "module": "letters",
+    "params": [
+      "letterId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-letter-statistics",
+    "module": "letters",
+    "params": [
+      "letter"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-letter-students-by-code",
+    "module": "letters",
+    "params": [
+      "codes",
+      "letterId",
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-letters",
+    "module": "letters",
+    "params": [
+      "offset"
+    ],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-letters-as-teacher-or-administrator",
+    "module": "letters",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-letters-internal",
+    "module": "letters",
+    "params": [
+      "offset"
+    ],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-student-status-ids",
+    "module": "letters",
+    "params": [
+      "letter",
+      "settings"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-translation-languages",
+    "module": "letters",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-unreachable-students-of-letter",
+    "module": "letters",
+    "params": [
+      "letterId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send",
+    "module": "letters",
+    "params": [
+      "letter",
+      "reminder"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-to-teachers",
+    "module": "letters",
+    "params": [
+      "letter",
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "translate",
+    "module": "letters",
+    "params": [
+      "language",
+      "strings"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "user-can-see-setting-for-letter-mailing",
+    "module": "letters",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "user-is-allowed-to-change-setting-for-mailing-letters",
+    "module": "letters",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "2fa-is-enforced",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "2fa-is-enforced-and-missing",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 5
+  },
+  {
+    "endpoint": "accept-changed-predefined-integration-permissions",
+    "module": "main",
+    "params": [
+      "authorizationConfirmed",
+      "grantedApiPermissions",
+      "grantedOidcClaims",
+      "id",
+      "permissionsAccepted",
+      "tosVersion"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-vidis-school-id",
+    "module": "main",
+    "params": [
+      "schoolId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "cancel-training-event-registration",
+    "module": "main",
+    "params": [
+      "code",
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "change-current-user-name",
+    "module": "main",
+    "params": [
+      "firstname",
+      "lastname"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "change-email-request",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "change-password",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-custom-external-application-credential",
+    "module": "main",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-custom-external-integration",
+    "module": "main",
+    "params": [
+      "allowedForRoles",
+      "allowedForUserIds",
+      "externalApplication",
+      "oidcEnabled",
+      "showInNavbar",
+      "tosVersion"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-external-integration",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-logodidact-school",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-support-access-token",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-support-share-entry",
+    "module": "main",
+    "params": [
+      "files"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "current-user-uses-internal-authentication",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "delete-absences",
+    "module": "main",
+    "params": [
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-all-behavior-grades",
+    "module": "main",
+    "params": [
+      "termIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-all-detention-events",
+    "module": "main",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-all-grades",
+    "module": "main",
+    "params": [
+      "termIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-all-grades-and-reset-course-grading-presets-in-term",
+    "module": "main",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-chat-messages",
+    "module": "main",
+    "params": [
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-custom-external-application-credential",
+    "module": "main",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-custom-external-integration",
+    "module": "main",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-external-integration",
+    "module": "main",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-feature-request",
+    "module": "main",
+    "params": [
+      "featureRequest"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-ldap-connection-config",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-learning-student-submissions",
+    "module": "main",
+    "params": [
+      "termIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-taught-lessons",
+    "module": "main",
+    "params": [
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "disable-2fa-for-current-user",
+    "module": "main",
+    "params": [
+      "password"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "disable-vidis",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "documents-visible",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "enable-2fa-totp",
+    "module": "main",
+    "params": [
+      "password",
+      "secret",
+      "token"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "extend-support-access-token-by-one-day",
+    "module": "main",
+    "params": [
+      "tokenId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "find-schools",
+    "module": "main",
+    "params": [
+      "query"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "fix-lessons-end",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "generate-2fa-totp",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-2fa-status",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-bookable-modules-for-offer",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-booked-modules-with-pricing-per-student",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-changelog",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-training-events",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-currently-valid-dpa",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-custom-external-integration",
+    "module": "main",
+    "params": [
+      "integrationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-dpa-text",
+    "module": "main",
+    "params": [
+      "dpa"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-external-application",
+    "module": "main",
+    "params": [
+      "accessCode",
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "get-external-integration-audit-log",
+    "module": "main",
+    "params": [
+      "externalIntegrationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-external-integrations",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-external-ip",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grade-levels-for-statement-management",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-id-broker-configuration",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-id-broker-kc-idp-hint",
+    "module": "main",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-implemented-features-for-institution",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institution-feature-requests-for-scope",
+    "module": "main",
+    "params": [
+      "scope"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institution-unauthenticated",
+    "module": "main",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-lessons-to-fix",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-logodidact-school-id",
+    "module": "main",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-missing-2fa-warnings",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-new-notifications-count",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-notification-settings",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-notification-state",
+    "module": "main",
+    "params": [
+      "notification"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-notifications",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-planned-features-for-scope",
+    "module": "main",
+    "params": [
+      "scope"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-possible-claims",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 9
+  },
+  {
+    "endpoint": "get-possible-users-for-external-integration",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-reference-customer-approval",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-registration-for-training-event",
+    "module": "main",
+    "params": [
+      "code",
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-signup-mode",
+    "module": "main",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-sso-provider",
+    "module": "main",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-support-access-token",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-system-status-messages",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-tos-version",
+    "module": "main",
+    "params": [
+      "filename"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "get-training-event",
+    "module": "main",
+    "params": [
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-training-event-registrations",
+    "module": "main",
+    "params": [
+      "trainingEventId"
+    ],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-unused-external-applications",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-video-conference-link-for-training-event",
+    "module": "main",
+    "params": [
+      "code",
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-vidis-idp-hint",
+    "module": "main",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-visible-external-integrations",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "has-behavior-grades-to-delete",
+    "module": "main",
+    "params": [
+      "termIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "has-lessons-to-fix",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "has-messages-to-delete",
+    "module": "main",
+    "params": [
+      "term"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "import-schuleintern",
+    "module": "main",
+    "params": [
+      "data"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "initialize-test-data",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "is-new-changelog-entry-available",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "logodidact-school-exists",
+    "module": "main",
+    "params": [
+      "ldSchoolId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "merge-duplicated-supervision-times",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "messenger-enabled-by-parent-access-code",
+    "module": "main",
+    "params": [
+      "code"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "new-dpa-is-available",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "password-change-request",
+    "module": "main",
+    "params": [
+      "email"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "password-change-set",
+    "module": "main",
+    "params": [
+      "code",
+      "emailOrUsername",
+      "password"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "password-change-validate-code",
+    "module": "main",
+    "params": [
+      "code",
+      "emailOrUsername"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "record-training-event-participation",
+    "module": "main",
+    "params": [
+      "code",
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "register-for-training-event",
+    "module": "main",
+    "params": [
+      "registration",
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "remove-vidis-school-id",
+    "module": "main",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "request-information",
+    "module": "main",
+    "params": [
+      "eventName",
+      "formValues"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "reset-sso-data-for-all-users",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "revoke-support-access-token",
+    "module": "main",
+    "params": [
+      "tokenId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-notification-settings",
+    "module": "main",
+    "params": [
+      "settings"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-push-token",
+    "module": "main",
+    "params": [
+      "pushToken",
+      "userDevice"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-id-broker-configuration",
+    "module": "main",
+    "params": [
+      "data"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-ldap-connection-config",
+    "module": "main",
+    "params": [
+      "data"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-notification-read",
+    "module": "main",
+    "params": [
+      "notification"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "set-number-of-students",
+    "module": "main",
+    "params": [
+      "numberOfStudents"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-openid-connect-data",
+    "module": "main",
+    "params": [
+      "data"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-reference-customer-approval",
+    "module": "main",
+    "params": [
+      "referenceCustomerApproval"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "show-video-module",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "sign-dpa",
+    "module": "main",
+    "params": [
+      "dpa",
+      "hasPermission",
+      "signer",
+      "text"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "submit-feature-request",
+    "module": "main",
+    "params": [
+      "featureRequest"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "support-planned-feature",
+    "module": "main",
+    "params": [
+      "plannedFeature",
+      "points",
+      "text"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "unsupport-planned-feature",
+    "module": "main",
+    "params": [
+      "plannedFeature"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-custom-external-integration",
+    "module": "main",
+    "params": [
+      "allowedForRoles",
+      "allowedForUserIds",
+      "externalApplication",
+      "id",
+      "oidcEnabled",
+      "showInNavbar",
+      "tosVersion"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-predefined-integration-roles",
+    "module": "main",
+    "params": [
+      "allowedForRoles",
+      "allowedForUserIds",
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "user-can-get-notifications",
+    "module": "main",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "vote-for-feature-request",
+    "module": "main",
+    "params": [
+      "featureRequest",
+      "points"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "accept-proposal",
+    "module": "meetings",
+    "params": [
+      "proposal"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "cancel-meeting-as-student",
+    "module": "meetings",
+    "params": [
+      "meeting"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "cancel-meeting-as-teacher",
+    "module": "meetings",
+    "params": [
+      "cancellationMessage",
+      "meeting"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-courses-of-student-for-meetings",
+    "module": "meetings",
+    "params": [
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-teacher-meeting-times",
+    "module": "meetings",
+    "params": [
+      "teacher"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "request",
+    "module": "meetings",
+    "params": [
+      "parentMessage",
+      "student",
+      "teacher"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-proposals",
+    "module": "meetings",
+    "params": [
+      "meetingRequest",
+      "proposals"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-subscriptions",
+    "module": "messenger",
+    "params": [
+      "thread",
+      "userIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "archive-subscription",
+    "module": "messenger",
+    "params": [
+      "subscription"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "change-subject",
+    "module": "messenger",
+    "params": [
+      "newSubject",
+      "thread"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 2
+  },
+  {
+    "endpoint": "chat-is-visible",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 2
+  },
+  {
+    "endpoint": "count-new-messages",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-thread",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-subscription",
+    "module": "messenger",
+    "params": [
+      "subscription"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-thread",
+    "module": "messenger",
+    "params": [
+      "thread"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-thread-as-administrator",
+    "module": "messenger",
+    "params": [
+      "subscriptionId",
+      "threadId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-additional-users",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-chat-users",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-distribution-lists",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-messages-by-subscription",
+    "module": "messenger",
+    "params": [
+      "before",
+      "loadAll",
+      "subscriptionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-read-receipts-for-thread",
+    "module": "messenger",
+    "params": [
+      "threadId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-recipient-ids",
+    "module": "messenger",
+    "params": [
+      "recipientOptions"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-subscriptions",
+    "module": "messenger",
+    "params": [
+      "all",
+      "includeArchived",
+      "reason"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-subscriptions-of-chat-thread",
+    "module": "messenger",
+    "params": [
+      "thread"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-thread-for-deletion",
+    "module": "messenger",
+    "params": [
+      "subscriptionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "reload-new-subscriptions-and-messages",
+    "module": "messenger",
+    "params": [
+      "lastMessageTimestamp"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-message",
+    "module": "messenger",
+    "params": [
+      "attachments",
+      "text",
+      "thread"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-allow-answers",
+    "module": "messenger",
+    "params": [
+      "allowAnswers",
+      "thread"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-is-administrator-on-subscription",
+    "module": "messenger",
+    "params": [
+      "isAdministrator",
+      "subscriptionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "set-subscription-read",
+    "module": "messenger",
+    "params": [
+      "message",
+      "scope",
+      "subscription"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-subscription-unread",
+    "module": "messenger",
+    "params": [
+      "subscription"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-user-name",
+    "module": "messenger",
+    "params": [
+      "firstname",
+      "lastname"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "unarchive-subscription",
+    "module": "messenger",
+    "params": [
+      "subscription"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "user-can-contact-additional-user",
+    "module": "messenger",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-overtime-protocol-entries",
+    "module": "overtime",
+    "params": [
+      "end",
+      "start",
+      "teacherId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "persist-overtime-protocol-entries",
+    "module": "overtime",
+    "params": [
+      "entries",
+      "firstDayWithData",
+      "lastDayWithData"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "book-proposal",
+    "module": "parenttalks",
+    "params": [
+      "proposal",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "cancel-appointment",
+    "module": "parenttalks",
+    "params": [
+      "appointmentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-round",
+    "module": "parenttalks",
+    "params": [
+      "roundId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-available-proposals",
+    "module": "parenttalks",
+    "params": [
+      "round",
+      "teacher"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-resource-reservation-conflicts",
+    "module": "resources",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-resource-reservation",
+    "module": "resources",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-resource-reservation",
+    "module": "resources",
+    "params": [
+      "deleteFromDate",
+      "mode",
+      "reservationId",
+      "reservationTimeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "find-or-create-resource-category",
+    "module": "resources",
+    "params": [
+      "name"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "load-reservation-times",
+    "module": "resources",
+    "params": [
+      "reservationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "load-resource-reservations",
+    "module": "resources",
+    "params": [
+      "endDate",
+      "resourceIds",
+      "startDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-events-as-substitutions",
+    "module": "schedules",
+    "params": [
+      "endDate",
+      "startDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-schedules-ical-token",
+    "module": "schedules",
+    "params": [
+      "renew"
+    ],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "add-shortened-day",
+    "module": "schooldata",
+    "params": [
+      "date"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-user-roles",
+    "module": "schooldata",
+    "params": [
+      "roleNames",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "archive-special-subject",
+    "module": "schooldata",
+    "params": [
+      "specialSubjectId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "assign-role-to-users",
+    "module": "schooldata",
+    "params": [
+      "roleName",
+      "selectedUserIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "book-modules",
+    "module": "schooldata",
+    "params": [
+      "modules",
+      "numberOfStudents"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "cancel-module",
+    "module": "schooldata",
+    "params": [
+      "cancellationComment",
+      "immediately",
+      "module"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "change-student-class-with-groups",
+    "module": "schooldata",
+    "params": [
+      "newClassId",
+      "newGradeLevel",
+      "newGroupIds",
+      "studentId",
+      "termId",
+      "validFrom"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-special-subject",
+    "module": "schooldata",
+    "params": [
+      "specialSubject"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-teacher",
+    "module": "schooldata",
+    "params": [
+      "abbreviation",
+      "email",
+      "firstname",
+      "lastname",
+      "officialTitleAbbreviation"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-teachers",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-user",
+    "module": "schooldata",
+    "params": [
+      "email",
+      "firstname",
+      "lastname",
+      "roleNames"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-all-students",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-all-teachers",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-parent",
+    "module": "schooldata",
+    "params": [
+      "parentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-teacher",
+    "module": "schooldata",
+    "params": [
+      "teacherId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-user",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "disable-2fa-totp-for-user",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "end-module-test",
+    "module": "schooldata",
+    "params": [
+      "module"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "filter-for-students-or-parents-with-email",
+    "module": "schooldata",
+    "params": [
+      "studentIds",
+      "targetGroup"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "generate-parent-access-codes",
+    "module": "schooldata",
+    "params": [
+      "parentId",
+      "parentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "generate-student-access-codes",
+    "module": "schooldata",
+    "params": [
+      "studentId",
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "generate-teacher-access-codes",
+    "module": "schooldata",
+    "params": [
+      "teacherId",
+      "teacherIds"
+    ],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-bookable-modules",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-modules",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-special-contract",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-holidays",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-invalid-emails-overview",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-ldap-connection-config",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 4
+  },
+  {
+    "endpoint": "get-openid-connect-data",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 5
+  },
+  {
+    "endpoint": "get-previous-modules",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-shortened-days",
+    "module": "schooldata",
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-with-account-information",
+    "module": "schooldata",
+    "params": [
+      "includeFullAged",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-substitution-upload-key",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-user-email-address-status",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "lock-all-associated-users-and-delete-access-codes-for-student",
+    "module": "schooldata",
+    "params": [
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "lock-user",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "merge-class-hours",
+    "module": "schooldata",
+    "params": [
+      "classHourToKeep",
+      "classHourToMerge"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "merge-classes",
+    "module": "schooldata",
+    "params": [
+      "classToKeepId",
+      "classToMergeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "merge-courses",
+    "module": "schooldata",
+    "params": [
+      "courseToKeepId",
+      "courseToMergeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "merge-subjects",
+    "module": "schooldata",
+    "params": [
+      "subjectToKeep",
+      "subjectToMerge"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "number-of-teachers-with-login-data",
+    "module": "schooldata",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "password-change-request-as-admin",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "remove-shortened-day",
+    "module": "schooldata",
+    "params": [
+      "shortenedDayId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "remove-user-email-address",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "remove-user-role",
+    "module": "schooldata",
+    "params": [
+      "roleName",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "reset-sso-data-for-user",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "retract-cancellation",
+    "module": "schooldata",
+    "params": [
+      "module"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-student-career-entries",
+    "module": "schooldata",
+    "params": [
+      "entriesToCreateOrUpdate",
+      "entryIdsToDelete",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-user",
+    "module": "schooldata",
+    "params": [
+      "firstname",
+      "lastname",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-access-codes-via-email",
+    "module": "schooldata",
+    "params": [
+      "parentId",
+      "recipients",
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "send-teacher-access-codes-via-email",
+    "module": "schooldata",
+    "params": [
+      "onlyToTeacherIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "set-ldap-username",
+    "module": "schooldata",
+    "params": [
+      "userId",
+      "username"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-oidc-username",
+    "module": "schooldata",
+    "params": [
+      "userId",
+      "username"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-user-email-address",
+    "module": "schooldata",
+    "params": [
+      "email",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-user-password",
+    "module": "schooldata",
+    "params": [
+      "password",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "start-module-test",
+    "module": "schooldata",
+    "params": [
+      "module"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "unlink-parent",
+    "module": "schooldata",
+    "params": [
+      "parentId",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "unlink-teacher",
+    "module": "schooldata",
+    "params": [
+      "teacherId",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "unlock-email-as-administrator",
+    "module": "schooldata",
+    "params": [
+      "email"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "unlock-user",
+    "module": "schooldata",
+    "params": [
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-special-subject",
+    "module": "schooldata",
+    "params": [
+      "specialSubject"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "user-with-email-exists-as-administrator",
+    "module": "schooldata",
+    "params": [
+      "email"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-all-students-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-class-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [
+      "classId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-classes-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-course-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [
+      "courseId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-courses-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-export",
+    "module": "schoolinformation",
+    "params": [
+      "studentIds"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-students-for-schoolinformation",
+    "module": "schoolinformation",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "check-registration-invitation",
+    "module": "schoolregistration",
+    "params": [
+      "accessCode"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-registration-invitation",
+    "module": "schoolregistration",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-student-registration",
+    "module": "schoolregistration",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-registration-form",
+    "module": "schoolregistration",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "import-registration-invitations",
+    "module": "schoolregistration",
+    "params": [
+      "invitations",
+      "registrationFormId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-registration-invitation",
+    "module": "schoolregistration",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-registration-options",
+    "module": "schoolregistration",
+    "params": [
+      "registrationFormId",
+      "useInvitations",
+      "usePublicLink"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-student-registration",
+    "module": "schoolregistration",
+    "params": [
+      "data",
+      "formId",
+      "id",
+      "status"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "submit-student-registration",
+    "module": "schoolregistration",
+    "params": [
+      "accessCode",
+      "data"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-sick-note",
+    "module": "sick",
+    "params": [
+      "sickNote"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-sick-notes-as-student-fully-entitled",
+    "module": "sick",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-absences",
+    "module": "sick",
+    "params": [
+      "date"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "high",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-student",
+    "module": "studentmanagement",
+    "params": [
+      "classId",
+      "firstname",
+      "firstnames",
+      "gradeLevel",
+      "lastname",
+      "sex"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "delete-student",
+    "module": "studentmanagement",
+    "params": [
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "get-data-by-registration-key",
+    "module": "studentmanagement",
+    "params": [
+      "key"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-registration-key",
+    "module": "studentmanagement",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-emails",
+    "module": "studentmanagement",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "register",
+    "module": "studentmanagement",
+    "params": [
+      "emailAddresses",
+      "key",
+      "phoneNumbers",
+      "photo",
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-student",
+    "module": "studentmanagement",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-student-record-custom-field",
+    "module": "studentrecord",
+    "params": [
+      "config",
+      "entryTypeId",
+      "hint",
+      "label",
+      "orderIndex",
+      "required",
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-student-record-custom-field",
+    "module": "studentrecord",
+    "params": [
+      "customFieldId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-student-record-entry",
+    "module": "studentrecord",
+    "params": [
+      "entryId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-student-record-export-template",
+    "module": "studentrecord",
+    "params": [
+      "templateId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-possible-users-for-access",
+    "module": "studentrecord",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-possible-users-for-notification",
+    "module": "studentrecord",
+    "params": [
+      "entryId",
+      "studentIds",
+      "typeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-recipient-lines",
+    "module": "studentrecord",
+    "params": [
+      "entryId",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-record-entry-types",
+    "module": "studentrecord",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-record-students",
+    "module": "studentrecord",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "load-student-record-entries",
+    "module": "studentrecord",
+    "params": [
+      "id",
+      "studentId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "save-student-record-entry",
+    "module": "studentrecord",
+    "params": [
+      "attachments",
+      "customFieldEntries",
+      "date",
+      "id",
+      "studentIds",
+      "subjectId",
+      "text",
+      "title",
+      "typeId",
+      "userIdsToNotify"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-student-record-export-template",
+    "module": "studentrecord",
+    "params": [
+      "blocks",
+      "entryTypeId",
+      "name",
+      "templateId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-student-record-custom-field",
+    "module": "studentrecord",
+    "params": [
+      "config",
+      "hint",
+      "id",
+      "label",
+      "required"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "activate-predefined-external-application",
+    "module": "su",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-module-to-special-contract",
+    "module": "su",
+    "params": [
+      "addToAllInstitutions",
+      "moduleId",
+      "specialContractId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "add-special-contract-booking",
+    "module": "su",
+    "params": [
+      "institutionId",
+      "specialContractId",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "connect-via-support-access-token",
+    "module": "su",
+    "params": [
+      "token"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-agent",
+    "module": "su",
+    "params": [
+      "firstname",
+      "lastname",
+      "password",
+      "totp",
+      "totpSecret",
+      "username"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-invoice-in-lexoffice",
+    "module": "su",
+    "params": [
+      "discountInPercent",
+      "institutionId",
+      "invoiceItems",
+      "specialContractId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-module-booking",
+    "module": "su",
+    "params": [
+      "end",
+      "institutionId",
+      "isTestPeriod",
+      "moduleId",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "create-module-invoice",
+    "module": "su",
+    "params": [
+      "end",
+      "institutionId",
+      "moduleId",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-or-update-lexoffice-contact",
+    "module": "su",
+    "params": [
+      "institutionId",
+      "specialContractId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-predefined-external-application",
+    "module": "su",
+    "params": [
+      "domain",
+      "name",
+      "vendorContactData"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-special-contract",
+    "module": "su",
+    "params": [
+      "modules",
+      "name"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-special-contract-invoice",
+    "module": "su",
+    "params": [
+      "end",
+      "institutionId",
+      "specialContractId",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-test-account",
+    "module": "su",
+    "params": [
+      "bookFrom",
+      "email",
+      "modules",
+      "schoolName",
+      "testUntil"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-user-with-email",
+    "module": "su",
+    "params": [
+      "email",
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-video-invoice-in-lexoffice",
+    "module": "su",
+    "params": [
+      "invoice"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-data-processed-on-behalf-of-institution",
+    "module": "su",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-module-booking",
+    "module": "su",
+    "params": [
+      "bookingId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-predefined-external-application-credential",
+    "module": "su",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "delete-predefined-external-application-credential-creation-request",
+    "module": "su",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "delete-predefined-external-application-permission-change-request",
+    "module": "su",
+    "params": [
+      "changeRequestId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "delete-special-contract-booking",
+    "module": "su",
+    "params": [
+      "specialContractBookingId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-status-message",
+    "module": "su",
+    "params": [
+      "statusMessage"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-training-event-registration",
+    "module": "su",
+    "params": [
+      "registrationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "disable-predefined-external-application",
+    "module": "su",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "email-is-locked",
+    "module": "su",
+    "params": [
+      "email"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "find-institutions",
+    "module": "su",
+    "params": [
+      "bookingStatus",
+      "excludedModules",
+      "modules",
+      "regions",
+      "schoolTypes",
+      "specialContractId",
+      "timetableSources"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "find-reference-customers",
+    "module": "su",
+    "params": [
+      "module",
+      "region",
+      "schoolType",
+      "timetableSource"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "generate-totp-secret",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-additional-trial-institutions",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-all-modules",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 6
+  },
+  {
+    "endpoint": "get-audit-log-for-institution",
+    "module": "su",
+    "params": [
+      "institution"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-bookable-special-contracts",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-changelog-entries",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-customer-report",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-day-statistics",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-dpa-newsletter-recipients",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-due-payments",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-due-video-payments",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-external-application-audit-log",
+    "module": "su",
+    "params": [
+      "applicationId",
+      "dateFrom",
+      "dateTo",
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-implemented-features",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-import-processes",
+    "module": "su",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institution-administrators",
+    "module": "su",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institution-feature-requests",
+    "module": "su",
+    "params": [
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institution-modules",
+    "module": "su",
+    "params": [
+      "institution"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-institutions",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-institutions-for-map",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institutions-with-external-applications",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-module-prices",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-modules-data-for-changelog",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-new-feature-requests",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-newsletter",
+    "module": "su",
+    "params": [
+      "newsletterId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-newsletters",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-planned-feature-requests",
+    "module": "su",
+    "params": [
+      "feature"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-planned-features",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-predefined-external-application",
+    "module": "su",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-predefined-external-applications",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-recent-bookings",
+    "module": "su",
+    "params": [
+      "sinceDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-recent-cancellations",
+    "module": "su",
+    "params": [
+      "sinceDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-reports",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-special-contracts",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-special-contracts-for-filtering-schools",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-status-messages",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-support-file-shares",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-training-event-participant-messages",
+    "module": "su",
+    "params": [
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-user-status",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-video-usage",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-votes-by-planned-feature",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "list-backoffice-users",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "lock-predefined-external-application",
+    "module": "su",
+    "params": [
+      "applicationId",
+      "temporarilyLocked"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "mark-video-invoice-as-sent",
+    "module": "su",
+    "params": [
+      "invoice"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "nominatim-lookup",
+    "module": "su",
+    "params": [
+      "lookupString"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "process-feature-request",
+    "module": "su",
+    "params": [
+      "featureRequest",
+      "feedback"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "publish-predefined-external-application",
+    "module": "su",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "remove-module-from-special-contract",
+    "module": "su",
+    "params": [
+      "moduleId",
+      "specialContractId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-coordinates",
+    "module": "su",
+    "params": [
+      "coordinates",
+      "institution"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-newsletter",
+    "module": "su",
+    "params": [
+      "newsletter"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-planned-features",
+    "module": "su",
+    "params": [
+      "plannedFeatures",
+      "plannedFeaturesToDelete"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-status-message",
+    "module": "su",
+    "params": [
+      "statusMessage"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-training-event",
+    "module": "su",
+    "params": [
+      "trainingEvent"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-training-event-invitation-email",
+    "module": "su",
+    "params": [
+      "trainingEvent"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-training-event-registration",
+    "module": "su",
+    "params": [
+      "registration"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "search-feature-requests",
+    "module": "su",
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-certificates-of-attendance",
+    "module": "su",
+    "params": [
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-invitation-emails-for-training-event",
+    "module": "su",
+    "params": [
+      "emailAddresses",
+      "trainingEvent"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "send-training-event-participant-message",
+    "module": "su",
+    "params": [
+      "body",
+      "subject",
+      "trainingEventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "start-test-mailing",
+    "module": "su",
+    "params": [
+      "newsletter"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "trigger-predefined-external-application-credential-dns-verification",
+    "module": "su",
+    "params": [
+      "credentialCreationRequestId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "trigger-predefined-external-application-dns-verification",
+    "module": "su",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "trigger-predefined-external-application-permission-change-dns-verification",
+    "module": "su",
+    "params": [
+      "changeRequestId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "unlock-email",
+    "module": "su",
+    "params": [
+      "email"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "unpublish-predefined-external-application",
+    "module": "su",
+    "params": [
+      "applicationId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "update-backoffice-user-totp",
+    "module": "su",
+    "params": [
+      "totp",
+      "totpSecret",
+      "userId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-feature-request",
+    "module": "su",
+    "params": [
+      "featureRequest",
+      "update"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-institution",
+    "module": "su",
+    "params": [
+      "institution",
+      "institutionId",
+      "update",
+      "updateSchoolInformation"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 9
+  },
+  {
+    "endpoint": "update-module-booking",
+    "module": "su",
+    "params": [
+      "bookingId",
+      "update"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 5
+  },
+  {
+    "endpoint": "update-special-contract",
+    "module": "su",
+    "params": [
+      "specialContractId",
+      "update"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-special-contract-booking",
+    "module": "su",
+    "params": [
+      "specialContractBookingId",
+      "update"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "user-with-email-exists",
+    "module": "su",
+    "params": [
+      "email",
+      "institutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "count-overtimes",
+    "module": "substitutions",
+    "params": [
+      "end",
+      "exclude",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-bavarian-statistics",
+    "module": "substitutions",
+    "params": [
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-overtimes-for-day",
+    "module": "substitutions",
+    "params": [
+      "date"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 3
+  },
+  {
+    "endpoint": "create-tile",
+    "module": "tiles",
+    "params": [
+      "displayOnTop"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "destroy-tile",
+    "module": "tiles",
+    "params": [
+      "tileId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-tiles-for-editing",
+    "module": "tiles",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "swap-tile-order",
+    "module": "tiles",
+    "params": [
+      "tileId1",
+      "tileId2"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-tile-content",
+    "module": "tiles",
+    "params": [
+      "content",
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-tile-title",
+    "module": "tiles",
+    "params": [
+      "id",
+      "title"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "update-tile-visibility",
+    "module": "tiles",
+    "params": [
+      "tileId",
+      "visibleFor"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "assign-live-course-ids",
+    "module": "timetabling",
+    "params": [
+      "draftCourseIdsByCourseId",
+      "draftId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-building",
+    "module": "timetabling",
+    "params": [
+      "name"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-draft-from-import",
+    "module": "timetabling",
+    "params": [
+      "draftName",
+      "existingClassIdByInternalId",
+      "existingSubjectIdByInternalId",
+      "existingTeacherIdByInternalId",
+      "importData"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "create-or-update-class",
+    "module": "timetabling",
+    "params": [
+      "classId",
+      "classTeacherIds",
+      "gradeLevel",
+      "mainClassTeacherId",
+      "name",
+      "roomId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-class-hour",
+    "module": "timetabling",
+    "params": [
+      "classHourId",
+      "from",
+      "number",
+      "until"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-occurrence",
+    "module": "timetabling",
+    "params": [
+      "dates",
+      "factorForCalculatingTeacherLoad",
+      "name",
+      "occurrenceId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-room",
+    "module": "timetabling",
+    "params": [
+      "buildingId",
+      "description",
+      "name",
+      "roomId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-subject",
+    "module": "timetabling",
+    "params": [
+      "abbreviation",
+      "color",
+      "name",
+      "subjectId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-supervision-area",
+    "module": "timetabling",
+    "params": [
+      "name",
+      "supervisionAreaId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-supervision-time",
+    "module": "timetabling",
+    "params": [
+      "name",
+      "precedingClassHourId",
+      "succeedingClassHourId",
+      "supervisionTimeId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "create-or-update-teacher",
+    "module": "timetabling",
+    "params": [
+      "abbreviation",
+      "color",
+      "firstname",
+      "lastname",
+      "minimumAbsentDays",
+      "qualifiedSubjectIds",
+      "teacherId",
+      "teachingLoad",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "delete-occurrence",
+    "module": "timetabling",
+    "params": [
+      "occurrenceId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-supervision-area",
+    "module": "timetabling",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "delete-supervision-time",
+    "module": "timetabling",
+    "params": [
+      "id"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "no-op",
+    "module": "timetabling",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 5
+  },
+  {
+    "endpoint": "publish-timetable",
+    "module": "timetabling",
+    "params": [
+      "draftId",
+      "termId",
+      "validFrom"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-subject-timetable-data",
+    "module": "timetabling",
+    "params": [
+      "multiLessonsPreference",
+      "subjectId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-subject-timetable-preferences",
+    "module": "timetabling",
+    "params": [
+      "preferences",
+      "subjectId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "save-timetable-preferences",
+    "module": "timetabling",
+    "params": [
+      "classId",
+      "preferences"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "bbb-is-overloaded",
+    "module": "video",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "book-video-module",
+    "module": "video",
+    "params": [
+      "numberOfParticipants"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "can-create-video-conference",
+    "module": "video",
+    "params": [
+      "coronaGroupId",
+      "course",
+      "end",
+      "existingConference",
+      "name",
+      "returnAlternativeTimespans",
+      "start",
+      "students",
+      "teachers",
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "cancel-video-module",
+    "module": "video",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-all-video-conferences",
+    "module": "video",
+    "params": [
+      "date"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-join-url",
+    "module": "video",
+    "params": [
+      "videoConference"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 2
+  },
+  {
+    "endpoint": "get-teachers-with-account",
+    "module": "video",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-video-conference-students",
+    "module": "video",
+    "params": [
+      "conference"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-video-conference-users",
+    "module": "video",
+    "params": [
+      "conference"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-video-conferences",
+    "module": "video",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "save-video-conference",
+    "module": "video",
+    "params": [
+      "conference",
+      "coronaGroupId",
+      "course",
+      "end",
+      "name",
+      "start",
+      "students",
+      "teachers",
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "start-video-module-test",
+    "module": "video",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "undo-cancelling-video-module",
+    "module": "video",
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "medium",
+    "callSites": 1
+  },
+  {
+    "endpoint": "event-category-exists",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "exams-visible-for-students",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-active-modules",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-active-modules-with-booking-status",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-actual-lessons",
+    "module": null,
+    "params": [
+      "end",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-all-holidays",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-all-students-for-absences",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-allday-student-ids",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-backoffice-role-names",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-booked-meetings",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-class-hours",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-class-informations",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-lessons-and-substitutions",
+    "module": null,
+    "params": [
+      "classHourId",
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-next-or-previous-term",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-previous-or-next-term",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-students-as-allday-supervisor",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-current-term",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-due-tasks",
+    "module": null,
+    "params": [
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-events-for-user",
+    "module": null,
+    "params": [
+      "end",
+      "includeHolidays",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-grading-system-settings-of-term",
+    "module": null,
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-groups",
+    "module": null,
+    "params": [
+      "type"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-homework-of-day",
+    "module": null,
+    "params": [
+      "absenceId",
+      "date",
+      "lessonId",
+      "substitutionId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-institution",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-learning-courses",
+    "module": null,
+    "params": [
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-lesson-for-classbook",
+    "module": null,
+    "params": [
+      "date",
+      "lessonId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-my-substitutions",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-my-supervision-substitutions",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-new-learning-units-by-course",
+    "module": null,
+    "params": [
+      "student"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-occurrences-of-current-term",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-parent-by-access-code",
+    "module": null,
+    "params": [
+      "code"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-persist-data-timestamp",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-predefined-text-templates",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-public-events",
+    "module": null,
+    "params": [
+      "end",
+      "includeHolidays",
+      "institutionId",
+      "start"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-remote-storage-url",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-resources-for-cache",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-setting",
+    "module": null,
+    "params": [
+      "moduleName",
+      "settingName"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-settings",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-student-by-access-code",
+    "module": null,
+    "params": [
+      "code"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-for-cache",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-in-term",
+    "module": null,
+    "params": [
+      "termId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-including-former-students",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-students-with-corona-group",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-substitution-texts-for-widget",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-teacher-by-access-code",
+    "module": null,
+    "params": [
+      "code"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-tiles",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-unexcused-sick-notes",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-unpaid-invoices-for-widget",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-unread-letters-for-widget",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-upcoming-conferences",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-user-settings",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "get-websocket-push-url",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "meeting-hour-exists",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "persist-data",
+    "module": null,
+    "params": [
+      "data",
+      "resubmitPreventionTimestamp"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "persist-data-is-locked",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": true,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "poqa",
+    "module": null,
+    "params": [
+      "action",
+      "uiState"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "report-runtime-error",
+    "module": null,
+    "params": [],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-setting",
+    "module": null,
+    "params": [
+      "moduleName",
+      "settingName",
+      "value"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "set-user-setting",
+    "module": null,
+    "params": [
+      "key",
+      "scope",
+      "value"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "storage-get",
+    "module": null,
+    "params": [
+      "key",
+      "scope"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "substitutions-get-changes",
+    "module": null,
+    "params": [
+      "data",
+      "endDate",
+      "gzippedAndBase64Encoded",
+      "program",
+      "startDate"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "substitutions-persist-changes",
+    "module": null,
+    "params": [
+      "changes"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  },
+  {
+    "endpoint": "user-can-edit-event",
+    "module": null,
+    "params": [
+      "eventId"
+    ],
+    "calledWithNoParams": false,
+    "confidence": "unknown",
+    "callSites": 1
+  }
+]

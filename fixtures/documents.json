@@ -1,0 +1,753 @@
+{
+ "rootFolder": {
+  "id": 127820,
+  "name": "Dokumente",
+  "isRoot": true,
+  "createdAt": "2024-03-15T08:22:42.691Z",
+  "updatedAt": "2024-03-15T08:22:42.691Z",
+  "createdById": null,
+  "institutionId": 15151
+ },
+ "rootContents": {
+  "documents": [
+   {
+    "id": 1082862,
+    "name": "Patenklassen",
+    "content": "<p><strong>Vereinbarte Patenklassen</strong></p> <table border=\"1\" style=\"width: 100%;\"><tbody><tr><td>Klasse A</td><td>Klasse B</td></tr><tr><td>Klasse C</td><td>Klasse D</td></tr></tbody></table> <p>Gr&ouml;&szlig;ere Gruppen nach Absprache.</p>",
+    "file": null,
+    "createdAt": "2026-03-16T08:24:05.932Z",
+    "updatedAt": "2026-04-20T11:07:57.914Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [],
+    "JoinDocumentParentFolders": {
+     "createdAt": "2026-03-16T08:24:05.966Z",
+     "updatedAt": "2026-03-16T08:24:05.966Z",
+     "documentsId": 1082862,
+     "parentFoldersId": 127820
+    }
+   }
+  ],
+  "subFolders": [
+   {
+    "id": 201961,
+    "name": "Elterninformation",
+    "isRoot": null,
+    "createdAt": "2026-04-02T05:29:48.202Z",
+    "updatedAt": "2026-04-02T05:29:48.202Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332141,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-04-02T05:29:48.217Z",
+       "updatedAt": "2026-04-02T05:29:48.217Z",
+       "foldersAllowedToReadId": 201961,
+       "groupsAllowedToReadId": 332141
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-04-02T05:29:48.212Z",
+     "updatedAt": "2026-04-02T05:29:48.212Z",
+     "subFoldersId": 201961,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 137458,
+    "name": "Formulare",
+    "isRoot": null,
+    "createdAt": "2024-08-13T12:03:55.423Z",
+    "updatedAt": "2024-08-13T12:03:55.423Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332141,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-09-17T07:30:56.590Z",
+       "updatedAt": "2024-09-17T07:30:56.590Z",
+       "foldersAllowedToReadId": 137458,
+       "groupsAllowedToReadId": 332141
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-13T12:03:55.428Z",
+     "updatedAt": "2024-08-13T12:03:55.428Z",
+     "subFoldersId": 137458,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 202229,
+    "name": "Schulordnung",
+    "isRoot": null,
+    "createdAt": "2026-04-13T07:27:27.055Z",
+    "updatedAt": "2026-04-13T07:27:27.055Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332141,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-04-13T07:27:27.118Z",
+       "updatedAt": "2026-04-13T07:27:27.118Z",
+       "foldersAllowedToReadId": 202229,
+       "groupsAllowedToReadId": 332141
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-04-13T07:27:27.082Z",
+     "updatedAt": "2026-04-13T07:27:27.082Z",
+     "subFoldersId": 202229,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 204732,
+    "name": "Größen & Umlaute",
+    "isRoot": null,
+    "createdAt": "2026-05-08T06:49:56.664Z",
+    "updatedAt": "2026-05-08T06:49:56.664Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332141,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-05-08T06:49:56.684Z",
+       "updatedAt": "2026-05-08T06:49:56.684Z",
+       "foldersAllowedToReadId": 204732,
+       "groupsAllowedToReadId": 332141
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-05-08T06:49:56.677Z",
+     "updatedAt": "2026-05-08T06:49:56.677Z",
+     "subFoldersId": 204732,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 207240,
+    "name": "Termine",
+    "isRoot": null,
+    "createdAt": "2026-06-10T09:35:33.591Z",
+    "updatedAt": "2026-06-10T09:35:33.591Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332141,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-06-10T09:35:33.617Z",
+       "updatedAt": "2026-06-10T09:35:33.617Z",
+       "foldersAllowedToReadId": 207240,
+       "groupsAllowedToReadId": 332141
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-06-10T09:35:33.611Z",
+     "updatedAt": "2026-06-10T09:35:33.611Z",
+     "subFoldersId": 207240,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 208116,
+    "name": "Ganztag",
+    "isRoot": null,
+    "createdAt": "2026-06-18T08:54:50.123Z",
+    "updatedAt": "2026-06-18T08:54:50.123Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332141,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-06-18T08:54:50.141Z",
+       "updatedAt": "2026-06-18T08:54:50.141Z",
+       "foldersAllowedToReadId": 208116,
+       "groupsAllowedToReadId": 332141
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-06-18T08:54:50.135Z",
+     "updatedAt": "2026-06-18T08:54:50.135Z",
+     "subFoldersId": 208116,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 156585,
+    "name": "Förderverein",
+    "isRoot": null,
+    "createdAt": "2025-02-10T12:50:31.103Z",
+    "updatedAt": "2025-02-10T13:40:26.036Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-02-10T12:50:31.119Z",
+       "updatedAt": "2025-02-10T12:50:31.119Z",
+       "foldersAllowedToReadId": 156585,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-02-10T12:50:31.110Z",
+     "updatedAt": "2025-02-10T12:50:31.110Z",
+     "subFoldersId": 156585,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 143151,
+    "name": "Mensa",
+    "isRoot": null,
+    "createdAt": "2024-09-17T05:49:57.598Z",
+    "updatedAt": "2024-09-17T05:49:57.598Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-09-17T05:49:57.609Z",
+       "updatedAt": "2024-09-17T05:49:57.609Z",
+       "foldersAllowedToReadId": 143151,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-09-17T05:49:57.606Z",
+     "updatedAt": "2024-09-17T05:49:57.606Z",
+     "subFoldersId": 143151,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 136941,
+    "name": "Bibliothek",
+    "isRoot": null,
+    "createdAt": "2024-08-07T09:20:48.453Z",
+    "updatedAt": "2024-08-07T09:20:48.453Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-12T08:41:38.856Z",
+       "updatedAt": "2024-08-12T08:41:38.856Z",
+       "foldersAllowedToReadId": 136941,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-07T09:20:48.457Z",
+     "updatedAt": "2024-08-07T09:20:48.457Z",
+     "subFoldersId": 136941,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 136938,
+    "name": "Sport",
+    "isRoot": null,
+    "createdAt": "2024-08-07T09:10:52.522Z",
+    "updatedAt": "2024-08-07T09:10:52.522Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-13T09:41:21.723Z",
+       "updatedAt": "2024-08-13T09:41:21.723Z",
+       "foldersAllowedToReadId": 136938,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-07T09:10:52.532Z",
+     "updatedAt": "2024-08-07T09:10:52.532Z",
+     "subFoldersId": 136938,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 136940,
+    "name": "Musik",
+    "isRoot": null,
+    "createdAt": "2024-08-07T09:18:55.248Z",
+    "updatedAt": "2024-08-19T07:23:05.222Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-13T09:41:37.319Z",
+       "updatedAt": "2024-08-13T09:41:37.319Z",
+       "foldersAllowedToReadId": 136940,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-07T09:18:55.253Z",
+     "updatedAt": "2024-08-07T09:18:55.253Z",
+     "subFoldersId": 136940,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 136869,
+    "name": "Kunst",
+    "isRoot": null,
+    "createdAt": "2024-08-07T07:19:57.314Z",
+    "updatedAt": "2024-08-07T07:19:57.314Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-13T09:41:49.852Z",
+       "updatedAt": "2024-08-13T09:41:49.852Z",
+       "foldersAllowedToReadId": 136869,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-07T07:19:57.320Z",
+     "updatedAt": "2024-08-07T07:19:57.320Z",
+     "subFoldersId": 136869,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 137130,
+    "name": "Projekte",
+    "isRoot": null,
+    "createdAt": "2024-08-09T08:45:48.413Z",
+    "updatedAt": "2024-08-09T08:45:48.413Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-13T09:42:14.431Z",
+       "updatedAt": "2024-08-13T09:42:14.431Z",
+       "foldersAllowedToReadId": 137130,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-09T08:45:48.420Z",
+     "updatedAt": "2024-08-09T08:45:48.420Z",
+     "subFoldersId": 137130,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 137465,
+    "name": "Ausflüge",
+    "isRoot": null,
+    "createdAt": "2024-08-13T14:27:04.687Z",
+    "updatedAt": "2024-08-13T14:27:04.687Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-13T14:27:04.693Z",
+       "updatedAt": "2024-08-13T14:27:04.693Z",
+       "foldersAllowedToReadId": 137465,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-13T14:27:04.691Z",
+     "updatedAt": "2024-08-13T14:27:04.691Z",
+     "subFoldersId": 137465,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 137477,
+    "name": "Verkehr",
+    "isRoot": null,
+    "createdAt": "2024-08-13T17:19:58.869Z",
+    "updatedAt": "2024-08-15T07:44:58.377Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-13T17:19:58.877Z",
+       "updatedAt": "2024-08-13T17:19:58.877Z",
+       "foldersAllowedToReadId": 137477,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-13T17:19:58.876Z",
+     "updatedAt": "2024-08-13T17:19:58.876Z",
+     "subFoldersId": 137477,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 137659,
+    "name": "Gesundheit",
+    "isRoot": null,
+    "createdAt": "2024-08-15T08:24:32.896Z",
+    "updatedAt": "2024-08-15T08:24:32.896Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-15T08:24:32.930Z",
+       "updatedAt": "2024-08-15T08:24:32.930Z",
+       "foldersAllowedToReadId": 137659,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-15T08:24:32.904Z",
+     "updatedAt": "2024-08-15T08:24:32.904Z",
+     "subFoldersId": 137659,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 137660,
+    "name": "Beratung",
+    "isRoot": null,
+    "createdAt": "2024-08-15T08:33:10.697Z",
+    "updatedAt": "2024-08-15T08:33:10.697Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-15T08:33:10.704Z",
+       "updatedAt": "2024-08-15T08:33:10.704Z",
+       "foldersAllowedToReadId": 137660,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-15T08:33:10.703Z",
+     "updatedAt": "2024-08-15T08:33:10.703Z",
+     "subFoldersId": 137660,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 138180,
+    "name": "Inklusion",
+    "isRoot": null,
+    "createdAt": "2024-08-21T06:42:18.665Z",
+    "updatedAt": "2024-08-21T06:42:18.665Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2024-08-21T06:42:18.673Z",
+       "updatedAt": "2024-08-21T06:42:18.673Z",
+       "foldersAllowedToReadId": 138180,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2024-08-21T06:42:18.669Z",
+     "updatedAt": "2024-08-21T06:42:18.669Z",
+     "subFoldersId": 138180,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 153877,
+    "name": "Digitales",
+    "isRoot": null,
+    "createdAt": "2025-01-10T10:18:19.591Z",
+    "updatedAt": "2025-01-10T10:18:19.591Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-01-10T10:18:19.598Z",
+       "updatedAt": "2025-01-10T10:18:19.598Z",
+       "foldersAllowedToReadId": 153877,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-01-10T10:18:19.596Z",
+     "updatedAt": "2025-01-10T10:18:19.596Z",
+     "subFoldersId": 153877,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 163287,
+    "name": "Bücher",
+    "isRoot": null,
+    "createdAt": "2025-04-15T12:10:04.898Z",
+    "updatedAt": "2025-04-15T12:10:04.898Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-04-15T12:10:04.907Z",
+       "updatedAt": "2025-04-15T12:10:04.907Z",
+       "foldersAllowedToReadId": 163287,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-04-15T12:10:04.906Z",
+     "updatedAt": "2025-04-15T12:10:04.906Z",
+     "subFoldersId": 163287,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 185815,
+    "name": "Feste",
+    "isRoot": null,
+    "createdAt": "2025-11-04T10:08:08.935Z",
+    "updatedAt": "2025-11-04T10:08:08.935Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-11-04T10:08:08.943Z",
+       "updatedAt": "2025-11-04T10:08:08.943Z",
+       "foldersAllowedToReadId": 185815,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-11-04T10:08:08.941Z",
+     "updatedAt": "2025-11-04T10:08:08.941Z",
+     "subFoldersId": 185815,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 159442,
+    "name": "Chor",
+    "isRoot": null,
+    "createdAt": "2025-03-05T12:26:40.467Z",
+    "updatedAt": "2025-03-05T12:26:40.467Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-03-05T12:26:40.474Z",
+       "updatedAt": "2025-03-05T12:26:40.474Z",
+       "foldersAllowedToReadId": 159442,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-03-05T12:26:40.473Z",
+     "updatedAt": "2025-03-05T12:26:40.473Z",
+     "subFoldersId": 159442,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 166939,
+    "name": "Theater",
+    "isRoot": null,
+    "createdAt": "2025-06-18T09:49:51.435Z",
+    "updatedAt": "2025-06-18T09:49:51.435Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-06-18T09:49:51.621Z",
+       "updatedAt": "2025-06-18T09:49:51.621Z",
+       "foldersAllowedToReadId": 166939,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-06-18T09:49:51.610Z",
+     "updatedAt": "2025-06-18T09:49:51.610Z",
+     "subFoldersId": 166939,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 186361,
+    "name": "Garten",
+    "isRoot": null,
+    "createdAt": "2025-11-07T17:38:26.756Z",
+    "updatedAt": "2025-11-07T17:38:43.328Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-11-07T17:38:26.764Z",
+       "updatedAt": "2025-11-07T17:38:26.764Z",
+       "foldersAllowedToReadId": 186361,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-11-07T17:38:26.761Z",
+     "updatedAt": "2025-11-07T17:38:26.761Z",
+     "subFoldersId": 186361,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 186609,
+    "name": "Werkstatt",
+    "isRoot": null,
+    "createdAt": "2025-11-10T11:36:16.847Z",
+    "updatedAt": "2025-11-10T11:36:16.847Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2025-11-10T11:36:16.855Z",
+       "updatedAt": "2025-11-10T11:36:16.855Z",
+       "foldersAllowedToReadId": 186609,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2025-11-10T11:36:16.853Z",
+     "updatedAt": "2025-11-10T11:36:16.853Z",
+     "subFoldersId": 186609,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 194874,
+    "name": "Archiv",
+    "isRoot": null,
+    "createdAt": "2026-01-21T09:18:12.562Z",
+    "updatedAt": "2026-01-21T09:18:12.562Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-01-21T09:18:12.572Z",
+       "updatedAt": "2026-01-21T09:18:12.572Z",
+       "foldersAllowedToReadId": 194874,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-01-21T09:18:12.569Z",
+     "updatedAt": "2026-01-21T09:18:12.569Z",
+     "subFoldersId": 194874,
+     "parentFoldersId": 127820
+    }
+   },
+   {
+    "id": 196924,
+    "name": "Sonstiges",
+    "isRoot": null,
+    "createdAt": "2026-02-06T09:51:49.961Z",
+    "updatedAt": "2026-02-06T09:51:49.961Z",
+    "createdById": null,
+    "institutionId": 15151,
+    "groupsAllowedToRead": [
+     {
+      "id": 332142,
+      "JoinFolderGroupsAllowedToRead": {
+       "createdAt": "2026-02-06T09:51:49.974Z",
+       "updatedAt": "2026-02-06T09:51:49.974Z",
+       "foldersAllowedToReadId": 196924,
+       "groupsAllowedToReadId": 332142
+      }
+     }
+    ],
+    "JoinFolderParentFolders": {
+     "createdAt": "2026-02-06T09:51:49.972Z",
+     "updatedAt": "2026-02-06T09:51:49.972Z",
+     "subFoldersId": 196924,
+     "parentFoldersId": 127820
+    }
+   }
+  ]
+ },
+ "documentWithFile": {
+  "id": 720396,
+  "name": "Beispiel Dokumentation.pdf",
+  "content": null,
+  "file": "[15151, \"documents\", \"b4942d2476bc519d2dc548cf6a433311\", \"x8DxKOOSz2GX0M/aPA3bjLQ5Hv1jQkPt2V31wvZklL8=\", \"application/pdf\", 953549, \"Beispiel Dokumentation.pdf\"]",
+  "createdAt": "2024-09-16T09:19:03.200Z",
+  "updatedAt": "2024-09-16T09:19:03.200Z",
+  "createdById": null,
+  "institutionId": 15151,
+  "groupsAllowedToRead": [],
+  "JoinDocumentParentFolders": {
+   "createdAt": "2024-09-16T09:19:03.207Z",
+   "updatedAt": "2024-09-16T09:19:03.207Z",
+   "documentsId": 720396,
+   "parentFoldersId": 137458
+  }
+ }
+}

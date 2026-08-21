@@ -1,0 +1,13 @@
+{
+  "_comment": "Synthetic. Shapes captured from allday/get-allday-offers and get-allday-messages; ids, dates and text invented. A parent's offer record really is this bare — no name, no times.",
+  "offers": [
+    {"id": 5124, "weekday": 2, "startDate": null, "endDate": null,
+     "studentAttendances": [{"id": "92571"}]},
+    {"id": 5125, "weekday": 4, "startDate": "2025-09-01", "endDate": "2025-12-19",
+     "studentAttendances": [{"id": "92572"}]}
+  ],
+  "messages": [
+    {"id": 811, "date": "2026-03-10", "message": "Wird um 14:00 abgeholt.", "studentId": 4711},
+    {"id": 812, "date": "2026-03-12", "message": "Geht heute alleine nach Hause.", "studentId": 4711}
+  ]
+}

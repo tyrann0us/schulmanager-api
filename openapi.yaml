@@ -1,0 +1,4336 @@
+openapi: 3.1.0
+info:
+  title: Schulmanager Online API (reconstructed)
+  version: 0.1.0
+  summary: Unofficial OpenAPI description of the API behind the Schulmanager Online web and mobile client.
+  license:
+    name: MIT
+    identifier: MIT
+  description: |
+    An **unofficial, reconstructed** description of the HTTP API that the Schulmanager Online web
+    client and its Capacitor-based mobile app talk to. The vendor publishes no API documentation and
+    has made no promise about any of this. Nothing here is a contract: endpoints, payloads and
+    permissions can change without notice.
+
+    ## The shape of the API
+
+    Not a resource-oriented API. There are about thirteen real HTTP endpoints, and almost the whole
+    product goes through one of them:
+
+    | Endpoint | Purpose |
+    |---|---|
+    | `POST /api/calls` | 715+ logical endpoints, batched, dispatched by (`moduleName`, `endpointName`) |
+    | `POST /api/models` | the complete server-side ORM schema — **needs no authentication** |
+    | `POST /api/backoffice` | the same envelope, the vendor's internal staff API |
+    | `POST /api/login`, `/api/get-salt`, … | authentication |
+    | `POST /api/upload-file` | client-side-encrypted binary upload |
+
+    Most *reading* a client does never touches a named endpoint at all: `main/poqa` exposes the
+    server's Sequelize models directly, scoped to the calling account.
+
+    ## How to read this document
+
+    `POST /api/calls` carries a batch of logical calls addressed by the pair (`moduleName`,
+    `endpointName`). This document keeps that transport visible under
+    [the gateway operation](#tag/rpc-gateway) and, in addition, gives every documented logical call its
+    own readable operation under a synthetic path of the form
+
+    ```
+    /api/calls:<moduleName>/<endpointName>
+    ```
+
+    Those synthetic paths are **not routes**. They are a documentation device; every one of them
+    carries an `x-rpc` object with the real `moduleName` and `endpointName`, and every request is
+    actually sent to `POST /api/calls` wrapped in the envelope. On such an operation the request body
+    is the `parameters` object and the response body is the `data` value of the matching result.
+
+    **A client generated from this document without understanding `x-rpc` will not work.** See
+    `ADR-001-transport.md` in the repository for why it is modelled this way and what the alternative
+    was.
+
+    ## Provenance — three levels, deliberately kept apart
+
+    Every operation and most schemas carry an `x-provenance` field with one of:
+
+    | Value | Means | Worth |
+    |---|---|---|
+    | `vendor-documented` | taken from a public `module.*.html` product page | intent and intended audience — never a payload or an access guarantee |
+    | `statically-extracted` | read out of the shipped JavaScript bundle | the endpoint and its parameter *names* exist at some call site; types are unknown |
+    | `verified-live` | called against the live server with a real login and the response recorded | the shape is real **for the role that called it** |
+
+    Response schemas exist only where the shape was seen, and they are not prose transcribed into
+    YAML: they are derived from the Swift models of a working client, which decode real responses and
+    are pinned by fixtures in the repository.s
+
+    ## Coverage, honestly
+
+    A static extraction of the bundle found **715** logical endpoints across 39 namespaces, and that
+    is a lower bound. This document describes the subset that is backed by decoded real responses
+    (roughly 40 operations): the family-facing surface of a parent/student account, plus
+    authentication and file transfer. Everything else is listed, undocumented, in the generated
+    [endpoint catalogue](./catalogue.html) — visibly unfinished.
+
+    Most administrative endpoints answer `403` for the account they were probed with, and role checks
+    are **per endpoint, not per module**: the `invoicing` namespace refuses 26 of its 27 endpoints to a
+    parent and answers the 27th with a bank account, and `classbook` refuses `get-week-overview` while
+    answering `get-history-absences-list`. A `403` does not distinguish "your role may not" from "your
+    school never bought this module" — only `main/get-active-modules` knows. Do not read an audience
+    claim off a tag.
+
+    Two consequences of that:
+
+    * **Teacher, administrator and back-office shapes are absent.** Everything marked `verified-live`
+      was collected with a single family account, so a `403` recorded here is a fact about that
+      account, not about a role.
+    * **The `su` namespace** (98 endpoints, evidently the vendor's own support console) and the other
+      namespaces without a public product page are listed and marked internal, never described as a
+      customer API.
+
+    ## Rate limiting
+
+    Every response carries `x-ratelimit-limit`, `x-ratelimit-remaining`, `x-ratelimit-reset`. There is
+    no `Retry-After`, and a `429` may arrive **as a result status inside an HTTP 200 envelope** — a
+    client that only inspects the HTTP status will report it as a decoding failure.
+externalDocs:
+  description: Vendor product pages (German)
+  url: https://www.schulmanager-online.de/
+servers:
+  - url: https://login.schulmanager-online.de
+    description: Production. Institutions are distinguished by account, not by host.
+security:
+  - bearerAuth: []
+    deviceToken: []
+tags:
+  - name: Authentication
+    description: |
+      `x-provenance: verified-live` — the salt/PBKDF2/login chain was executed end to end.
+      Plain HTTP endpoints outside the RPC gateway.
+  - name: RPC gateway
+    description: |
+      The single real transport. Read this before any of the synthetic per-endpoint operations.
+  - name: ORM gateway (poqa)
+    description: |
+      `main/poqa` exposes the server's Sequelize models directly, and most *reading* a client does
+      goes through it. Rows are scoped to the calling account.
+  - name: Institution and account
+    description: |
+      Cross-cutting `main` endpoints: the school, its active modules, the settings map, the notice
+      board, support access. The `main` namespace itself is internal plumbing (113 endpoints, no
+      public product page) — only the parts with verified shapes are documented here.
+  - name: Files
+    description: |
+      Uploads are **encrypted client-side** before they leave the device, so the stored blob is opaque
+      to the server; the AES key travels inside the file descriptor handled over the RPC gateway. See
+      the `StoredFile` schema for that descriptor's unusual wire format.
+  - name: Calendar feeds
+    description: iCal subscription URLs, addressed by a per-user token that can be rotated.
+  - name: Messages
+    description: |
+      Vendor module **Nachrichten** (`messenger`, 27 endpoints). Direct messages with attachments and
+      per-thread reply control. A thread is shared; the read state and admin flag are per subscriber.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.nachrichten.html
+  - name: Letters
+    description: |
+      Vendor module **Elternbriefe** (`letters`, 17 endpoints). Letters from school to families with
+      read confirmation and optional attached surveys.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.elternbriefe.html
+  - name: Grades
+    description: |
+      Vendor module **Noten** (`grades`, 19 endpoints). Teachers enter, families read — and whether
+      families read at all is a school setting (`grades.gradesAreVisibleForParents`,
+      `finalGradesAreVisibleForParents`, `parentVisibilityDelay` in the settings map).
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.noten.html
+  - name: Documents
+    description: |
+      Vendor module **Dokumente** (`documents`, 7 endpoints). A permissioned folder tree; an entry is
+      either an HTML page or an encrypted file.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.dokumente.html
+  - name: Calendar
+    description: |
+      Vendor module **Kalender** (`calendar`, 11 endpoints). Events in group-scoped categories.
+      Holidays are injected server-side under the synthetic category id `-1`.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.kalender.html
+  - name: Class register
+    description: |
+      Vendor module **Digitales Klassenbuch** (`classbook`, 39 endpoints) — teacher-facing. Exactly
+      four of them answered a parent account; those four are the only way a family reads its own
+      attendance record, because the management module `absences` refuses every endpoint (403) and the
+      ORM model `modules/classbook/student-absence` refuses too.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.digitales-klassenbuch.html
+  - name: Sick notes
+    description: |
+      Vendor module **Krankmeldung** (`sick`, 3 endpoints). Parents report a child ill; the record
+      flows into the school's Fehlzeiten management. A sick note has a start time but **no end
+      time** — that is the main difference from an exemption.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.krankmeldung.html
+  - name: Exemptions
+    description: |
+      Vendor module **Beurlaubung** (`exemptions`, 2 endpoints). Parents file a leave request, the
+      school grants or refuses it. `granted: null` means undecided, not refused.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.antrag-auf-beurlaubung.html
+  - name: After-school care
+    description: |
+      Vendor module **Ganztag** (`allday`, 22 endpoints). Care staff get lists, attendance and
+      observations; a family gets exactly one thing — sending the carers a note about pick-up or a
+      schedule change. Three endpoints answered a parent, six of the others were refused.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.ganztag.html
+  - name: Notice board
+    description: |
+      Vendor module **Schwarzes Brett** (`tiles`, 7 endpoints). Every endpoint in that namespace is
+      the editor and is staff-only; the readable side is `main/get-tiles`, and there is no ORM route
+      (`modules/tiles/tile` answers 404).
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.schwarzes-brett.html
+  - name: Payments
+    description: |
+      Vendor module **Zahlungen** (`invoicing`, 27 endpoints). Cashless collection with bank-transfer
+      matching. 26 endpoints answered `403` for a parent; `get-student-invoice-of-student-for-printing`
+      answered `200` and carried the school's bank account. A family's own bills are read through the
+      ORM gateway instead.
+
+      **The payment reference (Verwendungszweck) is computed by the client**, appears in no response,
+      and a transfer without it cannot be matched to a child:
+
+      ```
+      base9(studentPaymentData.number) + "9" + base9(generalInvoice.number)
+      ```
+
+      followed by five Damm check digits — one over the number itself, then over the number with 1…4
+      zeros appended — grouped in fours, then the student's name and class. Verified against a printed
+      payment request: student 243, invoice 8 → `3009 8303 22 Muster, Max 3a`. Base 9 keeps the digit
+      `9` free as a separator, so both numbers can be read back out.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.geld-einsammeln.html
+  - name: Electives
+    description: |
+      Vendor module **Wahlfächer** (`electives`, 6 endpoints). Students rank wishes, an algorithm
+      assigns places. `StudentPriority.number` is **zero-based**: the first choice is `0`.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.wahlfaecher.html
+  - name: Parent talks
+    description: |
+      Vendor module **Elterngespräche** (`parenttalks`, 4 endpoints). The namespace-to-product mapping
+      here was inferred wrongly twice from endpoint names; the server states it itself via
+      `main/get-bookable-modules-for-offer` (`conferences` = Elternsprechtag, `parenttalks` =
+      Elterngespräche, `meetings` = Sprechstunden).
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.elterngespraeche.html
+  - name: Timetable
+    description: |
+      Vendor module **Stundenplan** (`schedules`, 2 endpoints) — both refused a parent account. The
+      timetable itself is assembled from ORM reads on `main` (`lesson`, `class-hour`, `course`, `room`,
+      `subject`), which the gateway scopes to the account.
+    externalDocs:
+      url: https://www.schulmanager-online.de/module.vertretungsplan-anzeige.html
+paths:
+  /api/get-salt:
+    post:
+      tags: [Authentication]
+      operationId: getSalt
+      summary: Fetch the per-account salt for password hashing
+      description: |
+        First half of the login chain. The returned string is the salt for the PBKDF2 derivation the
+        client performs before calling `/api/login`: **SHA-512, 99999 iterations, 512 bytes of output,
+        lowercase hex** (1024 hex characters). Answers without authentication.
+      security: []
+      x-provenance: verified-live
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaltRequest'
+      responses:
+        '200':
+          description: The salt, as a bare JSON string.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: "d0f5c2…"
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/PlainError'
+  /api/login:
+    post:
+      tags: [Authentication]
+      operationId: login
+      summary: Log in with username or e-mail and password
+      description: |
+        Second half of the login chain. The plaintext password is sent **alongside** the PBKDF2 hash;
+        when the client has no `crypto.subtle` it sends `hash: null` and the server falls back to the
+        plaintext. Setting `mobileApp: true` is what makes the server issue a long-lived `userDevice`,
+        which is how an app avoids asking for the password on every launch.
+
+        The response is one of five mutually exclusive branches — see `LoginResponse`.
+      security: []
+      x-provenance: verified-live
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: |
+            Success, an account picker, or a second-factor challenge — inspect which field is present.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Wrong credentials.
+        '403':
+          description: |
+            Refused. `{"untrustedNetwork": true}` when the school restricts logins by network.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  untrustedNetwork:
+                    type: boolean
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          description: Login error.
+  /api/login-with-user-device:
+    post:
+      tags: [Authentication]
+      operationId: loginWithUserDevice
+      summary: Exchange a stored device credential for a JWT
+      description: |
+        How a mobile client stays logged in. The device credential is the `userDevice` object issued by
+        `/api/login` when `mobileApp: true` was set.
+      security: []
+      x-provenance: verified-live
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [device]
+              properties:
+                device:
+                  $ref: '#/components/schemas/UserDevice'
+                reason:
+                  type: string
+                  description: Free-form; the client sends values such as `switch-user-device`.
+      responses:
+        '200':
+          description: A fresh bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jwt:
+                    type: string
+        '401':
+          description: The device was revoked or never existed.
+        default:
+          $ref: '#/components/responses/PlainError'
+  /api/delete-user-device:
+    post:
+      tags: [Authentication]
+      operationId: deleteUserDevice
+      summary: Revoke a device credential (this is also the logout call)
+      x-provenance: statically-extracted
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [device]
+              properties:
+                device:
+                  $ref: '#/components/schemas/UserDevice'
+      responses:
+        '200':
+          description: Revoked. Subsequent calls with that device receive `x-user-device-doesnt-exist`.
+        default:
+          $ref: '#/components/responses/PlainError'
+        '401':
+          description: Unknown or already revoked device.
+  /api/login-status:
+    post:
+      tags: [Authentication]
+      operationId: loginStatus
+      summary: Report whether the caller is authenticated
+      description: |
+        Works with and without credentials, which makes it the cheapest way to test a token. With a
+        valid token the response also carries the account's role fields.
+      security: []
+      x-provenance: verified-live
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Empty object.
+      responses:
+        '200':
+          description: Authentication state, plus the user record when authenticated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isAuthenticated:
+                    type: boolean
+                  user:
+                    $ref: '#/components/schemas/User'
+        default:
+          $ref: '#/components/responses/PlainError'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /api/models:
+    post:
+      tags: [Authentication]
+      operationId: getModels
+      summary: The complete server-side ORM schema
+      description: |
+        Returns the product's whole data model — 95 shared `main` models and 43 module namespaces, with
+        German labels, Sequelize attribute types and typed associations (~180 KB). **Requires no
+        authentication.** It is the authority on which model paths the ORM gateway accepts; note that
+        `poqa` addresses models in **kebab-case** (`main/class-hour`), while this document returns class
+        names (`ClassHour`).
+      security: []
+      x-provenance: verified-live
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Empty object.
+      responses:
+        '200':
+          description: |
+            Two top-level keys: `main` (shared models) and `modules` (per namespace). Not modelled
+            further here — the shape is a schema description, not application data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  main:
+                    type: object
+                  modules:
+                    type: object
+        default:
+          $ref: '#/components/responses/PlainError'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /api/calls:
+    post:
+      tags: [RPC gateway]
+      operationId: postCalls
+      summary: The batching RPC gateway — every logical endpoint goes through here
+      description: |
+        One HTTP request carries N logical calls. The client queues calls and flushes them on the next
+        macrotask, so unrelated screens share a round trip.
+
+        Facts that no schema can express, and that clients get wrong:
+
+        * **`results` is matched to `requests` positionally.** There is no correlation id.
+        * **`bundleVersion` is required but its value is not checked.** Verified: a bogus
+          `"deadbeef00"` answers `200`; an empty string answers HTTP `400`. A hash hardcoded in 2026
+          still worked after the bundle had been redeployed, so scraping the live hash is unnecessary.
+        * **A failed call has no `data` key.** It is `{status, userError: {germanErrorMessage}}`. A
+          client that detects the envelope by looking for `data` reports the wrong error.
+        * **`429` can be the *result* status inside an HTTP 200.**
+        * **`403` means refused, by role or by booking, indistinguishably.** A module the school never
+          bought answers exactly like a booked module this account may not use. `main/get-active-modules`
+          is the only authority on what is booked.
+        * **`404` means the (`moduleName`, `endpointName`) pair is unknown** — a wrong module guess is
+          indistinguishable from a typo.
+        * **`500` is a parameter error**, not a generic failure: the same endpoint answers `200` with
+          its parameters and `500` with `{}`.
+      x-provenance: verified-live
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RpcRequestEnvelope'
+      responses:
+        '200':
+          description: |
+            One result per request, in order. Inspect each result's `status` — an HTTP 200 says nothing
+            about the individual calls.
+          headers:
+            x-new-bearer-token:
+              description: A rotated JWT. Replace the stored token when this is present.
+              schema:
+                type: string
+            x-user-device-doesnt-exist:
+              description: The device credential was revoked; the client must log out.
+              schema:
+                type: string
+            x-ratelimit-limit:
+              schema:
+                type: integer
+            x-ratelimit-remaining:
+              schema:
+                type: integer
+            x-ratelimit-reset:
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RpcResponseEnvelope'
+        '400':
+          description: Malformed envelope — an empty `bundleVersion` is enough.
+        '401':
+          description: Missing or expired bearer token.
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '503':
+          description: Maintenance. Carries `X-Downtime-Message`.
+  /api/backoffice:
+    post:
+      tags: [RPC gateway]
+      operationId: postBackoffice
+      summary: Internal staff gateway (not reachable with a school account)
+      description: |
+        The same envelope minus `bundleVersion` and minus `moduleName`; it serves the vendor's own
+        support and contract tooling (the `su` namespace, 98 endpoints). Documented so that nobody
+        mistakes it for a customer API. No shape here has been observed.
+      x-provenance: statically-extracted
+      x-internal: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [requests]
+              properties:
+                requests:
+                  type: array
+                  items:
+                    type: object
+                    required: [endpointName]
+                    properties:
+                      endpointName:
+                        type: string
+                      parameters:
+                        type: object
+      responses:
+        '200':
+          description: Envelope as `/api/calls`. Unobserved.
+        '403':
+          description: Expected for any non-staff account.
+  /api/upload-file:
+    post:
+      tags: [Files]
+      operationId: uploadFile
+      summary: Upload an encrypted blob
+      description: |
+        The bytes are **already encrypted by the client**; the server stores an opaque blob. The AES-256
+        key is part of the `StoredFile` descriptor that the RPC gateway then carries around, which is
+        why the server can serve attachments it cannot read. Sent by `XMLHttpRequest`, not `fetch`.
+      x-provenance: statically-extracted
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: File name, as it should appear to readers.
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+          description: MIME type.
+        - name: scope
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Storage scope, e.g. `messenger`, `documents`, `institution`.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: |
+            The stored-file descriptor to attach to a message, letter or document. Shape unverified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoredFile'
+        default:
+          $ref: '#/components/responses/PlainError'
+        '401':
+          description: Missing or expired bearer token.
+  /api/schoolregistration/upload-attachment:
+    post:
+      tags: [Files]
+      operationId: uploadRegistrationAttachment
+      summary: Upload an attachment for an online school registration
+      description: Same mechanism as `/api/upload-file`, scoped to the registration flow.
+      x-provenance: statically-extracted
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Stored-file descriptor. Shape unverified.
+        default:
+          $ref: '#/components/responses/PlainError'
+        '401':
+          description: Missing or expired bearer token.
+  /download-file/{descriptor}:
+    get:
+      tags: [Files]
+      operationId: downloadFile
+      summary: Download an encrypted blob
+      description: |
+        Served from the host returned by the RPC call `get-remote-storage-url`, **not** from the login
+        host — override the server when calling. The path segment is the base64 of the JSON descriptor:
+        `btoa(unescape(encodeURIComponent(JSON.stringify(storedFile))))`. The response body is
+        ciphertext; decrypt it with the `key` inside the descriptor.
+      x-provenance: statically-extracted
+      servers:
+        - url: '{remoteStorageUrl}'
+          description: From `get-remote-storage-url`.
+          variables:
+            remoteStorageUrl:
+              default: https://storage.schulmanager-online.de
+      parameters:
+        - name: descriptor
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Base64 of the JSON `StoredFile` array form.
+      responses:
+        '200':
+          description: Encrypted bytes.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Unknown or expired descriptor.
+  /ical/calendar/{token}:
+    get:
+      tags: [Calendar feeds]
+      operationId: icalCalendar
+      summary: iCal feed of every calendar category
+      description: |
+        The token is per user and is fetched over the RPC gateway (`calendar/get-ical-token`); passing
+        `{renew: true}` there rotates it and invalidates this URL. Exams are deliberately **not**
+        subscribable — `calendar/get-events-as-ics` serves those through the gateway instead.
+      security: []
+      x-provenance: statically-extracted
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: iCalendar document.
+          content:
+            text/calendar:
+              schema:
+                type: string
+        '404':
+          description: Unknown or rotated token.
+  /ical/calendar/{token}/{categoryId}:
+    get:
+      tags: [Calendar feeds]
+      operationId: icalCalendarCategory
+      summary: iCal feed of one calendar category
+      security: []
+      x-provenance: statically-extracted
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: iCalendar document.
+          content:
+            text/calendar:
+              schema:
+                type: string
+        '404':
+          description: Unknown token or category.
+  /ical/schedules/{token}:
+    get:
+      tags: [Calendar feeds]
+      operationId: icalSchedules
+      summary: iCal feed of the timetable
+      description: Token from `schedules/get-schedules-ical-token`.
+      security: []
+      x-provenance: statically-extracted
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: iCalendar document.
+          content:
+            text/calendar:
+              schema:
+                type: string
+        '404':
+          description: Unknown or rotated token.
+  /webdav-substitutions/{schoolUploadKey}/untis:
+    put:
+      tags: [Files]
+      operationId: webdavSubstitutionImport
+      summary: WebDAV drop target for Untis substitution exports
+      description: |
+        Write target used by the vendor's own Windows sync tool. Listed for completeness; no request or
+        response shape was observed, and this is a write path — do not experiment against a live school.
+      x-provenance: statically-extracted
+      parameters:
+        - name: schoolUploadKey
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Accepted. Unverified.
+        '401':
+          description: Unknown upload key.
+  '/api/calls:main/poqa':
+    post:
+      tags: [ORM gateway (poqa)]
+      operationId: mainPoqa
+      summary: Query a server-side model directly
+      description: |
+        Dispatch is not what the name suggests: it is an endpoint **on `main`**. Sending
+        `moduleName: "poqa"` answers `404`.
+
+        Rules that were paid for in debugging time:
+
+        * **Model paths are kebab-case and case-sensitive**: `main/term`, `main/class-hour`,
+          `modules/parenttalks/round`. `main/Term` answers `404`.
+        * **`parameters` is an array** whose first element is the Sequelize options object. Verified
+          keys: `where` (with `$in`, `$gte`, `$lte`), `include`, `attributes`, `order`.
+        * **`include` defaults to an inner join.** Pass `required: false` unless the join really is a
+          filter — 66 lesson rows became 0 because the joined courses belonged to a year the account
+          may not read.
+        * **`limit` is ignored on some models**, and an unfiltered read can take 5 s where the same
+          query with `where: {courseId: {$in: [...]}}` takes 0.2 s. The cost is the per-row permission
+          check, so name the ids you want.
+        * **Rows are scoped to the account** without any `where` of the caller's own.
+        * A model the role may not read answers `403`; a path that does not exist answers `404`.
+
+        Response shape is the model's own, so no single schema applies. The models used by the
+        documented parts of this specification are `Lesson`, `ClassHour`, `Course`, `Room`, `Subject`,
+        `Term`, `SickNote`, `ExemptionRequest`, `StudentInvoice`, `StudentItem`, `Election`,
+        `ParentTalkRound`.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: main
+        endpointName: poqa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PoqaParameters'
+      responses:
+        '200':
+          description: |
+            A model instance, an array of them, or a count — depending on `action`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PoqaResult'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+        '404':
+          $ref: '#/components/responses/ResultUnknownEndpoint'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:main/get-settings':
+    post:
+      tags: [Institution and account]
+      operationId: mainGetSettings
+      summary: Every module's settings for the institution, in one call
+      description: |
+        A map keyed by module name, with `""` holding the institution-wide branch — 26 branches at the
+        school this was captured from. This is where the web client's per-module rules live: the notice
+        that leave must be requested two days ahead is `exemptions.minimumDaysInAdvance`, and grades
+        being invisible to families is `grades.gradesAreVisibleForParents`, not a missing endpoint.
+
+        Only the branches with verified shapes are modelled; the others are permitted and unspecified.
+        `main/get-setting {moduleName, settingName}` returns a single value.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: main
+        endpointName: get-settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: The settings map.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstitutionSettings'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-setting':
+    post:
+      tags: [Institution and account]
+      operationId: mainGetSetting
+      summary: One setting value
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: main
+        endpointName: get-setting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [moduleName, settingName]
+              properties:
+                moduleName:
+                  type: string
+                  description: Module branch, or `""` for institution-wide.
+                settingName:
+                  type: string
+      responses:
+        '200':
+          description: The value, whose type depends on the setting.
+          content:
+            application/json:
+              schema:
+                description: Any JSON value.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-institution':
+    post:
+      tags: [Institution and account]
+      operationId: mainGetInstitution
+      summary: The school's public facts
+      description: |
+        Answers `200` for a parent, whereas reading the `Institution` model through the ORM gateway is
+        refused. The logo is a `StoredFile` descriptor, so it is fetched and decrypted like any
+        attachment.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: main
+        endpointName: get-institution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: The institution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Institution'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-active-modules':
+    post:
+      tags: [Institution and account]
+      operationId: mainGetActiveModules
+      summary: Modules this school has booked
+      description: |
+        The **only** authority on what a school has booked; a `403` from a module's endpoints does not
+        distinguish "not booked" from "not your role". 18 active at the school this was captured from.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: main
+        endpointName: get-active-modules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: Active modules.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActiveModule'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-bookable-modules-for-offer':
+    post:
+      tags: [Institution and account]
+      operationId: mainGetBookableModulesForOffer
+      summary: The vendor's whole module catalogue
+      description: |
+        Answers `200` for a parent and returns `{name, label, description, iconClass, price}` for the
+        vendor's entire catalogue — 29 entries when captured. This is the authoritative mapping from API
+        namespace to product name, and it corrected two rows that had been inferred from endpoint names.
+        `price` is what the *school* pays.
+
+        Its neighbours `get-active-modules-with-booking-status`,
+        `get-booked-modules-with-pricing-per-student` and `schooldata/get-bookable-modules` all answer
+        `403` for a parent. A booked namespace can be absent here: `schooldata` is institution
+        administration, not a product.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: main
+        endpointName: get-bookable-modules-for-offer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: The catalogue.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CatalogModule'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-tiles':
+    post:
+      tags: [Notice board]
+      operationId: mainGetTiles
+      summary: Notices visible to the caller
+      description: |
+        The readable side of the Schwarzes Brett. Takes no parameters and returns only what the caller's
+        role may see; the school scopes each notice with `tiles/update-tile-visibility`. `content` is an
+        HTML fragment written in the school's rich-text editor, and `order` is ascending and routinely
+        negative because reordering decrements. Pinned notices sort first regardless of `order`.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: main
+        endpointName: get-tiles
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: Notices.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tile'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-support-access-token':
+    post:
+      tags: [Institution and account]
+      operationId: mainGetSupportAccessToken
+      summary: The active support-access token, if any
+      description: |
+        A code that lets the vendor's support staff see this account until `validUntil`. Companion
+        endpoints `create-support-access-token`, `extend-support-access-token-by-one-day` and
+        `revoke-support-access-token` exist and are writes — not exercised here.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: main
+        endpointName: get-support-access-token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: The token, or null when none is active.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SupportAccessToken'
+                  - type: 'null'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:main/get-remote-storage-url':
+    post:
+      tags: [Files]
+      operationId: mainGetRemoteStorageUrl
+      summary: Base URL for file downloads
+      description: |
+        Returns the host that serves `/download-file/{descriptor}`. Called from shared code, so the
+        module is decided by the active route; `main` is the safe binding.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: main
+        endpointName: get-remote-storage-url
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: An absolute URL.
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uri
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:classbook/get-history-absences-list':
+    post:
+      tags: [Class register]
+      operationId: classbookGetHistoryAbsencesList
+      summary: A student's own absences
+      description: |
+        The one call through which a family reads its own attendance record. `term` behaves as a **lower
+        bound**, not a filter. Each absence may link to the sick note or exemption that covers it; those
+        links are what tie the three family-facing modules together.
+
+        Whether an absence counts as excused is subtler than its `excused` flag — see `StudentAbsence`.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: classbook
+        endpointName: get-history-absences-list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [student]
+              properties:
+                student:
+                  $ref: '#/components/schemas/EntityRef'
+                term:
+                  $ref: '#/components/schemas/EntityRef'
+      responses:
+        '200':
+          description: Absences, newest first.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentAbsence'
+              examples:
+                fixture:
+                  externalValue: ./fixtures/absences.json
+                  summary: Synthetic fixture (see repository `fixtures/absences.json`)
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:classbook/get-history-by-time':
+    post:
+      tags: [Class register]
+      operationId: classbookGetHistoryByTime
+      summary: A student's absences keyed by day
+      description: |
+        Same records as `get-history-absences-list`, arranged as a map whose keys are `YYYY-MM-DD`. Not
+        modelled per day: only the key shape was captured, not the per-day payload.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: classbook
+        endpointName: get-history-by-time
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [student, from, until]
+              properties:
+                student:
+                  $ref: '#/components/schemas/EntityRef'
+                from:
+                  type: string
+                  format: date
+                until:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Map from day to that day's records.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:classbook/get-statistics':
+    post:
+      tags: [Class register]
+      operationId: classbookGetStatistics
+      summary: Absence statistics, by subject or by period
+      description: |
+        Answers `500` unless **`by`** is present — four plausible payloads failed before the parameter
+        names were read out of the bundle. The server computes every figure, including the
+        `unexcusedOnly` filter; there is no `by: "total"`, so a total is the sum of the subject rows.
+
+        A parent's window **ends before today**: `classbook.absencesVisibilityDelayForParents` in the
+        settings map (2 at the school captured) is how many recent days are withheld so that teachers
+        can still correct entries.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: classbook
+        endpointName: get-statistics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [student, by]
+              properties:
+                student:
+                  $ref: '#/components/schemas/EntityRef'
+                from:
+                  type: string
+                  format: date
+                until:
+                  type: string
+                  format: date
+                by:
+                  type: string
+                  enum: [subject, time]
+                  description: Which breakdown to return. Missing → `500`.
+                type:
+                  type: string
+                  enum: [sum-all, count-absent, count-belated]
+                  description: |
+                    `sum-all` counts absent *time* in lesson equivalents (15 minutes of a 45-minute
+                    lesson is 0.33), so it produces fractions; the counting variants are whole numbers.
+                unexcusedOnly:
+                  type: boolean
+                includeInternalExemptions:
+                  type: boolean
+                  description: |
+                    The statistics screen sends `false`, the week overview `true`.
+      responses:
+        '200':
+          description: |
+            With `by: "subject"`, an array of rows. With `by: "time"`, a nested map
+            weekday → class-hour id → cell, **both key levels as strings**, weekday Monday 1 … Friday 5.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/SubjectAbsenceStatistic'
+                  - $ref: '#/components/schemas/TimeAbsenceStatisticMap'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:classbook/get-entry-statistics':
+    post:
+      tags: [Class register]
+      operationId: classbookGetEntryStatistics
+      summary: Classbook entry types with this student's entries
+      description: |
+        Returns every entry type the school defines, each with the student's own entries inside. The
+        Einträge tab is only worth showing when `classbook.entriesVisibleForParents` is set.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: classbook
+        endpointName: get-entry-statistics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [student, termId]
+              properties:
+                student:
+                  $ref: '#/components/schemas/EntityRef'
+                termId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: Entry types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentEntryType'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:calendar/get-events-for-user':
+    post:
+      tags: [Calendar]
+      operationId: calendarGetEventsForUser
+      summary: Calendar events for the caller
+      description: |
+        Verified against a full school year (74 events). Recurring events came back empty for every
+        account probed, so `recurrencePattern` is carried through but never expanded here.
+
+        All-day events arrive at `00:00Z` on both ends and their end is **exclusive**: a single day is
+        `00:00Z` → `00:00Z` the next day. Reading those boundaries in local time shifts the date for
+        anyone west of Greenwich.
+
+        With `includeHolidays: true` the server injects holidays under the synthetic category id `-1`,
+        which no real category uses. Their colour is a school setting
+        (`calendar.holidayCategoryColor`).
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: calendar
+        endpointName: get-events-for-user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start:
+                  type: string
+                  format: date
+                end:
+                  type: string
+                  format: date
+                includeHolidays:
+                  type: boolean
+      responses:
+        '200':
+          description: Events, split into recurring and non-recurring.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:calendar/get-event-categories':
+    post:
+      tags: [Calendar]
+      operationId: calendarGetEventCategories
+      summary: Calendar categories
+      description: |
+        `color` is a CSS hex value or null; the school captured leaves every category uncoloured, which
+        is why a client needs a fallback.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: calendar
+        endpointName: get-event-categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: Categories.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventCategory'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:calendar/get-ical-token':
+    post:
+      tags: [Calendar feeds]
+      operationId: calendarGetIcalToken
+      summary: Token for the calendar iCal feed
+      description: |
+        `{renew: true}` rotates the token, which invalidates the previous subscription URL — a write in
+        effect, even though the endpoint name reads like a read.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: calendar
+        endpointName: get-ical-token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                renew:
+                  type: boolean
+      responses:
+        '200':
+          description: The token used in `/ical/calendar/{token}`.
+          content:
+            application/json:
+              schema:
+                description: Token string, or an object carrying it. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:calendar/get-events-as-ics':
+    post:
+      tags: [Calendar feeds]
+      operationId: calendarGetEventsAsIcs
+      summary: Calendar events as an iCalendar document
+      description: |
+        The gateway route to ICS. Exams are explicitly not part of the subscription feeds, so this is
+        how they reach a calendar application.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: calendar
+        endpointName: get-events-as-ics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters observed.
+      responses:
+        '200':
+          description: An iCalendar document, delivered as a JSON string inside the envelope.
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:documents/get-root-folder':
+    post:
+      tags: [Documents]
+      operationId: documentsGetRootFolder
+      summary: The root of the document tree
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: documents
+        endpointName: get-root-folder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: The root folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentFolder'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:documents/get-folder-contents':
+    post:
+      tags: [Documents]
+      operationId: documentsGetFolderContents
+      summary: One level of the document tree
+      description: |
+        A document is **either** an HTML page (`content`) or an attached file (`file`), and schools use
+        both. Prefer the document's own `name` over the stored file's: uploads de-duplicate file names,
+        so a document called `Info.png` can carry a file named `Info (1).png`.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: documents
+        endpointName: get-folder-contents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [folderId]
+              properties:
+                folderId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: Documents and sub-folders at this level.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderContents'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/get-subscriptions':
+    post:
+      tags: [Messages]
+      operationId: messengerGetSubscriptions
+      summary: The caller's threads
+      description: |
+        A subscription is the caller's view of a shared thread: read state, archived flag, admin rights.
+        Participants are only available as the pre-rendered `senderString` and `recipientString` —
+        `messenger/get-subscriptions-of-chat-thread` answers `403` for a family account, so those two
+        strings are the whole record of who is in a thread.
+
+        **Ids arrive as strings here** and must be sent back as strings;
+        `get-messages-by-subscription` answers `500` for a numeric `subscriptionId`.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: messenger
+        endpointName: get-subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                all:
+                  type: boolean
+                includeArchived:
+                  type: boolean
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Subscriptions with their threads.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subscription'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/get-messages-by-subscription':
+    post:
+      tags: [Messages]
+      operationId: messengerGetMessagesBySubscription
+      summary: A page of messages in one thread
+      description: |
+        `hasMoreMessages` drives "load older". `sender` is omitted on messages the caller sent.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: messenger
+        endpointName: get-messages-by-subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [subscriptionId]
+              properties:
+                subscriptionId:
+                  type: string
+                  description: As received — a **string**. A number answers `500`.
+                before:
+                  type: string
+                  format: date-time
+                loadAll:
+                  type: boolean
+      responses:
+        '200':
+          description: A page of messages.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePage'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:messenger/get-chat-users':
+    post:
+      tags: [Messages]
+      operationId: messengerGetChatUsers
+      summary: Users the caller may write to
+      description: |
+        Returns one **pre-composed** `name` plus a role line, not `firstname`/`lastname`. Which teachers
+        a parent may contact is a school setting (`messenger.contactableTeachersByParents`).
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: messenger
+        endpointName: get-chat-users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: Contactable users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChatUser'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/get-recipient-ids':
+    post:
+      tags: [Messages]
+      operationId: messengerGetRecipientIds
+      summary: Resolve recipient options into user ids
+      description: |
+        Takes the recipient options verbatim — the id is **nested under a key named after the option
+        type** (`{"type":"user","user":{"id":123}}`). A flat id answers `500`; that is what broke
+        sending. See `RecipientOption` for the key per type.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: messenger
+        endpointName: get-recipient-ids
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [recipientOptions]
+              properties:
+                recipientOptions:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RecipientOption'
+      responses:
+        '200':
+          description: Concrete user ids.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityId'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/count-new-messages':
+    post:
+      tags: [Messages]
+      operationId: messengerCountNewMessages
+      summary: Unread message count
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: messenger
+        endpointName: count-new-messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: No parameters.
+      responses:
+        '200':
+          description: A count. Shape unverified.
+          content:
+            application/json:
+              schema:
+                type: integer
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/create-thread':
+    post:
+      tags: [Messages]
+      operationId: messengerCreateThread
+      summary: Start a thread (write)
+      description: |
+        **Write endpoint — documented, not exercised.** The payload mirrors the web client's compose
+        component: resolved `users`, the `recipientOptions` they came from (sent back verbatim), and the
+        first message with its attachments. `allowAnswers: false` produces an announcement nobody can
+        reply to.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: messenger
+        endpointName: create-thread
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateThreadRequest'
+      responses:
+        '200':
+          description: The created thread. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/send-message':
+    post:
+      tags: [Messages]
+      operationId: messengerSendMessage
+      summary: Reply in a thread (write)
+      description: '**Write endpoint — documented, not exercised.**'
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: messenger
+        endpointName: send-message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [thread, text]
+              properties:
+                thread:
+                  $ref: '#/components/schemas/EntityRef'
+                text:
+                  type: string
+                attachments:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/StoredFile'
+      responses:
+        '200':
+          description: The created message. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/set-subscription-read':
+    post:
+      tags: [Messages]
+      operationId: messengerSetSubscriptionRead
+      summary: Mark a thread read (write)
+      description: '**Write endpoint — documented, not exercised.**'
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: messenger
+        endpointName: set-subscription-read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [subscription]
+              properties:
+                subscription:
+                  $ref: '#/components/schemas/EntityRef'
+                message:
+                  $ref: '#/components/schemas/EntityRef'
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: Updated read state. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:letters/get-letters':
+    post:
+      tags: [Letters]
+      operationId: lettersGetLetters
+      summary: Letters addressed to the caller's students
+      description: |
+        The list carries no body text and no attachments — those come from a detail read through the ORM
+        gateway (`modules/letters/letter`, `findByPk`). A letter is unread when at least one of the
+        caller's students has no `readTimestamp`.
+
+        A survey whose deadline has passed while the letter is still unread is a dead end in the
+        product: `letters/confirm` is the only way to mark it read and it answers `500` for such a
+        letter, so the letter stays unread forever. The vendor's own app has the same problem.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: letters
+        endpointName: get-letters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                offset:
+                  type: integer
+                  description: Paging offset.
+      responses:
+        '200':
+          description: Letters, newest first.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Letter'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:letters/confirm':
+    post:
+      tags: [Letters]
+      operationId: lettersConfirm
+      summary: Confirm a letter and submit its survey answers (write)
+      description: |
+        **Write endpoint — documented, not exercised.** `formData` is keyed by **question id as a
+        string**: a `SingleSelect` stores the chosen option key (`"2"`), a `MultipleSelect` an array of
+        them, a `Text` question the typed text.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: letters
+        endpointName: confirm
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [studentLetterStatus]
+              properties:
+                studentLetterStatus:
+                  $ref: '#/components/schemas/EntityRef'
+                formData:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Confirmed. Shape unverified.
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:grades/get-grading-information-for-student':
+    post:
+      tags: [Grades]
+      operationId: gradesGetGradingInformationForStudent
+      summary: One student's grades, courses and grading scheme
+      description: |
+        Everything the grades screen needs in one payload. Two traps live in the response:
+
+        * **`indiviualGrades` is misspelled on the wire** (a missing `d`). The typo is real and is kept
+          here because renaming it would misdocument the API.
+        * **A grade value is encoded `"<gradingSystem>~<value>"`** — `"0~1-"` is the grade `1-` in
+          grading system `0`. Splitting on `~` is the whole trick.
+
+        `courses[].name` is almost always null; the readable subject comes from `subjectId` resolved
+        against `main/subject` through the ORM gateway. `finalGrades` comes back empty when the school
+        hides final grades from families (`grades.finalGradesAreVisibleForParents`), which is a setting,
+        not a missing feature.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: grades
+        endpointName: get-grading-information-for-student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [studentId]
+              properties:
+                studentId:
+                  $ref: '#/components/schemas/EntityId'
+                termId:
+                  $ref: '#/components/schemas/EntityId'
+                start:
+                  type: string
+                  format: date
+                end:
+                  type: string
+                  format: date
+                gradingPeriodType:
+                  type: string
+      responses:
+        '200':
+          description: Grading information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GradingInformation'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:sick/create-sick-note':
+    post:
+      tags: [Sick notes]
+      operationId: sickCreateSickNote
+      summary: Report a student ill (write)
+      description: |
+        **Write endpoint — documented, not exercised.** The student is **nested** (`{student: {id}}`),
+        not a flat `studentId`; the teacher-side `absences/create-sick-note-as-teacher-or-admin` takes
+        the flat form and is not available to a family.
+
+        There is no end time — a sick note says "ill from this time onwards". A whole-day note simply
+        omits `startTime`. The web form refuses a span longer than one month, and `comment` is only sent
+        when the school allows it (`sick.allowCommentsByParents`).
+
+        Existing sick notes are read through the ORM gateway (`modules/sick/sick-note`).
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: sick
+        endpointName: create-sick-note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sickNote]
+              properties:
+                sickNote:
+                  $ref: '#/components/schemas/SickNoteDraft'
+      responses:
+        '200':
+          description: The created note. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:exemptions/request-exemption':
+    post:
+      tags: [Exemptions]
+      operationId: exemptionsRequestExemption
+      summary: File a leave request (write)
+      description: |
+        **Write endpoint — documented, not exercised.** As with sick notes the student is **nested**, and
+        omitting both times is how "all day" is expressed. The reason (`comment`) is required by the
+        server.
+
+        Two named errors the client handles: `timespan_contains_no_school_day` and
+        `student_already_left_school_at_start_date`. How many days ahead a request must be filed is a
+        school setting (`exemptions.minimumDaysInAdvance`).
+
+        Existing requests are read through the ORM gateway
+        (`modules/exemptions/exemption-request`).
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: exemptions
+        endpointName: request-exemption
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [exemptionRequest]
+              properties:
+                exemptionRequest:
+                  $ref: '#/components/schemas/ExemptionRequestDraft'
+      responses:
+        '200':
+          description: The created request. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+        '500':
+          $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:allday/get-allday-offers':
+    post:
+      tags: [After-school care]
+      operationId: alldayGetAlldayOffers
+      summary: The care offers a student attends
+      description: |
+        Answers `200` for a parent but **stripped**: no name and no times, and
+        `allday/get-allday-offer-by-id` is refused, so an offer is good for one thing only — deciding
+        whether the child is in care on a given weekday.
+
+        `weekday` uses **JavaScript numbering** (Sunday 0 … Saturday 6), unlike the timetable's Monday 1
+        … Friday 5. Null dates mean "the whole term"; the web client substitutes the term's own bounds.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: allday
+        endpointName: get-allday-offers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                studentId:
+                  $ref: '#/components/schemas/EntityId'
+                termId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: Offers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlldayOffer'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:allday/get-allday-messages':
+    post:
+      tags: [After-school care]
+      operationId: alldayGetAlldayMessages
+      summary: The family's own notes to the care team
+      description: |
+        One message per day. The similarly named `get-allday-messages-for-student` is refused for a
+        parent, despite reading like the parent-scoped variant.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: allday
+        endpointName: get-allday-messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                studentId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: Messages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlldayMessage'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:allday/submit-allday-message':
+    post:
+      tags: [After-school care]
+      operationId: alldaySubmitAlldayMessage
+      summary: Send the care team a note for one day (write)
+      description: |
+        **Write endpoint — documented, not exercised.** Submitting for a day that already has a message
+        **replaces** it. Two settings gate the form: `allday.alldayMessageHint`
+        (free text shown above it) and `allday.alldayMessageDeadline` (a time of day after which today
+        can no longer be messaged about; null means no deadline). The client allows
+        `[today or tomorrow … +1 month]`.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: allday
+        endpointName: submit-allday-message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [date, message]
+              properties:
+                date:
+                  type: string
+                  format: date
+                message:
+                  type: string
+                studentId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: The stored message. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:electives/is-election-editable':
+    post:
+      tags: [Electives]
+      operationId: electivesIsElectionEditable
+      summary: Whether wishes may still be submitted
+      description: |
+        The server has the final say; the same window can be evaluated locally from the election's
+        `start`, `end` and `finalized`.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: electives
+        endpointName: is-election-editable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [electionId]
+              properties:
+                electionId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: Whether the election accepts changes.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:electives/save-priorities':
+    post:
+      tags: [Electives]
+      operationId: electivesSavePriorities
+      summary: Submit ranked elective wishes (write)
+      description: |
+        **Write endpoint — documented, not exercised.** `priorities` is keyed by sub-election id — the
+        literal string `"null"` when the round has none — and each value is an array **indexed by rank,
+        zero-based**, holding whole elective objects, not ids. An off-by-one here submits a blank
+        first choice into a real allocation.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: electives
+        endpointName: save-priorities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ElectivePrioritySubmission'
+      responses:
+        '200':
+          description: Stored priorities. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:parenttalks/get-available-proposals':
+    post:
+      tags: [Parent talks]
+      operationId: parenttalksGetAvailableProposals
+      summary: Free slots a teacher offers in a round
+      description: |
+        Rounds, proposals and appointments themselves are read through the ORM gateway
+        (`modules/parenttalks/round`, `…/proposal`, `…/appointment`). `Round.appointmentLength` is in
+        **milliseconds**, per the vendor's own model label.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: parenttalks
+        endpointName: get-available-proposals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                round:
+                  $ref: '#/components/schemas/EntityRef'
+                teacher:
+                  $ref: '#/components/schemas/EntityRef'
+      responses:
+        '200':
+          description: Free slots.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParentTalkProposal'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:parenttalks/book-proposal':
+    post:
+      tags: [Parent talks]
+      operationId: parenttalksBookProposal
+      summary: Book a slot (write)
+      description: |
+        **Write endpoint — documented, not exercised.** Booking turns a proposal into an appointment; a
+        cancelled appointment stays in the record with `cancelled: true`, so "the booking that counts"
+        is the first one that is not cancelled.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: parenttalks
+        endpointName: book-proposal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [proposal, student]
+              properties:
+                proposal:
+                  $ref: '#/components/schemas/EntityRef'
+                student:
+                  $ref: '#/components/schemas/EntityRef'
+      responses:
+        '200':
+          description: The appointment. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:invoicing/get-student-invoice-of-student-for-printing':
+    post:
+      tags: [Payments]
+      operationId: invoicingGetStudentInvoiceForPrinting
+      summary: One bill with the school's bank account
+      description: |
+        The single endpoint of this namespace that answered a parent account — the other 26 answered
+        `403`. It carries what the ORM reads do not: `generalInvoice.bankAccount` with `holder`, `iban`,
+        `bic` and `bankName`.
+
+        **The response is not a PDF and no PDF exists.** The printed payment request is assembled in the
+        browser with pdfmake, GiroCode QR included. A client that wants the document renders it itself,
+        and must compute the payment reference itself — see the `Payments` tag description for the
+        algorithm.
+
+        Amounts are **strings** (`"12.00"`); parse them as decimals, not as binary floating point.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: invoicing
+        endpointName: get-student-invoice-of-student-for-printing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [studentInvoiceId]
+              properties:
+                studentInvoiceId:
+                  $ref: '#/components/schemas/EntityId'
+      responses:
+        '200':
+          description: The invoice, its student and the receiving bank account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoicePrintout'
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        `Authorization: Bearer <jwt>`. The token rotates: when a response carries `x-new-bearer-token`,
+        replace the stored one. `X-Skip-Bearer-Token-Renewal: true` suppresses rotation for a call.
+    deviceToken:
+      type: apiKey
+      in: header
+      name: X-Token
+      description: |
+        `{"id":<deviceId>,"key":"<deviceKey>"}` as JSON — the device credential issued by `/api/login`
+        with `mobileApp: true`. Sent alongside the bearer token. A revoked device is signalled by the
+        response header `x-user-device-doesnt-exist`, which must force a logout.
+  responses:
+    PlainError:
+      description: |
+        Non-gateway error. Bodies are inconsistent; `{userError: {germanErrorMessage}}` is the common
+        shape.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserError'
+    RateLimited:
+      description: |
+        Rate limited. No `Retry-After`; the counters are in `x-ratelimit-*`. Could not be provoked
+        deliberately (16 concurrent identical reads never dropped `remaining` below 799), so treat it as
+        transient and prefer batching over parallel envelopes.
+      headers:
+        x-ratelimit-limit:
+          schema:
+            type: integer
+        x-ratelimit-remaining:
+          schema:
+            type: integer
+        x-ratelimit-reset:
+          schema:
+            type: integer
+    ResultRefused:
+      description: |
+        **Result status, not an HTTP status** — it arrives inside an HTTP 200 envelope. Refused by role
+        **or** because the school has not booked the module; the two are indistinguishable.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RpcResultError'
+    ResultUnknownEndpoint:
+      description: |
+        **Result status, not an HTTP status.** The (`moduleName`, `endpointName`) pair is unknown — a
+        wrong module guess looks exactly like a typo.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RpcResultError'
+    ResultParameterError:
+      description: |
+        **Result status, not an HTTP status.** The handler ran and the parameters were wrong or missing.
+        Verified: endpoints that answer `200` with their parameters answer `500` with `{}`.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RpcResultError'
+  schemas:
+    EntityId:
+      description: |
+        An entity id. **The wire type is inconsistent and the server is strict about it**: messenger ids
+        arrive as strings, letters ids as numbers, and re-sending a string id as a number can answer
+        `500`. Send back what was received.
+      anyOf:
+        - type: integer
+        - type: string
+      examples: [4711, "27155300"]
+    EntityRef:
+      type: object
+      description: |
+        An entity passed as an object. Several endpoints require this form —
+        `{student: {id}}` — and answer `500` for a flat id.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+    UserError:
+      type: object
+      description: |
+        The error envelope. Note the field name: the message is German because the product is, and
+        there is no locale negotiation.
+      properties:
+        userError:
+          type: object
+          properties:
+            germanErrorMessage:
+              type: string
+    StoredFile:
+      type: string
+      description: |
+        A file descriptor. The wire format is a **JSON string containing a seven-element array**, not an
+        object:
+
+        ```
+        "[123,\"messenger\",\"abc\",\"b64key==\",\"application/pdf\",5678,\"info.pdf\"]"
+        ```
+
+        Positionally: `institutionId`, `scope`, `id`, `key`, `type`, `size`, `name`. `key` is the
+        base64 AES-256 key needed to decrypt what `/download-file/{descriptor}` returns — the server
+        stores ciphertext it cannot read. Element types must be preserved on the way back.
+      x-provenance: verified-live
+    RpcRequestEnvelope:
+      type: object
+      required: [bundleVersion, requests]
+      properties:
+        bundleVersion:
+          type: string
+          description: |
+            Build hash of the JS bundle. **Required, but the value is not validated** — a bogus hash
+            answers `200`, an empty string answers HTTP `400`.
+          examples: ["0d200d5097"]
+        requests:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/RpcCall'
+      x-provenance: verified-live
+    RpcCall:
+      type: object
+      required: [moduleName, endpointName]
+      properties:
+        moduleName:
+          type: string
+          description: |
+            Namespace. In the client this is usually implicit and derived from the active UI route,
+            which is why the same `endpointName` can be valid under several modules.
+        endpointName:
+          type: string
+        parameters:
+          description: |
+            Endpoint-specific. Absent for endpoints called with no arguments at all.
+          type: object
+          additionalProperties: true
+    RpcResponseEnvelope:
+      type: object
+      required: [results]
+      properties:
+        results:
+          type: array
+          description: One entry per request, **matched positionally**. There is no correlation id.
+          items:
+            $ref: '#/components/schemas/RpcResult'
+        systemStatusMessages:
+          type: array
+          description: Vendor-wide banners (maintenance notices and the like).
+          items:
+            type: object
+            additionalProperties: true
+      x-provenance: verified-live
+    RpcResult:
+      oneOf:
+        - $ref: '#/components/schemas/RpcResultSuccess'
+        - $ref: '#/components/schemas/RpcResultError'
+      description: |
+        Success and failure differ structurally: **a failure has no `data` key at all**. Detect the
+        outcome from `status`, never from the presence of `data`.
+    RpcResultSuccess:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: integer
+          examples: [200]
+        data:
+          description: The endpoint's payload. Any JSON value, including null.
+    RpcResultError:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: integer
+          description: |
+            `403` refused (role or booking), `404` unknown endpoint pair, `429` rate limited — **inside
+            an HTTP 200** — `500` bad or missing parameters.
+          examples: [403]
+        userError:
+          type: object
+          properties:
+            germanErrorMessage:
+              type: string
+    PoqaParameters:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: object
+          required: [model, action]
+          properties:
+            model:
+              type: string
+              description: |
+                **Kebab-case** model path, case-sensitive: `main/term`, `main/class-hour`,
+                `modules/parenttalks/round`. The class names returned by `/api/models` must be converted.
+              examples: ["main/lesson"]
+            action:
+              type: string
+              enum: [findAll, findByPk, count]
+            instanceId:
+              anyOf:
+                - $ref: '#/components/schemas/EntityId'
+                - type: 'null'
+              description: Required for `findByPk`.
+            parameters:
+              type: array
+              description: |
+                Sequelize options. The **first element** is the options object; verified keys are
+                `where` (with `$in`, `$gte`, `$lte`), `include`, `attributes` and `order`.
+              items:
+                type: object
+                additionalProperties: true
+        uiState:
+          type: string
+          description: |
+            The Angular router state of the calling screen, e.g. `main.modules.grades.overview`. Used
+            for permission and logging context; a plausible value is accepted.
+      x-provenance: verified-live
+    PoqaResult:
+      description: |
+        Rows of the queried model — an object for `findByPk`, an array for `findAll`, a number for
+        `count`. The shape is the model's own, so no single schema fits; the alternatives below are the
+        models the documented parts of this specification read, and any other model path returns a shape
+        this document does not describe.
+      anyOf:
+        - type: integer
+          description: '`count`.'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Lesson'
+        - type: array
+          items:
+            $ref: '#/components/schemas/ClassHour'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Course'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Room'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Term'
+        - type: array
+          items:
+            $ref: '#/components/schemas/SickNote'
+        - type: array
+          items:
+            $ref: '#/components/schemas/ExemptionRequest'
+        - type: array
+          items:
+            $ref: '#/components/schemas/StudentInvoice'
+        - type: array
+          items:
+            $ref: '#/components/schemas/StudentItem'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Election'
+        - type: array
+          items:
+            $ref: '#/components/schemas/ElectiveInstance'
+        - type: array
+          items:
+            $ref: '#/components/schemas/StudentPriority'
+        - type: array
+          items:
+            $ref: '#/components/schemas/StudentAssignment'
+        - type: array
+          items:
+            $ref: '#/components/schemas/ParentTalkRound'
+        - type: array
+          items:
+            $ref: '#/components/schemas/ParentTalkProposal'
+        - type: array
+          items:
+            $ref: '#/components/schemas/ParentTalkAppointment'
+        - type: array
+          items:
+            $ref: '#/components/schemas/Letter'
+        - description: Any other model's rows, or a single instance of one of the above.
+      x-provenance: verified-live
+    SaltRequest:
+      type: object
+      required: [emailOrUsername]
+      properties:
+        emailOrUsername:
+          type: string
+        userId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        institutionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+    LoginRequest:
+      type: object
+      required: [emailOrUsername, password]
+      properties:
+        emailOrUsername:
+          type: string
+        password:
+          type: string
+          description: Plaintext. Sent **in addition** to `hash`.
+        hash:
+          type: [string, 'null']
+          description: |
+            PBKDF2-SHA512 over the plaintext with the salt from `/api/get-salt`: 99999 iterations, 512
+            bytes of output, lowercase hex (1024 characters). `null` when the client has no WebCrypto.
+        mobileApp:
+          type: boolean
+          description: Set by the app shell. This is what makes the server issue a `userDevice`.
+        twoFactorCode:
+          type: [string, 'null']
+        userId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+          description: Picks one account after a `multipleAccounts` response.
+        institutionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+    LoginResponse:
+      type: object
+      description: |
+        Five branches, mutually exclusive in practice. Inspect which field is present.
+      properties:
+        jwt:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        userDevice:
+          $ref: '#/components/schemas/UserDevice'
+        multipleAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountChoice'
+        requireTwoFactorEmailCode:
+          type: boolean
+        requireTOTP:
+          type: boolean
+    UserDevice:
+      type: object
+      required: [id, key]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        key:
+          type: string
+        userId:
+          $ref: '#/components/schemas/EntityId'
+    AccountChoice:
+      type: object
+      required: [userId]
+      properties:
+        userId:
+          $ref: '#/components/schemas/EntityId'
+        institutionName:
+          type: [string, 'null']
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+    User:
+      type: object
+      description: |
+        The account. Its role is whichever association is populated — `roles` was null on the account
+        this was captured with, so the associations are the reliable signal.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        email:
+          type: [string, 'null']
+        username:
+          type: [string, 'null']
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+        institutionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        associatedStudent:
+          oneOf:
+            - $ref: '#/components/schemas/Student'
+            - type: 'null'
+        associatedParents:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/PersonRef'
+        associatedTeachers:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/PersonRef'
+      x-provenance: verified-live
+    Student:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+        sex:
+          type: [string, 'null']
+        classId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        birthday:
+          type: [string, 'null']
+          format: date
+        isFullAged:
+          type: [boolean, 'null']
+    PersonRef:
+      type: object
+      description: A person as an association carries them — names and, for teachers, an abbreviation.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+        abbreviation:
+          type: [string, 'null']
+    ActiveModule:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: API namespace.
+        label:
+          type: [string, 'null']
+          description: The vendor's German product name.
+        iconClass:
+          type: [string, 'null']
+        dataDependencies:
+          type: [array, 'null']
+          items:
+            type: string
+      x-provenance: verified-live
+    CatalogModule:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        label:
+          type: [string, 'null']
+        description:
+          type: [string, 'null']
+        iconClass:
+          type: [string, 'null']
+        price:
+          type: [number, 'null']
+          description: What the school pays. Meaningless on a family's screen.
+      x-provenance: verified-live
+    Institution:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        city:
+          type: [string, 'null']
+        street:
+          type: [string, 'null']
+        zipcode:
+          type: [string, 'null']
+        website:
+          type: [string, 'null']
+        email:
+          type: [string, 'null']
+        phone:
+          type: [string, 'null']
+        logo:
+          oneOf:
+            - $ref: '#/components/schemas/StoredFile'
+            - type: 'null'
+      x-provenance: verified-live
+    SupportAccessToken:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        code:
+          type: [string, 'null']
+        validUntil:
+          type: [string, 'null']
+          format: date-time
+    Term:
+      type: object
+      description: A school year (`main/term`).
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        start:
+          type: [string, 'null']
+          format: date
+        end:
+          type: [string, 'null']
+          format: date
+        preventAsCurrentTerm:
+          type: [boolean, 'null']
+    Tile:
+      type: object
+      description: One notice on the board.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        title:
+          type: [string, 'null']
+        content:
+          type: [string, 'null']
+          description: An HTML fragment.
+        displayOnTop:
+          type: [boolean, 'null']
+          description: Pinned notices sort above the rest regardless of `order`.
+        order:
+          type: [integer, 'null']
+          description: Ascending, and routinely negative — reordering decrements.
+      x-provenance: verified-live
+    InstitutionSettings:
+      type: object
+      description: |
+        The settings map: one branch per module, plus `""` for institution-wide values. Only branches
+        with verified shapes are modelled; other branches are permitted and left unspecified, because a
+        school can have 26 of them.
+      properties:
+        '':
+          $ref: '#/components/schemas/SchoolWideSettings'
+        classbook:
+          $ref: '#/components/schemas/ClassbookSettings'
+        calendar:
+          $ref: '#/components/schemas/CalendarSettings'
+        grades:
+          $ref: '#/components/schemas/GradeSettings'
+        exemptions:
+          $ref: '#/components/schemas/ExemptionSettings'
+        messenger:
+          $ref: '#/components/schemas/MessengerSettings'
+        sick:
+          $ref: '#/components/schemas/SickSettings'
+        allday:
+          $ref: '#/components/schemas/AlldaySettings'
+      additionalProperties: true
+      x-provenance: verified-live
+    SchoolWideSettings:
+      type: object
+      description: The `""` branch.
+      properties:
+        firstDayOfTeachingWeek:
+          type: [integer, 'null']
+          description: Monday is 1. Captured 1 and 5, i.e. Monday to Friday — do not assume it.
+        lastDayOfTeachingWeek:
+          type: [integer, 'null']
+        loginTimeoutStudents:
+          type: [integer, 'null']
+          description: Session lifetime in milliseconds. Captured 3 days for students, 1 day otherwise.
+        loginTimeoutOtherUsers:
+          type: [integer, 'null']
+        enforceTwoFactorAuthenticationForStudents:
+          type: [boolean, 'null']
+      additionalProperties: true
+    ClassbookSettings:
+      type: object
+      properties:
+        absencesVisibilityDelayForParents:
+          type: [integer, 'null']
+          description: |
+            Recent days withheld from families so teachers can still correct entries. 2 at the school
+            captured — asking beyond `today − delay` simply returns nothing.
+        entriesVisibleForParents:
+          type: [boolean, 'null']
+        countExemptionsAsAbsences:
+          type: [boolean, 'null']
+        studentAbsencesCanBeExcusedPerLesson:
+          type: [boolean, 'null']
+      additionalProperties: true
+    CalendarSettings:
+      type: object
+      properties:
+        holidayCategoryColor:
+          type: [string, 'null']
+          description: CSS hex, e.g. `#333333`. Applies to the injected holiday category `-1`.
+        organizerRequired:
+          type: [boolean, 'null']
+      additionalProperties: true
+    GradeSettings:
+      type: object
+      properties:
+        gradesAreVisibleForParents:
+          type: [boolean, 'null']
+        finalGradesAreVisibleForParents:
+          type: [boolean, 'null']
+          description: |
+            When false, `finalGrades` comes back empty — a setting, not a missing endpoint.
+        parentVisibilityDelay:
+          type: [integer, 'null']
+          description: Days a new grade is withheld from families. 7 at the school captured.
+      additionalProperties: true
+    ExemptionSettings:
+      type: object
+      properties:
+        minimumDaysInAdvance:
+          type: [integer, 'null']
+        requireSignature:
+          type: [boolean, 'null']
+        onlineHint:
+          type: [string, 'null']
+        maximumDaysForClassTeacherToGrantExemption:
+          type: [integer, 'null']
+      additionalProperties: true
+    MessengerSettings:
+      type: object
+      properties:
+        enableReadReceipts:
+          type: [boolean, 'null']
+        includeStudents:
+          type: [boolean, 'null']
+        includeParents:
+          type: [boolean, 'null']
+        contactableTeachersByParents:
+          type: [string, 'null']
+          description: Captured value `AllTeachers`.
+      additionalProperties: true
+    SickSettings:
+      type: object
+      properties:
+        allowCommentsByParents:
+          type: [boolean, 'null']
+        allowOnlyForCertainClasses:
+          type: [boolean, 'null']
+        allowedClassIds:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/EntityId'
+        allowSickNotesAfterFirstClassHourStarted:
+          type: [boolean, 'null']
+        automaticallyExcuseOnlineSickNotes:
+          type: [boolean, 'null']
+        requireSignature:
+          type: [boolean, 'null']
+        onlineHint:
+          type: [string, 'null']
+        formHint:
+          type: [string, 'null']
+        renameSickModule:
+          type: [string, 'null']
+          description: A school may rename the whole module in its own UI.
+      additionalProperties: true
+    AlldaySettings:
+      type: object
+      properties:
+        alldayMessageDeadline:
+          type: [string, 'null']
+          description: |
+            Time of day (`HH:MM:SS`) after which today can no longer be messaged about. **Null means no
+            deadline**, not "midnight".
+        alldayMessageHint:
+          type: [string, 'null']
+      additionalProperties: true
+    StudentAbsence:
+      type: object
+      description: |
+        One missed lesson or part of a day. Whether it counts as excused is **not** the `excused` flag
+        alone: the client's rule is that a sick note *without* a `certificateType` excuses nothing (the
+        school is still waiting for paperwork), one with any type does, a linked exemption does, and
+        otherwise `excused` decides. `excused: null` is therefore not "no".
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        date:
+          type: [string, 'null']
+          format: date
+        from:
+          type: [string, 'null']
+          description: '`TIME` (`HH:MM:SS`), or null for a whole day.'
+        until:
+          type: [string, 'null']
+        comment:
+          type: [string, 'null']
+        excused:
+          type: [boolean, 'null']
+        sickNote:
+          description: The covering sick note, included with id and certificate type only.
+          oneOf:
+            - type: object
+              required: [id]
+              properties:
+                id:
+                  $ref: '#/components/schemas/EntityId'
+                certificateType:
+                  type: [string, 'null']
+            - type: 'null'
+        exemptionRequest:
+          oneOf:
+            - $ref: '#/components/schemas/EntityRef'
+            - type: 'null'
+      x-provenance: verified-live
+    Subject:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        abbreviation:
+          type: [string, 'null']
+          description: |
+            Schools set this for grid display, but not all of them actually shorten it — a client still
+            has to cope with a long value.
+      x-provenance: verified-live
+    StatisticsSubject:
+      type: object
+      description: |
+        The subject of a statistics row. **`id` is nullable here**, unlike `Subject`: lessons not tied to
+        a subject (excursions, class-teacher periods) arrive as the bucket
+        `{"name": "Ohne Fach", "abbreviation": "-", "id": null}`.
+      properties:
+        id:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        name:
+          type: [string, 'null']
+        abbreviation:
+          type: [string, 'null']
+    SubjectAbsenceStatistic:
+      type: object
+      description: 'One row of `get-statistics` with `by: subject`.'
+      required: [absentLessons, totalLessons]
+      properties:
+        subject:
+          oneOf:
+            - $ref: '#/components/schemas/StatisticsSubject'
+            - type: 'null'
+        absentLessons:
+          type: number
+          description: |
+            Fractional with `type: "sum-all"` (15 minutes of a 45-minute lesson is 0.33), whole numbers
+            with the counting variants.
+        totalLessons:
+          type: number
+      x-provenance: verified-live
+    TimeAbsenceStatisticMap:
+      type: object
+      description: |
+        `get-statistics { by: "time" }`: weekday → class-hour id → cell. **Both key levels are strings**,
+        weekday Monday 1 … Friday 5. `totalLessons: 0` means no lesson was held, which is not "0 %".
+      additionalProperties:
+        type: object
+        additionalProperties:
+          type: object
+          required: [absentLessons, totalLessons]
+          properties:
+            absentLessons:
+              type: number
+            totalLessons:
+              type: number
+      x-provenance: verified-live
+    StudentEntryType:
+      type: object
+      description: A kind of classbook entry, with this student's entries inside it.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        orderIndex:
+          type: [integer, 'null']
+        entries:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/StudentEntry'
+      x-provenance: verified-live
+    StudentEntry:
+      type: object
+      description: |
+        A single classbook entry. Shape is provisional: the account this was captured with had none, so
+        only the fields the endpoint's own schema names are listed, all optional.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        date:
+          type: [string, 'null']
+          format: date
+        comment:
+          type: [string, 'null']
+        subject:
+          oneOf:
+            - $ref: '#/components/schemas/Subject'
+            - type: 'null'
+      x-provenance: statically-extracted
+    EventsResponse:
+      type: object
+      description: |
+        `recurringEvents` was empty across a full school year for every account probed, so recurrence is
+        carried but never expanded here.
+      properties:
+        nonRecurringEvents:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/CalendarEvent'
+        recurringEvents:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/CalendarEvent'
+      x-provenance: verified-live
+    CalendarEvent:
+      type: object
+      required: [id, start, end]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        summary:
+          type: [string, 'null']
+        description:
+          type: [string, 'null']
+          description: May contain HTML entities and markup.
+        location:
+          type: [string, 'null']
+        organizer:
+          type: [string, 'null']
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+          description: |
+            For all-day events the end is **exclusive** and both ends are `00:00Z`: one day is `00:00Z`
+            → `00:00Z` the next. Read those boundaries in UTC, or the date shifts west of Greenwich.
+        allDay:
+          type: [boolean, 'null']
+          description: Declared required by the server's schema, but absent in some rows.
+        categoryId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+          description: |
+            `-1` marks a holiday injected by the server for `includeHolidays: true`; no real category
+            uses it.
+        recurrencePattern:
+          description: Unmodelled — never observed as non-null.
+      x-provenance: verified-live
+    EventCategory:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        color:
+          type: [string, 'null']
+          description: CSS hex, or null — the school captured leaves every category uncoloured.
+        isVisibleForAlldaySupervisors:
+          type: [boolean, 'null']
+      x-provenance: verified-live
+    DocumentFolder:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        isRoot:
+          type: [boolean, 'null']
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+        updatedAt:
+          type: [string, 'null']
+          format: date-time
+      x-provenance: verified-live
+    SchoolDocument:
+      type: object
+      description: |
+        Either an HTML page (`content`) or an attached file (`file`) — schools use both.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        content:
+          type: [string, 'null']
+          description: HTML body for page-style documents.
+        file:
+          oneOf:
+            - $ref: '#/components/schemas/StoredFile'
+            - type: 'null'
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+        updatedAt:
+          type: [string, 'null']
+          format: date-time
+      x-provenance: verified-live
+    FolderContents:
+      type: object
+      properties:
+        documents:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/SchoolDocument'
+        subFolders:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/DocumentFolder'
+      x-provenance: verified-live
+    Subscription:
+      type: object
+      description: The caller's view of a shared thread.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        threadId:
+          $ref: '#/components/schemas/EntityId'
+        unreadCount:
+          type: [integer, 'null']
+        isArchived:
+          type: [boolean, 'null']
+        isAdministrator:
+          type: [boolean, 'null']
+        lastReadMessageTimestamp:
+          type: [string, 'null']
+          format: date-time
+        thread:
+          $ref: '#/components/schemas/ChatThread'
+      x-provenance: verified-live
+    ChatThread:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        subject:
+          type: [string, 'null']
+        senderString:
+          type: [string, 'null']
+          description: |
+            Pre-rendered display name of whoever started the thread. There is no `createdBy` id.
+        recipientString:
+          type: [string, 'null']
+          description: |
+            Recipients as **one comma-joined string** — the only record of who is in a thread for a
+            family account, since the participant endpoint is refused. Entries can be phrases such as
+            "Eltern von …", and a year-group thread held 39 of them.
+        lastMessageTimestamp:
+          type: [string, 'null']
+          format: date-time
+        isPrivateChat:
+          type: [boolean, 'null']
+        allowAnswers:
+          type: [boolean, 'null']
+        lastMessage:
+          $ref: '#/components/schemas/Message'
+      x-provenance: verified-live
+    Message:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        text:
+          type: [string, 'null']
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+        senderId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        threadId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        sender:
+          description: Omitted on messages the caller sent.
+          oneOf:
+            - $ref: '#/components/schemas/PersonRef'
+            - type: 'null'
+        attachments:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/MessageAttachment'
+      x-provenance: verified-live
+    MessageAttachment:
+      type: object
+      description: |
+        A wrapper carrying the descriptor under `file`, not a bare descriptor.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        file:
+          oneOf:
+            - $ref: '#/components/schemas/StoredFile'
+            - type: 'null'
+      x-provenance: verified-live
+    MessagePage:
+      type: object
+      required: [messages]
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        hasMoreMessages:
+          type: [boolean, 'null']
+      x-provenance: verified-live
+    ChatUser:
+      type: object
+      description: |
+        A contactable user. Note the shape: **one pre-composed `name`** plus a role line — not
+        `firstname`/`lastname`.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        subtext:
+          type: [string, 'null']
+          description: Typically the role, e.g. `Lehrkraft`.
+      x-provenance: verified-live
+    RecipientOption:
+      type: object
+      description: |
+        A selectable recipient: an individual or a distribution list. **The id is nested under a key
+        named after the type**, and a flat id answers `500`:
+
+        | `type` | id key |
+        |---|---|
+        | `user` | `user` |
+        | `distribution-list` | `list` |
+        | `class-teachers`, `class-students`, `class-parents` | `class` |
+        | `subject-teachers` | `subject` |
+        | `course-students`, `course-parents` | `course` |
+        | `allday-offer-parents` | `allDayOffer` |
+        | `allday-parents` | `term` |
+        | `all-teachers`, `all-students`, `all-parents` | none — these carry no id |
+
+        Send the object back verbatim; both `get-recipient-ids` and `create-thread` take it as received.
+      required: [type]
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+          description: Display label. Older captures spell this `label`.
+      additionalProperties: true
+      x-provenance: verified-live
+    CreateThreadRequest:
+      type: object
+      required: [subject, users, firstMessage]
+      properties:
+        subject:
+          type: string
+        users:
+          type: array
+          description: Resolved recipients, as objects — the output of `get-recipient-ids`.
+          items:
+            $ref: '#/components/schemas/EntityRef'
+        allowAnswers:
+          type: boolean
+        recipientOptions:
+          type: array
+          description: The options the users were resolved from, sent back verbatim.
+          items:
+            $ref: '#/components/schemas/RecipientOption'
+        firstMessage:
+          type: object
+          required: [text]
+          properties:
+            text:
+              type: string
+            attachments:
+              type: array
+              items:
+                $ref: '#/components/schemas/StoredFile'
+      x-provenance: statically-extracted
+    Letter:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        title:
+          type: [string, 'null']
+        text:
+          type: [string, 'null']
+          description: |
+            HTML body. Absent from the list response — it comes from the detail read through the ORM
+            gateway. Inline images are embedded here and are substituted from the attachment list.
+        sentDate:
+          type: [string, 'null']
+          format: date-time
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+        answerDeadline:
+          type: [string, 'null']
+          format: date-time
+        attachments:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/LetterAttachment'
+        studentStatuses:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/StudentLetterStatus'
+        questions:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/LetterQuestion'
+      x-provenance: verified-live
+    LetterAttachment:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        filename:
+          type: [string, 'null']
+        contentType:
+          type: [string, 'null']
+        inline:
+          type: [boolean, 'null']
+          description: |
+            Inline attachments are images embedded in `text`; only the others belong in a download list.
+        letterId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        file:
+          oneOf:
+            - $ref: '#/components/schemas/StoredFile'
+            - type: 'null'
+      x-provenance: verified-live
+    StudentLetterStatus:
+      type: object
+      description: |
+        One student's state for one letter. A letter is unread while any of the caller's students has no
+        `readTimestamp`.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        readTimestamp:
+          type: [string, 'null']
+          format: date-time
+        sentTimestamp:
+          type: [string, 'null']
+          format: date-time
+        formData:
+          type: [object, 'null']
+          description: |
+            Submitted survey answers, keyed by **question id as a string**. A `SingleSelect` stores the
+            chosen option key (`"2"`), a `MultipleSelect` an array of them, a `Text` question the text.
+            Null or empty means unanswered.
+          additionalProperties: true
+      x-provenance: verified-live
+    LetterQuestion:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        text:
+          type: [string, 'null']
+        type:
+          type: [string, 'null']
+          enum: [SingleSelect, MultipleSelect, Text, null]
+        index:
+          type: [integer, 'null']
+          description: The school's own numbering; sort by it.
+        letterId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        additionalData:
+          description: |
+            Per-type payload. For select questions it holds `options` as an **object keyed by strings**
+            (`{"1": "…", "2": "…"}`), not an array — and the key is what an answer stores, so it must
+            survive a round trip.
+      x-provenance: verified-live
+    GradingInformation:
+      type: object
+      description: |
+        Everything the grades screen needs. **`indiviualGrades` is misspelled on the wire** and is
+        documented with the typo intact.
+      properties:
+        students:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/GradedStudent'
+        courses:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/GradedCourse'
+        gradingEvents:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/GradingEvent'
+        indiviualGrades:
+          type: [array, 'null']
+          description: Sic — the server's spelling.
+          items:
+            $ref: '#/components/schemas/IndividualGrade'
+        finalGrades:
+          type: [array, 'null']
+          description: |
+            Empty when the school hides final grades from families. Contents unobserved for that reason.
+          items:
+            type: object
+            additionalProperties: true
+        typePresets:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/GradeTypePreset'
+        blockPresets:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/GradeBlockPreset'
+      additionalProperties: true
+      x-provenance: verified-live
+    GradedStudent:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+        classId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        gradeLevel:
+          type: [integer, 'null']
+      additionalProperties: true
+    GradedCourse:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+          description: |
+            Almost always null. The readable subject comes from `subjectId` resolved against
+            `main/subject`.
+        subjectId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        start:
+          type: [string, 'null']
+          format: date
+        end:
+          type: [string, 'null']
+          format: date
+        classes:
+          type: [array, 'null']
+          items:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/EntityId'
+              name:
+                type: [string, 'null']
+            additionalProperties: true
+        gradingPreset:
+          description: |
+            Carries `gradingSystem`, which matches the prefix in an encoded grade value (`"0~1-"` → 0).
+          oneOf:
+            - type: object
+              properties:
+                id:
+                  anyOf:
+                    - $ref: '#/components/schemas/EntityId'
+                    - type: 'null'
+                gradingSystem:
+                  type: [integer, 'null']
+              additionalProperties: true
+            - type: 'null'
+      additionalProperties: true
+    IndividualGrade:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        value:
+          type: [string, 'null']
+          description: |
+            Encoded `"<gradingSystem>~<value>"`: `"0~1-"` is the grade `1-` in system `0`. Verbal and
+            points systems appear in the same field, so a client must not assume a number.
+          examples: ["0~2"]
+        weighting:
+          type: [number, 'null']
+        topic:
+          type: [string, 'null']
+        date:
+          type: [string, 'null']
+          format: date
+        gradeTypeId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        gradingBlockId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        courseId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        isRepeatExam:
+          type: [boolean, 'null']
+      additionalProperties: true
+      x-provenance: verified-live
+    GradingEvent:
+      type: object
+      description: A planned assessment. `grades` carries the student scores when the caller may see them.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        topic:
+          type: [string, 'null']
+        date:
+          type: [string, 'null']
+          format: date
+        weighting:
+          type: [number, 'null']
+        gradeTypeId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        courseId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        grades:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/IndividualGrade'
+      additionalProperties: true
+    GradeTypePreset:
+      type: object
+      description: Maps a `gradeTypeId` to its label and weight for one course.
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        gradeTypeId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        courseId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        weighting:
+          type: [number, 'null']
+        gradeType:
+          oneOf:
+            - type: object
+              required: [id]
+              properties:
+                id:
+                  $ref: '#/components/schemas/EntityId'
+                name:
+                  type: [string, 'null']
+                abbreviation:
+                  type: [string, 'null']
+                isOral:
+                  type: [boolean, 'null']
+              additionalProperties: true
+            - type: 'null'
+      additionalProperties: true
+    GradeBlockPreset:
+      type: object
+      description: A grading block (a group of grade types) as it applies to one course.
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        courseId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        weighting:
+          type: [number, 'null']
+        gradingBlock:
+          oneOf:
+            - type: object
+              required: [id]
+              properties:
+                id:
+                  $ref: '#/components/schemas/EntityId'
+                name:
+                  type: [string, 'null']
+                abbreviation:
+                  type: [string, 'null']
+                orderIndex:
+                  type: [integer, 'null']
+                key:
+                  type: [string, 'null']
+              additionalProperties: true
+            - type: 'null'
+      additionalProperties: true
+    SickNote:
+      type: object
+      description: |
+        A sick note. There is **no end time** — a note says "ill from this time onwards", which is the
+        main structural difference from an exemption.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        startDate:
+          type: [string, 'null']
+          format: date
+        endDate:
+          type: [string, 'null']
+          format: date
+        startTime:
+          type: [string, 'null']
+          description: '`TIME` (`HH:MM:SS`); null means the whole day.'
+        comment:
+          type: [string, 'null']
+        handedInCertificate:
+          type: [string, 'null']
+          format: date-time
+          description: When a certificate was handed in — a full timestamp, unlike the date-only fields.
+        certificateType:
+          type: [string, 'null']
+          enum: [Medical, Form, NotRequired, null]
+        source:
+          type: [string, 'null']
+          enum: [Parent, Student, Internal, null]
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+        updatedAt:
+          type: [string, 'null']
+          format: date-time
+        student:
+          oneOf:
+            - $ref: '#/components/schemas/StudentSummary'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    SickNoteDraft:
+      type: object
+      description: |
+        What `sick/create-sick-note` takes. The student is **nested**; there is no end time.
+      required: [student, startDate, endDate]
+      properties:
+        student:
+          $ref: '#/components/schemas/EntityRef'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        startTime:
+          type: [string, 'null']
+          description: Omitted for a whole-day note.
+        comment:
+          type: [string, 'null']
+          description: Only sent when `sick.allowCommentsByParents` is set.
+      x-provenance: statically-extracted
+    StudentSummary:
+      type: object
+      description: The student a record belongs to, as these endpoints include them.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+        classId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+      additionalProperties: true
+    ExemptionRequest:
+      type: object
+      description: |
+        A leave request. `granted` is **tri-state**: null is undecided, and reading it as "refused" is
+        wrong. Null times mean "from the start of the school day" and "until the end of it".
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        startDate:
+          type: [string, 'null']
+          format: date
+        endDate:
+          type: [string, 'null']
+          format: date
+        startTime:
+          type: [string, 'null']
+        endTime:
+          type: [string, 'null']
+        comment:
+          type: [string, 'null']
+          description: The reason. Required by the server on creation.
+        feedback:
+          type: [string, 'null']
+          description: The school's reply, if any.
+        granted:
+          type: [boolean, 'null']
+        isInternal:
+          type: [boolean, 'null']
+        isQuarantine:
+          type: [boolean, 'null']
+        source:
+          type: [string, 'null']
+          enum: [Parent, Student, Internal, null]
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        bulkExemptionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+        updatedAt:
+          type: [string, 'null']
+          format: date-time
+        student:
+          oneOf:
+            - $ref: '#/components/schemas/StudentSummary'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    ExemptionRequestDraft:
+      type: object
+      description: |
+        What `exemptions/request-exemption` takes. The student is **nested**, and omitting both times is
+        how "all day" is expressed. The teacher-side `absences/create-exemption-request` takes a flat
+        `studentId` plus `granted` and `source` instead, and is not available to a family.
+      required: [student, startDate, endDate, comment]
+      properties:
+        student:
+          $ref: '#/components/schemas/EntityRef'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        startTime:
+          type: [string, 'null']
+        endTime:
+          type: [string, 'null']
+        comment:
+          type: string
+      x-provenance: statically-extracted
+    AlldayOffer:
+      type: object
+      description: |
+        A care offer. For a family this arrives stripped of name and times, so its only use is deciding
+        whether the child is in care on a weekday.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+          description: Not sent to a family account.
+        weekday:
+          type: [integer, 'null']
+          description: '**JavaScript numbering**: Sunday 0 … Saturday 6.'
+        startDate:
+          type: [string, 'null']
+          format: date
+          description: Null means "the whole term".
+        endDate:
+          type: [string, 'null']
+          format: date
+        startTime:
+          type: [string, 'null']
+        endTime:
+          type: [string, 'null']
+        studentAttendances:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/EntityRef'
+      additionalProperties: true
+      x-provenance: verified-live
+    AlldayMessage:
+      type: object
+      description: A family's note to the care team for one day. One message per day.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        date:
+          type: [string, 'null']
+          format: date
+          description: The day the message is about, not when it was written.
+        message:
+          type: [string, 'null']
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        senderId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        createdAt:
+          type: [string, 'null']
+          format: date-time
+      additionalProperties: true
+      x-provenance: verified-live
+    Election:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        description:
+          type: [string, 'null']
+        start:
+          type: [string, 'null']
+          format: date-time
+        end:
+          type: [string, 'null']
+          format: date-time
+        prioritiesPerStudent:
+          type: [integer, 'null']
+          description: How many wishes are to be ranked.
+        finalized:
+          type: [boolean, 'null']
+          description: The allocation algorithm has run.
+        useSubElections:
+          type: [boolean, 'null']
+      additionalProperties: true
+      x-provenance: statically-extracted
+    Elective:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        electionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+      additionalProperties: true
+    ElectiveInstance:
+      type: object
+      description: |
+        A concrete course of an elective. Instances at the school captured carry **no name**, only an
+        instructor, so the elective's name is what a person recognises.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        description:
+          type: [string, 'null']
+          description: HTML written in the school's editor, occasionally a word-processor paste.
+        instructor:
+          type: [string, 'null']
+        minimumParticipants:
+          type: [integer, 'null']
+        maximumParticipants:
+          type: [integer, 'null']
+        electiveId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        slotId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        elective:
+          oneOf:
+            - $ref: '#/components/schemas/Elective'
+            - type: 'null'
+      additionalProperties: true
+    StudentPriority:
+      type: object
+      description: |
+        One ranked wish. **`number` is zero-based** — the first choice is `0`. Verified across every
+        sub-election probed.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        number:
+          type: [integer, 'null']
+        electiveId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        subElectionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        elective:
+          oneOf:
+            - $ref: '#/components/schemas/Elective'
+            - type: 'null'
+      additionalProperties: true
+    StudentAssignment:
+      type: object
+      description: What the allocation algorithm actually gave the student.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        instanceId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        subElectionId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        instance:
+          oneOf:
+            - $ref: '#/components/schemas/ElectiveInstance'
+            - type: 'null'
+      additionalProperties: true
+    ElectivePrioritySubmission:
+      type: object
+      description: |
+        The body of `electives/save-priorities`. `priorities` is keyed by sub-election id — the literal
+        string `"null"` when the round has none — and each value is an array **indexed by rank,
+        zero-based**, holding whole elective objects.
+      required: [priorities, election, student]
+      properties:
+        priorities:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              oneOf:
+                - $ref: '#/components/schemas/Elective'
+                - type: 'null'
+        election:
+          $ref: '#/components/schemas/Election'
+        student:
+          $ref: '#/components/schemas/EntityRef'
+      x-provenance: statically-extracted
+    ParentTalkRound:
+      type: object
+      description: A booking window for parent-teacher talks.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        label:
+          type: [string, 'null']
+        start:
+          type: [string, 'null']
+          format: date
+          description: The days talks take place on (`DATEONLY`).
+        end:
+          type: [string, 'null']
+          format: date
+        inscriptionStart:
+          type: [string, 'null']
+          format: date-time
+          description: When booking opens and closes (full timestamps, unlike `start`/`end`).
+        inscriptionEnd:
+          type: [string, 'null']
+          format: date-time
+        appointmentLength:
+          type: [integer, 'null']
+          description: Slot length in **milliseconds**, per the vendor's own model label.
+        appointments:
+          type: [array, 'null']
+          items:
+            $ref: '#/components/schemas/ParentTalkAppointment'
+      additionalProperties: true
+      x-provenance: statically-extracted
+    ParentTalkProposal:
+      type: object
+      description: A free slot a teacher offers.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        start:
+          type: [string, 'null']
+          format: date-time
+        end:
+          type: [string, 'null']
+          format: date-time
+        teacherId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        roundId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+      additionalProperties: true
+    ParentTalkAppointment:
+      type: object
+      description: |
+        A booked slot. A cancelled booking stays in the record with `cancelled: true`, so the booking
+        that counts is the first one that is not cancelled.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        start:
+          type: [string, 'null']
+          format: date-time
+        end:
+          type: [string, 'null']
+          format: date-time
+        cancelled:
+          type: [boolean, 'null']
+        teacherId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        roundId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        teacher:
+          oneOf:
+            - $ref: '#/components/schemas/ParentTalkTeacher'
+            - type: 'null'
+      additionalProperties: true
+    ParentTalkTeacher:
+      type: object
+      description: A teacher as this module includes them — names and an abbreviation, nothing else.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        firstname:
+          type: [string, 'null']
+        lastname:
+          type: [string, 'null']
+        abbreviation:
+          type: [string, 'null']
+      additionalProperties: true
+    StudentInvoice:
+      type: object
+      description: |
+        A bill addressed to one student. **Amounts are strings** (`"12.00"`) — parse them as decimals.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        sum:
+          type: [string, 'null']
+        paidSum:
+          type: [string, 'null']
+        paid:
+          type: [boolean, 'null']
+        sentTimestamp:
+          type: [string, 'null']
+          format: date-time
+        sentType:
+          type: [string, 'null']
+          examples: ["email"]
+        generalInvoiceId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        generalInvoice:
+          oneOf:
+            - $ref: '#/components/schemas/GeneralInvoice'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    GeneralInvoice:
+      type: object
+      description: The invoice run a student's bill belongs to.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        number:
+          type: [integer, 'null']
+          description: |
+            The school's invoice number — an **integer**, unlike the amounts, and one half of the
+            payment reference.
+        date:
+          type: [string, 'null']
+          format: date
+        dueDate:
+          type: [string, 'null']
+          format: date
+        sentReminders:
+          type: [integer, 'null']
+        isArchived:
+          type: [boolean, 'null']
+        bankAccount:
+          description: Present only in the printing endpoint's response.
+          oneOf:
+            - $ref: '#/components/schemas/BankAccount'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    GeneralItem:
+      type: object
+      description: What is being charged for — the only human-readable label a bill carries.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        invoiceId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+      additionalProperties: true
+    StudentItem:
+      type: object
+      description: One student's share of an item.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        amount:
+          type: [string, 'null']
+        paid:
+          type: [boolean, 'null']
+        generalItemId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        invoiceId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        generalItem:
+          oneOf:
+            - $ref: '#/components/schemas/GeneralItem'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    BankAccount:
+      type: object
+      description: |
+        The account a transfer should go to. Carried **only** by
+        `invoicing/get-student-invoice-of-student-for-printing`; the ORM reads do not include it.
+      properties:
+        holder:
+          type: [string, 'null']
+        iban:
+          type: [string, 'null']
+        bic:
+          type: [string, 'null']
+        bankName:
+          type: [string, 'null']
+      additionalProperties: true
+      x-provenance: verified-live
+    InvoicePrintout:
+      type: object
+      description: |
+        Everything needed to pay a bill — except the payment reference, which no response carries and
+        every client has to compute (see the `Payments` tag).
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        sum:
+          type: [string, 'null']
+        paidSum:
+          type: [string, 'null']
+        student:
+          oneOf:
+            - type: object
+              properties:
+                firstname:
+                  type: [string, 'null']
+                lastname:
+                  type: [string, 'null']
+                class:
+                  oneOf:
+                    - type: object
+                      properties:
+                        name:
+                          type: [string, 'null']
+                      additionalProperties: true
+                    - type: 'null'
+                paymentData:
+                  description: |
+                    `number` is the student's payment account number — the other half of the payment
+                    reference.
+                  oneOf:
+                    - type: object
+                      properties:
+                        number:
+                          type: [integer, 'null']
+                      additionalProperties: true
+                    - type: 'null'
+              additionalProperties: true
+            - type: 'null'
+        generalInvoice:
+          oneOf:
+            - $ref: '#/components/schemas/GeneralInvoice'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    ClassHour:
+      type: object
+      description: A period in the school day (`main/class-hour`).
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        number:
+          type: [string, 'null']
+          description: |
+            A **string**: schools number periods `1`, `2`, but also `0` or `5a`. Sorting numerically
+            needs the leading digits, or `10` lands between `1` and `2`.
+        from:
+          type: [string, 'null']
+        until:
+          type: [string, 'null']
+        fromByDay:
+          type: [array, 'null']
+          description: |
+            Per-weekday overrides, **indexed from Sunday** — seven entries, usually all identical.
+          items:
+            type: [string, 'null']
+        untilByDay:
+          type: [array, 'null']
+          items:
+            type: [string, 'null']
+      additionalProperties: true
+      x-provenance: verified-live
+    Course:
+      type: object
+      description: A course the student attends (`main/course`).
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        subjectId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        studentGroupId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        termId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        subject:
+          oneOf:
+            - $ref: '#/components/schemas/Subject'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
+    Room:
+      type: object
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: [string, 'null']
+        description:
+          type: [string, 'null']
+      additionalProperties: true
+    Lesson:
+      type: object
+      description: |
+        One recurring slot (`main/lesson`) — a **pattern, not an occurrence**. `start` and `end` are the
+        span the pattern is valid for; each school year adds a new generation of the same slot, so
+        filtering on that span is what stops every lesson appearing three times.
+
+        There is no usable teacher here: `Course` has no teacher association (including one answers
+        `400`) and `Lesson.teachers` came back empty for every lesson at the school captured. The
+        assignment lives in `main/teacher-course-attendance`, which has its own validity window.
+      required: [id]
+      properties:
+        id:
+          $ref: '#/components/schemas/EntityId'
+        dayOfWeek:
+          type: [integer, 'null']
+          description: '**Monday 1 … Friday 5** — not the JavaScript numbering the care module uses.'
+        start:
+          type: [string, 'null']
+          format: date
+        end:
+          type: [string, 'null']
+          format: date
+        classHourId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        courseId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        roomId:
+          anyOf:
+            - $ref: '#/components/schemas/EntityId'
+            - type: 'null'
+        classHour:
+          oneOf:
+            - $ref: '#/components/schemas/ClassHour'
+            - type: 'null'
+        room:
+          oneOf:
+            - $ref: '#/components/schemas/Room'
+            - type: 'null'
+      additionalProperties: true
+      x-provenance: verified-live
