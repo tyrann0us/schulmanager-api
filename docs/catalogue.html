@@ -35,7 +35,7 @@
 <code>scripts/gen-catalogue.py</code> — do not edit by hand.</p>
 
 <div class="warn">
-  <strong>715 logical endpoints, 40 of them described.</strong>
+  <strong>715 logical endpoints, 42 of them described.</strong>
   This list comes from a <em>static</em> extraction of the shipped JavaScript bundle: it proves that an
   endpoint name and its parameter <em>names</em> exist at some call site, and nothing else. Parameter
   types, optionality, nesting and response shapes are unknown, minification having destroyed them; the
@@ -154,7 +154,7 @@ nor a module's absence from this document tells you what a given account may cal
 <tr><td><code>save-certificates-for-students</code></td><td><code>certificateCreationId</code>, <code>certificateRatings</code>, <code>studentIds</code></td><td><span class="no">not described</span></td></tr>
 </tbody></table><h3 id="classbook"><code>classbook</code> — Digitales Klassenbuch </h3>
 <p class="meta">Attendance, lesson content, homework, per-student entries. Intended audience: teachers. <a href="https://www.schulmanager-online.de/module.digitales-klassenbuch.html">product page</a></p>
-<p class="meta">39 endpoints, 4 described in openapi.yaml.</p>
+<p class="meta">39 endpoints, 5 described in openapi.yaml.</p>
 <table><thead><tr><th>Endpoint</th><th>Parameter names</th><th>In the specification</th></tr></thead><tbody>
 <tr><td><code>add-student-entry</code></td><td><code>entry</code>, <code>parameters</code>, <code>taughtLessonId</code></td><td><span class="no">not described</span></td></tr>
 <tr><td><code>all-missing-lessons</code></td><td><code>end</code>, <code>start</code></td><td><span class="no">not described</span></td></tr>
@@ -175,7 +175,7 @@ nor a module's absence from this document tells you what a given account may cal
 <tr><td><code>get-events-as-substitutions-for-current-teacher</code></td><td><code>endDate</code>, <code>startDate</code></td><td><span class="no">not described</span></td></tr>
 <tr><td><code>get-history-absences-list</code></td><td><code>student</code>, <code>term</code></td><td><span class="yes">described</span></td></tr>
 <tr><td><code>get-history-by-time</code></td><td><code>from</code>, <code>student</code>, <code>until</code></td><td><span class="yes">described</span></td></tr>
-<tr><td><code>get-homework</code></td><td><code>student</code></td><td><span class="no">not described</span></td></tr>
+<tr><td><code>get-homework</code></td><td><code>student</code></td><td><span class="yes">described</span></td></tr>
 <tr><td><code>get-ibis-export</code></td><td><code>end</code>, <code>start</code></td><td><span class="no">not described</span></td></tr>
 <tr><td><code>get-statistics</code></td><td><code>by</code>, <code>from</code>, <code>includeInternalExemptions</code>, <code>student</code>, <code>type</code>, <code>unexcusedOnly</code>, <code>until</code></td><td><span class="yes">described</span></td></tr>
 <tr><td><code>get-student-absence</code></td><td><code>absenceId</code></td><td><span class="no">not described</span></td></tr>
@@ -515,11 +515,11 @@ nor a module's absence from this document tells you what a given account may cal
 <tr><td><code>save-proposals</code></td><td><code>meetingRequest</code>, <code>proposals</code></td><td><span class="no">not described</span></td></tr>
 </tbody></table><h3 id="messenger"><code>messenger</code> — Nachrichten </h3>
 <p class="meta">Direct messages with attachments and per-message reply control. Intended audience: staff, parents, students. <a href="https://www.schulmanager-online.de/module.nachrichten.html">product page</a></p>
-<p class="meta">27 endpoints, 8 described in openapi.yaml.</p>
+<p class="meta">27 endpoints, 9 described in openapi.yaml.</p>
 <table><thead><tr><th>Endpoint</th><th>Parameter names</th><th>In the specification</th></tr></thead><tbody>
 <tr><td><code>add-subscriptions</code></td><td><code>thread</code>, <code>userIds</code></td><td><span class="no">not described</span></td></tr>
 <tr><td><code>archive-subscription</code></td><td><code>subscription</code></td><td><span class="no">not described</span></td></tr>
-<tr><td><code>change-subject</code></td><td><code>newSubject</code>, <code>thread</code></td><td><span class="no">not described</span></td></tr>
+<tr><td><code>change-subject</code></td><td><code>newSubject</code>, <code>thread</code></td><td><span class="yes">described</span></td></tr>
 <tr><td><code>chat-is-visible</code></td><td><span class="none">no arguments</span></td><td><span class="no">not described</span></td></tr>
 <tr><td><code>count-new-messages</code></td><td><span class="none">no arguments</span></td><td><span class="yes">described</span></td></tr>
 <tr><td><code>create-thread</code></td><td><span class="none">not statically resolvable</span></td><td><span class="yes">described</span></td></tr>
