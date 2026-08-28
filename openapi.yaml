@@ -161,6 +161,13 @@ tags:
       four of them answered a parent account; those four are the only way a family reads its own
       attendance record, because the management module `absences` refuses every endpoint (403) and the
       ORM model `modules/classbook/student-absence` refuses too.
+
+
+      Two further endpoints are parent-facing but school-gated: `get-homework` and `get-topics`, the
+      same call shape with `homework` or `topic` per lesson, switched on by
+      `classbook.homeworkIsVisibleForStudents` and `classbook.topicsAreVisibleForStudents`. Their ORM
+      route is closed as well — both are attributes of `modules/classbook/TaughtLesson`, which
+      answers 403.
     externalDocs:
       url: https://www.schulmanager-online.de/module.digitales-klassenbuch.html
   - name: Sick notes
@@ -1230,6 +1237,44 @@ paths:
           $ref: '#/components/responses/ResultRefused'
         '500':
           $ref: '#/components/responses/ResultParameterError'
+  '/api/calls:classbook/get-homework':
+    post:
+      tags: [Class register]
+      operationId: classbookGetHomework
+      summary: Homework set for a student
+      description: |
+        Homework the teachers recorded, one row per lesson, unsorted.
+
+        **Read `classbook.homeworkIsVisibleForStudents` first**: where it is false this answers 500,
+        not 403. The school captured has it off, so the response shape comes from the client bundle
+        rather than from a live call.
+      x-provenance: statically-extracted
+      x-rpc:
+        moduleName: classbook
+        endpointName: get-homework
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [student]
+              properties:
+                student:
+                  $ref: '#/components/schemas/EntityRef'
+      responses:
+        '200':
+          description: Homework rows, ungrouped.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HomeworkItem'
+        '500':
+          description: |
+            Also returned when the school has homework hidden from families — indistinguishable from a
+            malformed request, which is why the setting has to be read first.
   '/api/calls:calendar/get-events-for-user':
     post:
       tags: [Calendar]
@@ -1645,6 +1690,38 @@ paths:
       responses:
         '200':
           description: The created message. Shape unverified.
+        '403':
+          $ref: '#/components/responses/ResultRefused'
+  '/api/calls:messenger/change-subject':
+    post:
+      tags: [Messages]
+      operationId: messengerChangeSubject
+      summary: Rename a thread (write)
+      description: |
+        Renames a thread **for every participant**, not just the caller. Verified live: a parent may
+        rename a thread they started (`200`, `data: null`).
+
+        Takes the *thread* id, not the subscription id the thread list is keyed by. The two differ,
+        and sending the subscription id is the usual way this call fails.
+      x-provenance: verified-live
+      x-rpc:
+        moduleName: messenger
+        endpointName: change-subject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [thread, newSubject]
+              properties:
+                thread:
+                  $ref: '#/components/schemas/EntityRef'
+                newSubject:
+                  type: string
+      responses:
+        '200':
+          description: Renamed. No payload.
         '403':
           $ref: '#/components/responses/ResultRefused'
   '/api/calls:messenger/set-subscription-read':
@@ -2734,6 +2811,13 @@ components:
           type: [boolean, 'null']
         studentAbsencesCanBeExcusedPerLesson:
           type: [boolean, 'null']
+        homeworkIsVisibleForStudents:
+          type: [boolean, 'null']
+          description: |
+            Gates `classbook/get-homework`, which answers 500 rather than 403 when it is false.
+        topicsAreVisibleForStudents:
+          type: [boolean, 'null']
+          description: The same switch for `classbook/get-topics`.
       additionalProperties: true
     CalendarSettings:
       type: object
@@ -2919,6 +3003,20 @@ components:
             totalLessons:
               type: number
       x-provenance: verified-live
+    HomeworkItem:
+      type: object
+      description: |
+        One homework assignment. Carries no id — the client keys rows by date, subject and text.
+        Shape read from the vendor's homework screen; not verified live, see the operation.
+      properties:
+        date:
+          type: [string, 'null']
+          format: date
+        subject:
+          type: [string, 'null']
+        homework:
+          type: [string, 'null']
+      additionalProperties: true
     StudentEntryType:
       type: object
       description: A kind of classbook entry, with this student's entries inside it.
